@@ -1,2 +1,2 @@
 # CS205-project
-CS205 Project
+Proposal: https://docs.google.com/presentation/d/1JFuNiYdcv-SqEPjnBgAGyIpz_qtl6exXRjwhyZmDZBs/edit?usp=sharing
