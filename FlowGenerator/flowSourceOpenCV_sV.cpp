@@ -90,7 +90,7 @@ void ReadFlowFile(Mat **img, const char* filename)
     int n = 2 * width;
     for (int y = 0; y < height; y++) {
       for (int x=0; x<width;x++) {
-  if ((int)fread(&(*img->at<Point2f>(y, x)), sizeof(float), 2, stream) != 2)
+  if ((int)fread(&((*img)->at<Point2f>(y, x)), sizeof(float), 2, stream) != 2)
       throw CError("ReadFlowFile(%s): file is too short", filename);
     }
 }
