@@ -48,10 +48,10 @@ RM = /home/hongxiangqiu/Desktop/clion-2018.1/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hongxiangqiu/Desktop/DeepFlow_omp
+CMAKE_SOURCE_DIR = /home/hongxiangqiu/CS205-project/DeepFlow_parallel
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hongxiangqiu/Desktop/DeepFlow_omp/cmake-build-debug
+CMAKE_BINARY_DIR = /home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hongxiangqiu/Desktop/DeepFlow_omp/cmake-build-debug/CMakeFiles /home/hongxiangqiu/Desktop/DeepFlow_omp/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles /home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hongxiangqiu/Desktop/DeepFlow_omp/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

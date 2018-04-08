@@ -4,12 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/hongxiangqiu/Desktop/DeepFlow_omp/deepflow2.c" "/home/hongxiangqiu/Desktop/DeepFlow_omp/cmake-build-debug/CMakeFiles/DeepFlow.dir/deepflow2.c.o"
-  "/home/hongxiangqiu/Desktop/DeepFlow_omp/src/image.c" "/home/hongxiangqiu/Desktop/DeepFlow_omp/cmake-build-debug/CMakeFiles/DeepFlow.dir/src/image.c.o"
-  "/home/hongxiangqiu/Desktop/DeepFlow_omp/src/io.c" "/home/hongxiangqiu/Desktop/DeepFlow_omp/cmake-build-debug/CMakeFiles/DeepFlow.dir/src/io.c.o"
-  "/home/hongxiangqiu/Desktop/DeepFlow_omp/src/opticalflow.c" "/home/hongxiangqiu/Desktop/DeepFlow_omp/cmake-build-debug/CMakeFiles/DeepFlow.dir/src/opticalflow.c.o"
-  "/home/hongxiangqiu/Desktop/DeepFlow_omp/src/opticalflow_aux.c" "/home/hongxiangqiu/Desktop/DeepFlow_omp/cmake-build-debug/CMakeFiles/DeepFlow.dir/src/opticalflow_aux.c.o"
-  "/home/hongxiangqiu/Desktop/DeepFlow_omp/src/solver.c" "/home/hongxiangqiu/Desktop/DeepFlow_omp/cmake-build-debug/CMakeFiles/DeepFlow.dir/src/solver.c.o"
+  "/home/hongxiangqiu/CS205-project/DeepFlow_parallel/deepflow2.c" "/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles/DeepFlow.dir/deepflow2.c.o"
+  "/home/hongxiangqiu/CS205-project/DeepFlow_parallel/src/image.c" "/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles/DeepFlow.dir/src/image.c.o"
+  "/home/hongxiangqiu/CS205-project/DeepFlow_parallel/src/io.c" "/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles/DeepFlow.dir/src/io.c.o"
+  "/home/hongxiangqiu/CS205-project/DeepFlow_parallel/src/opticalflow.c" "/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles/DeepFlow.dir/src/opticalflow.c.o"
+  "/home/hongxiangqiu/CS205-project/DeepFlow_parallel/src/opticalflow_aux.c" "/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles/DeepFlow.dir/src/opticalflow_aux.c.o"
+  "/home/hongxiangqiu/CS205-project/DeepFlow_parallel/src/solver.c" "/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles/DeepFlow.dir/src/solver.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

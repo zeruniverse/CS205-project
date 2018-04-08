@@ -72,8 +72,6 @@ void sor_coupled_mpi(image_t *du, image_t *dv, const image_t *a11, const image_t
 
     float* buffer_u = (float *) memalign(16, du->stride * du->height * sizeof(float));
     float* buffer_v = (float *) memalign(16, dv->stride * dv->height * sizeof(float));
-    memcpy(buffer_u, du->data, du->stride * du->height * sizeof(float));
-    memcpy(buffer_v, dv->data, dv->stride * dv->height * sizeof(float));
 
     float *from_u = du->data;
     float *from_v = dv->data;
@@ -90,9 +88,11 @@ void sor_coupled_mpi(image_t *du, image_t *dv, const image_t *a11, const image_t
 
     swap(&from_u, &to_u);
     swap(&from_v, &to_v);
+    printf("=====START======================================================\n");
     for (int iter = 0; iter < iterations; iter++) {
         swap(&from_u, &to_u);
         swap(&from_v, &to_v);
+        printf("====It%d======================================================\n", iter);
         for (int j = 0; j < du->height; j++) {
             float sigma_u, sigma_v, A11, A22, A12, B1, B2;
             for (int i = 0; i < du->width; i++) {
@@ -123,15 +123,16 @@ void sor_coupled_mpi(image_t *du, image_t *dv, const image_t *a11, const image_t
 
                 to_u[j * du->stride + i] = from_u[j * du->stride + i] + omega * (A22 * B1 - A12 * B2 - from_u[j * du->stride + i]);
                 to_v[j * du->stride + i] = from_v[j * du->stride + i] + omega * (-A12 * B1 + A11 * B2 - from_v[j * du->stride + i]);
+                printf("u[%d,%d]")
             }
         }
-        memcpy(from_u, to_u, dv->stride * dv->height * sizeof(float));
-        memcpy(from_v, to_v, dv->stride * dv->height * sizeof(float));
     }
+
     if (to_u != du->data) {
         memcpy(du->data, to_u, du->stride * du->height * sizeof(float));
         memcpy(dv->data, to_v, dv->stride * dv->height * sizeof(float));
     }
+    printf("=====END======================================================\n");
 
     free(A11m);
     free(A12m);

@@ -1,4 +1,7 @@
-/home/hongxiangqiu/Desktop/clion-2018.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/hongxiangqiu/Desktop/DeepFlow_omp
+/home/hongxiangqiu/Desktop/clion-2018.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/hongxiangqiu/CS205-project/DeepFlow_parallel
+-- Found OpenMP_C: -fopenmp  
+-- Found OpenMP_CXX: -fopenmp  
+-- Found OpenMP: TRUE   
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/hongxiangqiu/Desktop/DeepFlow_omp/cmake-build-debug
+-- Build files have been written to: /home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug
