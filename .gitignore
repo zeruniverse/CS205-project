@@ -1,4 +1,5 @@
 .DS_Store
-.out
-.o
+*.out
+*.o
+*.a
 cmake-build-debug/
