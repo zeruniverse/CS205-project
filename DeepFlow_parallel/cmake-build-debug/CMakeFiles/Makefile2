@@ -60,13 +60,50 @@ CMAKE_SOURCE_DIR = /home/hongxiangqiu/CS205-project/DeepFlow_parallel
 CMAKE_BINARY_DIR = /home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug
 
 #=============================================================================
+# Target rules for target CMakeFiles/DeepFlow_acc.dir
+
+# All Build rule for target.
+CMakeFiles/DeepFlow_acc.dir/all:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/depend
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles --progress-num=8,9,10,11,12,13,14 "Built target DeepFlow_acc"
+.PHONY : CMakeFiles/DeepFlow_acc.dir/all
+
+# Include target in all.
+all: CMakeFiles/DeepFlow_acc.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/DeepFlow_acc.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles 7
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/DeepFlow_acc.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/DeepFlow_acc.dir/rule
+
+# Convenience name for target.
+DeepFlow_acc: CMakeFiles/DeepFlow_acc.dir/rule
+
+.PHONY : DeepFlow_acc
+
+# clean rule for target.
+CMakeFiles/DeepFlow_acc.dir/clean:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/clean
+.PHONY : CMakeFiles/DeepFlow_acc.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/DeepFlow_acc.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/DeepFlow_mpi.dir
 
 # All Build rule for target.
 CMakeFiles/DeepFlow_mpi.dir/all:
 	$(MAKE) -f CMakeFiles/DeepFlow_mpi.dir/build.make CMakeFiles/DeepFlow_mpi.dir/depend
 	$(MAKE) -f CMakeFiles/DeepFlow_mpi.dir/build.make CMakeFiles/DeepFlow_mpi.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles --progress-num=8,9,10,11,12,13,14 "Built target DeepFlow_mpi"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles --progress-num=15,16,17,18,19,20,21 "Built target DeepFlow_mpi"
 .PHONY : CMakeFiles/DeepFlow_mpi.dir/all
 
 # Include target in all.

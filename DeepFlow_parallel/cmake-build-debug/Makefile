@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named DeepFlow_acc
+
+# Build rule for target.
+DeepFlow_acc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 DeepFlow_acc
+.PHONY : DeepFlow_acc
+
+# fast build rule for target.
+DeepFlow_acc/fast:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/build
+.PHONY : DeepFlow_acc/fast
+
+#=============================================================================
 # Target rules for targets named DeepFlow_mpi
 
 # Build rule for target.
@@ -162,6 +175,33 @@ deepflow2.s: deepflow2.c.s
 deepflow2.c.s:
 	$(MAKE) -f CMakeFiles/DeepFlow.dir/build.make CMakeFiles/DeepFlow.dir/deepflow2.c.s
 .PHONY : deepflow2.c.s
+
+deepflow2_acc.o: deepflow2_acc.c.o
+
+.PHONY : deepflow2_acc.o
+
+# target to build an object file
+deepflow2_acc.c.o:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/deepflow2_acc.c.o
+.PHONY : deepflow2_acc.c.o
+
+deepflow2_acc.i: deepflow2_acc.c.i
+
+.PHONY : deepflow2_acc.i
+
+# target to preprocess a source file
+deepflow2_acc.c.i:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/deepflow2_acc.c.i
+.PHONY : deepflow2_acc.c.i
+
+deepflow2_acc.s: deepflow2_acc.c.s
+
+.PHONY : deepflow2_acc.s
+
+# target to generate assembly for a file
+deepflow2_acc.c.s:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/deepflow2_acc.c.s
+.PHONY : deepflow2_acc.c.s
 
 deepflow2_mpi.o: deepflow2_mpi.c.o
 
@@ -223,6 +263,7 @@ src/io.o: src/io.c.o
 
 # target to build an object file
 src/io.c.o:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/src/io.c.o
 	$(MAKE) -f CMakeFiles/DeepFlow_mpi.dir/build.make CMakeFiles/DeepFlow_mpi.dir/src/io.c.o
 	$(MAKE) -f CMakeFiles/DeepFlow.dir/build.make CMakeFiles/DeepFlow.dir/src/io.c.o
 .PHONY : src/io.c.o
@@ -233,6 +274,7 @@ src/io.i: src/io.c.i
 
 # target to preprocess a source file
 src/io.c.i:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/src/io.c.i
 	$(MAKE) -f CMakeFiles/DeepFlow_mpi.dir/build.make CMakeFiles/DeepFlow_mpi.dir/src/io.c.i
 	$(MAKE) -f CMakeFiles/DeepFlow.dir/build.make CMakeFiles/DeepFlow.dir/src/io.c.i
 .PHONY : src/io.c.i
@@ -243,6 +285,7 @@ src/io.s: src/io.c.s
 
 # target to generate assembly for a file
 src/io.c.s:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/src/io.c.s
 	$(MAKE) -f CMakeFiles/DeepFlow_mpi.dir/build.make CMakeFiles/DeepFlow_mpi.dir/src/io.c.s
 	$(MAKE) -f CMakeFiles/DeepFlow.dir/build.make CMakeFiles/DeepFlow.dir/src/io.c.s
 .PHONY : src/io.c.s
@@ -327,6 +370,114 @@ src/solver.s: src/solver.c.s
 src/solver.c.s:
 	$(MAKE) -f CMakeFiles/DeepFlow.dir/build.make CMakeFiles/DeepFlow.dir/src/solver.c.s
 .PHONY : src/solver.c.s
+
+src_acc/image_acc.o: src_acc/image_acc.c.o
+
+.PHONY : src_acc/image_acc.o
+
+# target to build an object file
+src_acc/image_acc.c.o:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/src_acc/image_acc.c.o
+.PHONY : src_acc/image_acc.c.o
+
+src_acc/image_acc.i: src_acc/image_acc.c.i
+
+.PHONY : src_acc/image_acc.i
+
+# target to preprocess a source file
+src_acc/image_acc.c.i:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/src_acc/image_acc.c.i
+.PHONY : src_acc/image_acc.c.i
+
+src_acc/image_acc.s: src_acc/image_acc.c.s
+
+.PHONY : src_acc/image_acc.s
+
+# target to generate assembly for a file
+src_acc/image_acc.c.s:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/src_acc/image_acc.c.s
+.PHONY : src_acc/image_acc.c.s
+
+src_acc/opticalflow_acc.o: src_acc/opticalflow_acc.c.o
+
+.PHONY : src_acc/opticalflow_acc.o
+
+# target to build an object file
+src_acc/opticalflow_acc.c.o:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/src_acc/opticalflow_acc.c.o
+.PHONY : src_acc/opticalflow_acc.c.o
+
+src_acc/opticalflow_acc.i: src_acc/opticalflow_acc.c.i
+
+.PHONY : src_acc/opticalflow_acc.i
+
+# target to preprocess a source file
+src_acc/opticalflow_acc.c.i:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/src_acc/opticalflow_acc.c.i
+.PHONY : src_acc/opticalflow_acc.c.i
+
+src_acc/opticalflow_acc.s: src_acc/opticalflow_acc.c.s
+
+.PHONY : src_acc/opticalflow_acc.s
+
+# target to generate assembly for a file
+src_acc/opticalflow_acc.c.s:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/src_acc/opticalflow_acc.c.s
+.PHONY : src_acc/opticalflow_acc.c.s
+
+src_acc/opticalflow_aux_acc.o: src_acc/opticalflow_aux_acc.c.o
+
+.PHONY : src_acc/opticalflow_aux_acc.o
+
+# target to build an object file
+src_acc/opticalflow_aux_acc.c.o:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/src_acc/opticalflow_aux_acc.c.o
+.PHONY : src_acc/opticalflow_aux_acc.c.o
+
+src_acc/opticalflow_aux_acc.i: src_acc/opticalflow_aux_acc.c.i
+
+.PHONY : src_acc/opticalflow_aux_acc.i
+
+# target to preprocess a source file
+src_acc/opticalflow_aux_acc.c.i:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/src_acc/opticalflow_aux_acc.c.i
+.PHONY : src_acc/opticalflow_aux_acc.c.i
+
+src_acc/opticalflow_aux_acc.s: src_acc/opticalflow_aux_acc.c.s
+
+.PHONY : src_acc/opticalflow_aux_acc.s
+
+# target to generate assembly for a file
+src_acc/opticalflow_aux_acc.c.s:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/src_acc/opticalflow_aux_acc.c.s
+.PHONY : src_acc/opticalflow_aux_acc.c.s
+
+src_acc/solver_acc.o: src_acc/solver_acc.c.o
+
+.PHONY : src_acc/solver_acc.o
+
+# target to build an object file
+src_acc/solver_acc.c.o:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/src_acc/solver_acc.c.o
+.PHONY : src_acc/solver_acc.c.o
+
+src_acc/solver_acc.i: src_acc/solver_acc.c.i
+
+.PHONY : src_acc/solver_acc.i
+
+# target to preprocess a source file
+src_acc/solver_acc.c.i:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/src_acc/solver_acc.c.i
+.PHONY : src_acc/solver_acc.c.i
+
+src_acc/solver_acc.s: src_acc/solver_acc.c.s
+
+.PHONY : src_acc/solver_acc.s
+
+# target to generate assembly for a file
+src_acc/solver_acc.c.s:
+	$(MAKE) -f CMakeFiles/DeepFlow_acc.dir/build.make CMakeFiles/DeepFlow_acc.dir/src_acc/solver_acc.c.s
+.PHONY : src_acc/solver_acc.c.s
 
 src_mpi/image_mpi.o: src_mpi/image_mpi.c.o
 
@@ -444,11 +595,15 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... DeepFlow_acc"
 	@echo "... DeepFlow_mpi"
 	@echo "... DeepFlow"
 	@echo "... deepflow2.o"
 	@echo "... deepflow2.i"
 	@echo "... deepflow2.s"
+	@echo "... deepflow2_acc.o"
+	@echo "... deepflow2_acc.i"
+	@echo "... deepflow2_acc.s"
 	@echo "... deepflow2_mpi.o"
 	@echo "... deepflow2_mpi.i"
 	@echo "... deepflow2_mpi.s"
@@ -467,6 +622,18 @@ help:
 	@echo "... src/solver.o"
 	@echo "... src/solver.i"
 	@echo "... src/solver.s"
+	@echo "... src_acc/image_acc.o"
+	@echo "... src_acc/image_acc.i"
+	@echo "... src_acc/image_acc.s"
+	@echo "... src_acc/opticalflow_acc.o"
+	@echo "... src_acc/opticalflow_acc.i"
+	@echo "... src_acc/opticalflow_acc.s"
+	@echo "... src_acc/opticalflow_aux_acc.o"
+	@echo "... src_acc/opticalflow_aux_acc.i"
+	@echo "... src_acc/opticalflow_aux_acc.s"
+	@echo "... src_acc/solver_acc.o"
+	@echo "... src_acc/solver_acc.i"
+	@echo "... src_acc/solver_acc.s"
 	@echo "... src_mpi/image_mpi.o"
 	@echo "... src_mpi/image_mpi.i"
 	@echo "... src_mpi/image_mpi.s"
