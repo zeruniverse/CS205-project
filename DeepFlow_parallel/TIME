@@ -1,0 +1,3 @@
+ORI: 18.159s
+SLOW: 24.681s
+SLOW+OMP: 12s

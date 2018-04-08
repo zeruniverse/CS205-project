@@ -1,0 +1,4 @@
+/home/hongxiangqiu/Desktop/clion-2018.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/hongxiangqiu/Desktop/DeepFlow_omp
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/hongxiangqiu/Desktop/DeepFlow_omp/cmake-build-debug
