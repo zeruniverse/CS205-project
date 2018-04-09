@@ -25,11 +25,32 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <file leaf-file-name="image_acc.c" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src_acc/image_acc.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="34" selection-start-column="34" selection-end-column="34" />
+            <state relative-caret-position="210">
+              <caret line="68" column="34" selection-start-line="68" selection-start-column="34" selection-end-line="68" selection-end-column="34" />
+              <folding>
+                <element signature="e#659#677#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="image_acc.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src_acc/image_acc.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="xmmintrin.h" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/lib/gcc/x86_64-linux-gnu/5/include/xmmintrin.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="169">
+              <caret line="71" column="14" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -98,7 +119,6 @@
         <option value="$PROJECT_DIR$/src_mpi/solver_mpi.c" />
         <option value="$PROJECT_DIR$/TIME" />
         <option value="$PROJECT_DIR$/src_acc/acc.h" />
-        <option value="$PROJECT_DIR$/src_acc/image_acc.c" />
         <option value="$PROJECT_DIR$/deepflow2_acc.c" />
         <option value="$PROJECT_DIR$/src_mpi/solver_mpi.h" />
         <option value="$PROJECT_DIR$/src_acc/solver_acc.h" />
@@ -108,6 +128,7 @@
         <option value="$PROJECT_DIR$/src_acc/opticalflow_acc.h" />
         <option value="$PROJECT_DIR$/src_acc/opticalflow_acc.c" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src_acc/image_acc.c" />
       </list>
     </option>
   </component>
@@ -135,6 +156,11 @@
             <path>
               <item name="DeepFlow" type="b2602c69:ProjectViewProjectNode" />
               <item name="DeepFlow_parallel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DeepFlow" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepFlow_parallel" type="462c0819:PsiDirectoryNode" />
+              <item name="src_acc" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -199,12 +225,12 @@
       <workItem from="1523136029483" duration="2604000" />
       <workItem from="1523138835022" duration="3718000" />
       <workItem from="1523142639656" duration="21865000" />
-      <workItem from="1523213524403" duration="8605000" />
+      <workItem from="1523213524403" duration="9981000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37650000" />
+    <option name="totallyTimeSpent" value="39026000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1375" height="904" extended-state="6" />
@@ -212,14 +238,14 @@
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17163636" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32957393" />
+      <window_info anchor="bottom" id="Messages" order="7" visible="true" weight="0.32957393" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.32957393" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32957393" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32957393" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32957393" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -288,13 +314,6 @@
           <folding>
             <element signature="e#712#730#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/gcc/x86_64-linux-gnu/5/include/xmmintrin.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="71" column="17" lean-forward="true" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -567,20 +586,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src_acc/image_acc.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src_acc/image_acc.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src_acc/acc.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -588,17 +593,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TIME">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="34" selection-start-column="34" selection-end-column="34" />
+          <caret column="16" selection-start-column="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TIME">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="13" lean-forward="true" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/gcc/x86_64-linux-gnu/5/include/xmmintrin.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="71" column="14" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src_acc/image_acc.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src_acc/image_acc.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="68" column="34" selection-start-line="68" selection-start-column="34" selection-end-line="68" selection-end-column="34" />
+          <folding>
+            <element signature="e#659#677#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

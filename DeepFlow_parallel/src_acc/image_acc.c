@@ -66,7 +66,7 @@ void image_mul_scalar(image_t *image, const float scalar) {
     v4sf *imp = (v4sf *) image->data;
     const v4sf scalarp = {scalar, scalar, scalar, scalar};
     for (i = 0; i < image->stride / 4 * image->height; i++) {
-        (*imp) *= scalarp;
+        (*imp) = (*imp) * scalarp;
         imp += 1;
     }
 }
