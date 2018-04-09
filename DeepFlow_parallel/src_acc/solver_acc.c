@@ -23,10 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "image_acc.h"
 #include "solver_acc.h"
 
-#include <xmmintrin.h>
 #include "acc.h"
-
-typedef __v4sf v4sf;
 
 void swap(float **a, float **b) {
     float *temp = *a;

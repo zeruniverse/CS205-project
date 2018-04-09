@@ -24,9 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "solver_acc.h"
 #include "image_acc.h"
 
-#include <xmmintrin.h>
-typedef __v4sf v4sf;
-
 convolution_t *deriv, *deriv_flow;
 float half_alpha, half_delta_over3, half_beta, half_gamma_over3;
 
@@ -68,8 +65,8 @@ void compute_one_level(image_t *wx, image_t *wy, color_image_t *im1, color_image
         sor_coupled_mpi(du, dv, a11, a12, a22, b1, b2, smooth_horiz, smooth_vert, params->n_solver_iteration, params->sor_omega);
         // update flow plus flow increment
         int i;
-        v4sf *uup = (v4sf*) uu->data, *vvp = (v4sf*) vv->data, *wxp = (v4sf*) wx->data, *wyp = (v4sf*) wy->data, *dup = (v4sf*) du->data, *dvp = (v4sf*) dv->data;
-        for( i=0 ; i<height*stride/4 ; i++){
+        float *uup =  uu->data, *vvp = vv->data, *wxp = wx->data, *wyp = wy->data, *dup = du->data, *dvp = dv->data;
+        for( i=0 ; i<height*stride ; i++){
             (*uup) = (*wxp) + (*dup);
             (*vvp) = (*wyp) + (*dvp);
             uup+=1; vvp+=1; wxp+=1; wyp+=1;dup+=1;dvp+=1;

@@ -20,10 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string.h>
 #include "opticalflow_aux_acc.h"
 
-#include <xmmintrin.h>
-
-typedef __v4sf v4sf;
-
 #define datanorm 0.1f*0.1f//0.01f // square of the normalization factor
 #define epsilon_color (0.001f*0.001f)//0.000001f
 #define epsilon_grad (0.001f*0.001f)//0.000001f
@@ -74,10 +70,10 @@ void get_derivatives(const color_image_t *im1, const color_image_t *im2, const c
                      color_image_t *dyt) {
     // derivatives are computed on the mean of the first image and the warped second image
     color_image_t *tmp_im2 = color_image_new(im2->width, im2->height);
-    v4sf *tmp_im2p = (v4sf *) tmp_im2->c1, *dtp = (v4sf *) dt->c1, *im1p = (v4sf *) im1->c1, *im2p = (v4sf *) im2->c1;
-    const v4sf half = {0.5f, 0.5f, 0.5f, 0.5f};
+    float *tmp_im2p = tmp_im2->c1, *dtp = dt->c1, *im1p = im1->c1, *im2p = im2->c1;
+    const float half = 0.5f;
     int i = 0;
-    for (i = 0; i < 3 * im1->height * im1->stride / 4; i++) {
+    for (i = 0; i < 3 * im1->height * im1->stride; i++) {
         *tmp_im2p = half * ((*im2p) + (*im1p));
         *dtp = (*im2p) - (*im1p);
         dtp += 1;
@@ -103,8 +99,8 @@ image_t *compute_smoothness_weight(color_image_t *im, float coef, const convolut
             im->width, im->height);
     int i;
     // ocompute luminance
-    v4sf *im1p = (v4sf *) im->c1, *im2p = (v4sf *) im->c2, *im3p = (v4sf *) im->c3, *lump = (v4sf *) lum->data;
-    for (i = 0; i < im->height * im->stride / 4; i++) {
+    float *im1p = im->c1, *im2p = im->c2, *im3p = im->c3, *lump = lum->data;
+    for (i = 0; i < im->height * im->stride; i++) {
         *lump = (0.299f * (*im1p) + 0.587f * (*im2p) + 0.114f * (*im3p)) / 255.0f;
         lump += 1;
         im1p += 1;
@@ -115,9 +111,9 @@ image_t *compute_smoothness_weight(color_image_t *im, float coef, const convolut
     convolve_horiz(lum_x, lum, deriv);
     convolve_vert(lum_y, lum, deriv);
     // compute lum norm
-    lump = (v4sf *) lum->data;
-    v4sf *lumxp = (v4sf *) lum_x->data, *lumyp = (v4sf *) lum_y->data;
-    for (i = 0; i < lum->height * lum->stride / 4; i++) {
+    lump = lum->data;
+    float *lumxp = lum_x->data, *lumyp = lum_y->data;
+    for (i = 0; i < lum->height * lum->stride; i++) {
         *lump = -coef * __builtin_ia32_sqrtps((*lumxp) * (*lumxp) + (*lumyp) * (*lumyp));
         lump[0][0] = 0.5f * expf(lump[0][0]);
         lump[0][1] = 0.5f * expf(lump[0][1]);
@@ -225,11 +221,11 @@ void sub_laplacian(image_t *dst, const image_t *src, const image_t *weight_horiz
         weight_horiz_ptr += offsetline + 1;
     }
 
-    v4sf *wvp = (v4sf *) weight_vert->data, *srcp = (v4sf *) src->data, *srcp_s = (v4sf *) (src->data +
-                                                                                            src->stride), *dstp = (v4sf *) dst->data, *dstp_s = (v4sf *) (
+    float *wvp = weight_vert->data, *srcp = src->data, *srcp_s = (src->data +
+                                                                                            src->stride), *dstp = dst->data, *dstp_s = (
             dst->data + src->stride);
-    for (j = 1 + (src->height - 1) * src->stride / 4; --j;) {
-        const v4sf tmp = (*wvp) * ((*srcp_s) - (*srcp));
+    for (j = 1 + (src->height - 1) * src->stride; --j;) {
+        const float tmp = (*wvp) * ((*srcp_s) - (*srcp));
         *dstp += tmp;
         *dstp_s -= tmp;
         wvp += 1;
@@ -251,23 +247,23 @@ compute_data_and_match(image_t *a11, image_t *a12, image_t *a22, image_t *b1, im
                        image_t *desc_flow_y, const float half_delta_over3, const float half_beta,
                        const float half_gamma_over3) {
 
-    const v4sf dnorm = {datanorm, datanorm, datanorm, datanorm};
-    const v4sf hdover3 = {half_delta_over3, half_delta_over3, half_delta_over3, half_delta_over3};
-    const v4sf epscolor = {epsilon_color, epsilon_color, epsilon_color, epsilon_color};
-    const v4sf hgover3 = {half_gamma_over3, half_gamma_over3, half_gamma_over3, half_gamma_over3};
-    const v4sf epsgrad = {epsilon_grad, epsilon_grad, epsilon_grad, epsilon_grad};
-    const v4sf hbeta = {half_beta, half_beta, half_beta, half_beta};
-    const v4sf epsdesc = {epsilon_desc, epsilon_desc, epsilon_desc, epsilon_desc};
+    const float dnorm = datanorm;
+    const float hdover3 = half_delta_over3;
+    const float epscolor = epsilon_color;
+    const float hgover3 = half_gamma_over3;
+    const float epsgrad = epsilon_grad;
+    const float hbeta = half_beta;
+    const float epsdesc = epsilon_desc;
 
-    v4sf *dup = (v4sf *) du->data, *dvp = (v4sf *) dv->data,
-            *maskp = (v4sf *) mask->data,
-            *a11p = (v4sf *) a11->data, *a12p = (v4sf *) a12->data, *a22p = (v4sf *) a22->data,
-            *b1p = (v4sf *) b1->data, *b2p = (v4sf *) b2->data,
-            *ix1p = (v4sf *) Ix->c1, *iy1p = (v4sf *) Iy->c1, *iz1p = (v4sf *) Iz->c1, *ixx1p = (v4sf *) Ixx->c1, *ixy1p = (v4sf *) Ixy->c1, *iyy1p = (v4sf *) Iyy->c1, *ixz1p = (v4sf *) Ixz->c1, *iyz1p = (v4sf *) Iyz->c1,
-            *ix2p = (v4sf *) Ix->c2, *iy2p = (v4sf *) Iy->c2, *iz2p = (v4sf *) Iz->c2, *ixx2p = (v4sf *) Ixx->c2, *ixy2p = (v4sf *) Ixy->c2, *iyy2p = (v4sf *) Iyy->c2, *ixz2p = (v4sf *) Ixz->c2, *iyz2p = (v4sf *) Iyz->c2,
-            *ix3p = (v4sf *) Ix->c3, *iy3p = (v4sf *) Iy->c3, *iz3p = (v4sf *) Iz->c3, *ixx3p = (v4sf *) Ixx->c3, *ixy3p = (v4sf *) Ixy->c3, *iyy3p = (v4sf *) Iyy->c3, *ixz3p = (v4sf *) Ixz->c3, *iyz3p = (v4sf *) Iyz->c3,
-            *uup = (v4sf *) uu->data, *vvp = (v4sf *) vv->data, *wxp = (v4sf *) wx->data, *wyp = (v4sf *) wy->data,
-            *descflowxp = (v4sf *) desc_flow_x->data, *descflowyp = (v4sf *) desc_flow_y->data, *descweightp = (v4sf *) desc_weight->data;
+    float *dup = du->data, *dvp = dv->data,
+            *maskp = mask->data,
+            *a11p = a11->data, *a12p = a12->data, *a22p = a22->data,
+            *b1p = b1->data, *b2p = b2->data,
+            *ix1p = Ix->c1, *iy1p = Iy->c1, *iz1p = Iz->c1, *ixx1p = Ixx->c1, *ixy1p = Ixy->c1, *iyy1p = Iyy->c1, *ixz1p = Ixz->c1, *iyz1p = Iyz->c1,
+            *ix2p = Ix->c2, *iy2p = Iy->c2, *iz2p = Iz->c2, *ixx2p = Ixx->c2, *ixy2p = Ixy->c2, *iyy2p = Iyy->c2, *ixz2p = Ixz->c2, *iyz2p = Iyz->c2,
+            *ix3p = Ix->c3, *iy3p = Iy->c3, *iz3p = Iz->c3, *ixx3p = Ixx->c3, *ixy3p = Ixy->c3, *iyy3p = Iyy->c3, *ixz3p = Ixz->c3, *iyz3p = Iyz->c3,
+            *uup = uu->data, *vvp = vv->data, *wxp = wx->data, *wyp = wy->data,
+            *descflowxp = desc_flow_x->data, *descflowyp = desc_flow_y->data, *descweightp = desc_weight->data;
 
     memset(a11->data, 0, sizeof(float) * uu->height * uu->stride);
     memset(a12->data, 0, sizeof(float) * uu->height * uu->stride);
@@ -276,8 +272,8 @@ compute_data_and_match(image_t *a11, image_t *a12, image_t *a22, image_t *b1, im
     memset(b2->data, 0, sizeof(float) * uu->height * uu->stride);
 
     int i;
-    for (i = 0; i < uu->height * uu->stride / 4; i++) {
-        v4sf tmp, tmp2, tmp3, tmp4, tmp5, tmp6, n1, n2, n3, n4, n5, n6;
+    for (i = 0; i < uu->height * uu->stride; i++) {
+        float tmp, tmp2, tmp3, tmp4, tmp5, tmp6, n1, n2, n3, n4, n5, n6;
         // dpsi color
         if (half_delta_over3) {
             tmp = *iz1p + (*ix1p) * (*dup) + (*iy1p) * (*dvp);
