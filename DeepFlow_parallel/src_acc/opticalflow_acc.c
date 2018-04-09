@@ -68,8 +68,8 @@ void compute_one_level(image_t *wx, image_t *wy, color_image_t *im1, color_image
         sor_coupled_mpi(du, dv, a11, a12, a22, b1, b2, smooth_horiz, smooth_vert, params->n_solver_iteration, params->sor_omega);
         // update flow plus flow increment
         int i;
-        float *uup = uu->data, *vvp = vv->data, *wxp = wx->data, *wyp = wy->data, *dup = du->data, *dvp = dv->data;
-        for( i=0 ; i<height*stride ; i++){
+        v4sf *uup = (v4sf*) uu->data, *vvp = (v4sf*) vv->data, *wxp = (v4sf*) wx->data, *wyp = (v4sf*) wy->data, *dup = (v4sf*) du->data, *dvp = (v4sf*) dv->data;
+        for( i=0 ; i<height*stride/4 ; i++){
             (*uup) = (*wxp) + (*dup);
             (*vvp) = (*wyp) + (*dvp);
             uup+=1; vvp+=1; wxp+=1; wyp+=1;dup+=1;dvp+=1;
@@ -230,7 +230,7 @@ void optical_flow(image_t *wx, image_t *wy, const color_image_t *im1, const colo
     // loop over levels
     int k;
     for(k=pyr1->size-1; k>=0 ; k--){
-        if(params->bk>0.0f) half_beta = 0.5f*params->beta * pow(((float)k)/((float)pyr1->size-1),params->bk);
+        if(params->bk>0.0f) half_beta = 0.5f*params->beta * powf(((float)k)/((float)pyr1->size-1),params->bk);
         if(k == pyr1->size-1){ 
             // first level	  
             // allocate wx and wy

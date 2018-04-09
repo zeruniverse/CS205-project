@@ -20,8 +20,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <malloc.h>
 #include <math.h>
 
-#include "acc.h"
 #include "image_acc.h"
+#include "mpi.h"
+
+#include <xmmintrin.h>
+
+typedef __v4sf v4sf;
 
 /********** Create/Delete **********/
 
@@ -59,8 +63,11 @@ void image_erase(image_t *image) {
 /* multiply an image by a scalar */
 void image_mul_scalar(image_t *image, const float scalar) {
     int i;
-    for(i=0;i<image->stride*image->height;i++) {
-        image->data[i] = image->data[i] * scalar;
+    v4sf *imp = (v4sf *) image->data;
+    const v4sf scalarp = {scalar, scalar, scalar, scalar};
+    for (i = 0; i < image->stride / 4 * image->height; i++) {
+        (*imp) *= scalarp;
+        imp += 1;
     }
 }
 
@@ -387,12 +394,11 @@ convolution_t *convolution_new(const int order, const float *half_coeffs, const 
 }
 
 static void convolve_vert_fast_3(image_t *dst, const image_t *src, const convolution_t *conv) {
-    const int iterline = (src->stride) + 1;
+    const int iterline = (src->stride >> 2) + 1;
     const float *coeff = conv->coeffs;
     //const float *coeff_accu = conv->coeffs_accu;
-
-    float *srcp = src->data, *dstp = dst->data;
-    float *srcp_p1 = (src->data + src->stride);
+    v4sf *srcp = (v4sf *) src->data, *dstp = (v4sf *) dst->data;
+    v4sf *srcp_p1 = (v4sf *) (src->data + src->stride);
     int i;
     for (i = iterline; --i;) { // first line
         *dstp = (coeff[0] + coeff[1]) * (*srcp) + coeff[2] * (*srcp_p1);
@@ -400,7 +406,7 @@ static void convolve_vert_fast_3(image_t *dst, const image_t *src, const convolu
         srcp += 1;
         srcp_p1 += 1;
     }
-    float *srcp_m1 = src->data;
+    v4sf *srcp_m1 = (v4sf *) src->data;
     for (i = src->height - 1; --i;) { // others line
         int j;
         for (j = iterline; --j;) {
@@ -420,12 +426,12 @@ static void convolve_vert_fast_3(image_t *dst, const image_t *src, const convolu
 }
 
 static void convolve_vert_fast_5(image_t *dst, const image_t *src, const convolution_t *conv) {
-    const int iterline = (src->stride) + 1;
+    const int iterline = (src->stride >> 2) + 1;
     const float *coeff = conv->coeffs;
     //const float *coeff_accu = conv->coeffs_accu;
-    float *srcp = src->data, *dstp = dst->data;
-    float *srcp_p1 = (src->data + src->stride);
-    float *srcp_p2 = (src->data + 2 * src->stride);
+    v4sf *srcp = (v4sf *) src->data, *dstp = (v4sf *) dst->data;
+    v4sf *srcp_p1 = (v4sf *) (src->data + src->stride);
+    v4sf *srcp_p2 = (v4sf *) (src->data + 2 * src->stride);
     int i;
     for (i = iterline; --i;) { // first line
         *dstp = (coeff[0] + coeff[1] + coeff[2]) * (*srcp) + coeff[3] * (*srcp_p1) + coeff[4] * (*srcp_p2);
@@ -434,7 +440,7 @@ static void convolve_vert_fast_5(image_t *dst, const image_t *src, const convolu
         srcp_p1 += 1;
         srcp_p2 += 1;
     }
-    float *srcp_m1 = src->data;
+    v4sf *srcp_m1 = (v4sf *) src->data;
     for (i = iterline; --i;) { // second line
         *dstp = (coeff[0] + coeff[1]) * (*srcp_m1) + coeff[2] * (*srcp) + coeff[3] * (*srcp_p1) + coeff[4] * (*srcp_p2);
         dstp += 1;
@@ -443,7 +449,7 @@ static void convolve_vert_fast_5(image_t *dst, const image_t *src, const convolu
         srcp_p1 += 1;
         srcp_p2 += 1;
     }
-    float *srcp_m2 = src->data;
+    v4sf *srcp_m2 = (v4sf *) src->data;
     for (i = src->height - 3; --i;) { // others line
         int j;
         for (j = iterline; --j;) {
@@ -476,9 +482,9 @@ static void convolve_vert_fast_5(image_t *dst, const image_t *src, const convolu
 
 static void convolve_horiz_fast_3(image_t *dst, const image_t *src, const convolution_t *conv) {
     const int stride_minus_1 = src->stride - 1;
-    const int iterline = (src->stride);
+    const int iterline = (src->stride >> 2);
     const float *coeff = conv->coeffs;
-    float *srcp = src->data, *dstp = dst->data;
+    v4sf *srcp = (v4sf *) src->data, *dstp = (v4sf *) dst->data;
     // create shifted version of src
     float *src_p1 = (float *) malloc(sizeof(float) * src->stride),
             *src_m1 = (float *) malloc(sizeof(float) * src->stride);
@@ -493,7 +499,7 @@ static void convolve_horiz_fast_3(image_t *dst, const image_t *src, const convol
         memcpy(src_m1 + 1, srcptr, sizeof(float) * stride_minus_1);
         src_p1[stride_minus_1] = right_coef;
         memcpy(src_p1, srcptr + 1, sizeof(float) * stride_minus_1);
-        float *srcp_p1 = src_p1, *srcp_m1 = src_m1;
+        v4sf *srcp_p1 = (v4sf *) src_p1, *srcp_m1 = (v4sf *) src_m1;
 
         for (i = 0; i < iterline; i++) {
             *dstp = coeff[0] * (*srcp_m1) + coeff[1] * (*srcp) + coeff[2] * (*srcp_p1);
@@ -510,9 +516,9 @@ static void convolve_horiz_fast_3(image_t *dst, const image_t *src, const convol
 static void convolve_horiz_fast_5(image_t *dst, const image_t *src, const convolution_t *conv) {
     const int stride_minus_1 = src->stride - 1;
     const int stride_minus_2 = src->stride - 2;
-    const int iterline = (src->stride);
+    const int iterline = (src->stride >> 2);
     const float *coeff = conv->coeffs;
-    float *srcp = src->data, *dstp = dst->data;
+    v4sf *srcp = (v4sf *) src->data, *dstp = (v4sf *) dst->data;
     float *src_p1 = (float *) malloc(sizeof(float) * src->stride * 4);
     float *src_p2 = src_p1 + src->stride;
     float *src_m1 = src_p2 + src->stride;
@@ -535,7 +541,7 @@ static void convolve_horiz_fast_5(image_t *dst, const image_t *src, const convol
         src_p2[stride_minus_2] = right_coef;
         memcpy(src_p2, srcptr + 2, sizeof(float) * stride_minus_2);
 
-        float *srcp_p1 = src_p1, *srcp_p2 = src_p2, *srcp_m1 = src_m1, *srcp_m2 = src_m2;
+        v4sf *srcp_p1 = (v4sf *) src_p1, *srcp_p2 = (v4sf *) src_p2, *srcp_m1 = (v4sf *) src_m1, *srcp_m2 = (v4sf *) src_m2;
 
         for (i = 0; i < iterline; i++) {
             *dstp = coeff[0] * (*srcp_m2) + coeff[1] * (*srcp_m1) + coeff[2] * (*srcp) + coeff[3] * (*srcp_p1) +
