@@ -67,8 +67,8 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
     float *from_u = du->data;
     float *from_v = dv->data;
 
-    float *to_u = (float *) malloc(N * sizeof(float));
-    float *to_v = (float *) malloc(N * sizeof(float));
+    float *to_u = (float *) acc_malloc(N * sizeof(float));
+    float *to_v = (float *) acc_malloc(N * sizeof(float));
 
     float *A11m = (float *) malloc(N * sizeof(float));
     float *A12m = (float *) malloc(N * sizeof(float));
