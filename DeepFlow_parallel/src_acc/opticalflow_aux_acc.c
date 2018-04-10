@@ -114,7 +114,7 @@ image_t *compute_smoothness_weight(color_image_t *im, float coef, const convolut
     lump = lum->data;
     float *lumxp = lum_x->data, *lumyp = lum_y->data;
     for (i = 0; i < lum->height * lum->stride; i++) {
-        *lump = -coef * __builtin_ia32_sqrtps((*lumxp) * (*lumxp) + (*lumyp) * (*lumyp));
+        *lump = -coef * sqrtf((*lumxp) * (*lumxp) + (*lumyp) * (*lumyp));
         lump[0] = 0.5f * expf(lump[0]);
         lump += 1;
         lumxp += 1;
@@ -280,7 +280,7 @@ compute_data_and_match(image_t *a11, image_t *a12, image_t *a22, image_t *b1, im
             tmp3 = *iz3p + (*ix3p) * (*dup) + (*iy3p) * (*dvp);
             n3 = (*ix3p) * (*ix3p) + (*iy3p) * (*iy3p) + dnorm;
             tmp = (*maskp) * hdover3 /
-                  __builtin_ia32_sqrtps(tmp * tmp / n1 + tmp2 * tmp2 / n2 + tmp3 * tmp3 / n3 + epscolor);
+                  sqrtf(tmp * tmp / n1 + tmp2 * tmp2 / n2 + tmp3 * tmp3 / n3 + epscolor);
             tmp3 = tmp / n3;
             tmp2 = tmp / n2;
             tmp /= n1;
@@ -313,7 +313,7 @@ compute_data_and_match(image_t *a11, image_t *a12, image_t *a22, image_t *b1, im
         n6 = (*iyy3p) * (*iyy3p) + (*ixy3p) * (*ixy3p) + dnorm;
         tmp5 = *ixz3p + (*ixx3p) * (*dup) + (*ixy3p) * (*dvp);
         tmp6 = *iyz3p + (*ixy3p) * (*dup) + (*iyy3p) * (*dvp);
-        tmp = (*maskp) * hgover3 / __builtin_ia32_sqrtps(
+        tmp = (*maskp) * hgover3 / sqrtf(
                 tmp * tmp / n1 + tmp2 * tmp2 / n2 + tmp3 * tmp3 / n3 + tmp4 * tmp4 / n4 + tmp5 * tmp5 / n5 +
                 tmp6 * tmp6 / n6 + epsgrad);
         tmp6 = tmp / n6;
@@ -340,7 +340,7 @@ compute_data_and_match(image_t *a11, image_t *a12, image_t *a22, image_t *b1, im
         if (half_beta) { // dpsi_match
             tmp = *uup - (*descflowxp);
             tmp2 = *vvp - (*descflowyp);
-            tmp = hbeta * (*descweightp) / __builtin_ia32_sqrtps(tmp * tmp + tmp2 * tmp2 + epsdesc);
+            tmp = hbeta * (*descweightp) / sqrtf(tmp * tmp + tmp2 * tmp2 + epsdesc);
             *a11p += tmp;
             *a22p += tmp;
             *b1p -= tmp * ((*wxp) - (*descflowxp));
