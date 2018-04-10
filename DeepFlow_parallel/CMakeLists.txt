@@ -69,11 +69,11 @@ if(USE_ACC)
     add_executable(DeepFlow_acc
         deepflow2_acc.c
         src_acc/image_acc.c
-        src/io.c
+        src_acc/io.c
         src_acc/opticalflow_acc.c
         src_acc/opticalflow_aux_acc.c
         src_acc/solver_acc.c
-        src_acc/acc.h)
+            )
     target_link_libraries(DeepFlow_acc ${JPEG_LIBRARY})
     target_link_libraries(DeepFlow_acc ${PNG_LIBRARY})
     target_link_libraries(DeepFlow_acc m)

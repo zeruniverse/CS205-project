@@ -14,51 +14,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ac46a53-f5aa-47e4-96e3-293b8b37657a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src_acc/io.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src_acc/io.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CMakeCCompiler.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CMakeSystem.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CompilerIdC/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CompilerIdC/a.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CompilerIdCXX/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CompilerIdCXX/a.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow.dir/C.includecache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow.dir/depend.internal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow_mpi.dir/C.includecache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow_mpi.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow_mpi.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow_mpi.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow_mpi.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow_mpi.dir/depend.internal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow_mpi.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow_mpi.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow_mpi.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow_mpi.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow_mpi.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/DeepFlow_mpi.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FindMPI/test_mpi.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FindMPI/test_mpi_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FindMPI/test_mpi_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FindOpenMP/OpenMPCheckVersion.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FindOpenMP/OpenMPCheckVersion.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FindOpenMP/OpenMPTryFlag.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FindOpenMP/ompver_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FindOpenMP/ompver_CXX.bin" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/DeepFlow.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/DeepFlow.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_acc/opticalflow_aux_acc.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_acc/opticalflow_aux_acc.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deepflow2_acc.c" beforeDir="false" afterPath="$PROJECT_DIR$/deepflow2_acc.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src_acc/acc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src_acc/solver_acc.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_acc/solver_acc.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -71,20 +38,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="opticalflow_aux_acc.c" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src_acc/opticalflow_aux_acc.c">
+      <file leaf-file-name="deepflow2_acc.c" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/deepflow2_acc.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
-              <caret line="122" column="24" lean-forward="true" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="opticalflow_aux.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/opticalflow_aux.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="116" column="24" lean-forward="true" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
+            <state relative-caret-position="255">
+              <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -93,7 +51,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>so</find>
       <find>sor_</find>
       <find>solver</find>
       <find>solver.h</find>
@@ -123,6 +80,7 @@
       <find>(v4sf *)</find>
       <find>v4sf</find>
       <find>compute_smoothness_weight</find>
+      <find>io.c</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -156,16 +114,17 @@
         <option value="$PROJECT_DIR$/src_mpi/solver_mpi.c" />
         <option value="$PROJECT_DIR$/TIME" />
         <option value="$PROJECT_DIR$/src_acc/acc.h" />
-        <option value="$PROJECT_DIR$/deepflow2_acc.c" />
         <option value="$PROJECT_DIR$/src_mpi/solver_mpi.h" />
         <option value="$PROJECT_DIR$/src_acc/solver_acc.h" />
-        <option value="$PROJECT_DIR$/src_acc/solver_acc.c" />
         <option value="$PROJECT_DIR$/src_acc/opticalflow_aux_acc.h" />
         <option value="$PROJECT_DIR$/src_acc/opticalflow_acc.h" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src_acc/image_acc.c" />
         <option value="$PROJECT_DIR$/src_acc/opticalflow_acc.c" />
         <option value="$PROJECT_DIR$/src_acc/opticalflow_aux_acc.c" />
+        <option value="$PROJECT_DIR$/src_acc/solver_acc.c" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src_acc/io.h" />
+        <option value="$PROJECT_DIR$/deepflow2_acc.c" />
       </list>
     </option>
   </component>
@@ -219,14 +178,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.toDoOptions" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src_acc" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src_mpi" />
       <recent name="$PROJECT_DIR$/samples" />
       <recent name="$PROJECT_DIR$/src_omp" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -268,12 +228,12 @@
       <workItem from="1523138835022" duration="3718000" />
       <workItem from="1523142639656" duration="21865000" />
       <workItem from="1523213524403" duration="10801000" />
-      <workItem from="1523327886663" duration="73000" />
+      <workItem from="1523327886663" duration="307000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39919000" />
+    <option name="totallyTimeSpent" value="40153000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="786" extended-state="6" />
@@ -283,10 +243,11 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.32957393" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.3286517" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32957393" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3286517" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -295,7 +256,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32957393" />
       <window_info anchor="bottom" id="Messages" order="7" visible="true" weight="0.32957393" />
     </layout>
   </component>
@@ -306,9 +266,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/deepflow2_wrap.c" />
-    <entry file="file://$PROJECT_DIR$/Makefile" />
-    <entry file="file://$PROJECT_DIR$/COPYING" />
     <entry file="file://$PROJECT_DIR$/README">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -336,6 +293,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
           <caret line="541" column="28" selection-start-line="541" selection-start-column="22" selection-end-line="541" selection-end-column="28" />
+          <folding>
+            <element signature="e#659#675#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -367,6 +327,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
           <caret line="110" column="22" selection-start-line="110" selection-start-column="17" selection-end-line="110" selection-end-column="22" />
+          <folding>
+            <element signature="e#659#677#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -469,6 +432,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
           <caret line="52" column="74" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="74" />
+          <folding>
+            <element signature="e#659#677#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -497,6 +463,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
+          <folding>
+            <element signature="e#659#677#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -504,6 +473,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="101">
           <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
+          <folding>
+            <element signature="e#659#678#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -512,13 +484,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="95" column="24" selection-start-line="95" selection-start-column="24" selection-end-line="95" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deepflow2_acc.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+          <folding>
+            <element signature="e#659#677#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -526,6 +494,67 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TIME">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="13" lean-forward="true" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/x86_64-linux-gnu/bits/mathcalls.h" />
+    <entry file="file:///usr/lib/gcc/x86_64-linux-gnu/5/include/xmmintrin.h" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src_acc/acc.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/opticalflow_aux.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="116" column="24" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="68" column="21" lean-forward="true" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src_acc/io.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="19" column="19" lean-forward="true" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src_acc/io.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1364">
+          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src_acc/image_acc.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="805">
+          <caret line="59" column="10" lean-forward="true" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src_acc/image_acc.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -538,8 +567,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src_acc/solver_acc.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+        <state relative-caret-position="75">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
@@ -553,6 +582,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src_acc/opticalflow_aux_acc.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1830">
+          <caret line="122" column="24" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src_acc/opticalflow_acc.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -563,64 +599,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src_acc/acc.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TIME">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="13" lean-forward="true" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/x86_64-linux-gnu/bits/mathcalls.h" />
-    <entry file="file://$PROJECT_DIR$/src_acc/image_acc.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/gcc/x86_64-linux-gnu/5/include/xmmintrin.h" />
-    <entry file="file://$PROJECT_DIR$/src_acc/image_acc.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="67" column="61" lean-forward="true" selection-start-line="67" selection-start-column="61" selection-end-line="67" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src_acc/opticalflow_acc.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
+        <state relative-caret-position="3450">
           <caret line="230" column="10" lean-forward="true" selection-start-line="230" selection-start-column="10" selection-end-line="230" selection-end-column="10" />
-          <folding>
-            <element signature="e#659#678#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/opticalflow_aux.c">
+    <entry file="file://$PROJECT_DIR$/deepflow2_acc.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="116" column="24" lean-forward="true" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src_acc/opticalflow_aux_acc.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="122" column="24" lean-forward="true" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
+        <state relative-caret-position="255">
+          <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
         </state>
       </provider>
     </entry>

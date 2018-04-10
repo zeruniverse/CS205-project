@@ -1,5 +1,0 @@
-/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles/DeepFlow_acc.dir
-/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles/DeepFlow_mpi.dir
-/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles/DeepFlow.dir

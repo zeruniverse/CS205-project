@@ -19,8 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string.h>
 
 #include "src_acc/image_acc.h"
-#include "src/opticalflow.h"
-#include "src/io.h"
+#include "src_acc/opticalflow_acc.h"
+#include "src_acc/io.h"
 
 int main(int argc, char ** argv){
   
