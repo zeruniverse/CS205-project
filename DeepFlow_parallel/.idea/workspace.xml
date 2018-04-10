@@ -30,8 +30,8 @@
       <file leaf-file-name="solver_acc.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src_acc/solver_acc.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="67" column="28" selection-end-line="190" />
+            <state relative-caret-position="195">
+              <caret line="104" column="131" selection-start-line="104" selection-start-column="131" selection-end-line="104" selection-end-column="131" />
             </state>
           </provider>
         </entry>
@@ -248,7 +248,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43180000" />
+    <option name="totallyTimeSpent" value="43212000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="786" extended-state="6" />
@@ -645,8 +645,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src_acc/solver_acc.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="67" column="28" selection-end-line="190" />
+        <state relative-caret-position="195">
+          <caret line="104" column="131" selection-start-line="104" selection-start-column="131" selection-end-line="104" selection-end-column="131" />
         </state>
       </provider>
     </entry>
