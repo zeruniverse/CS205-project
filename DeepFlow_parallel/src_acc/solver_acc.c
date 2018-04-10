@@ -88,7 +88,6 @@ void sor_coupled_mpi(image_t *du, image_t *dv, const image_t *a11, const image_t
         for (int p = 0; p <= 0; p++) {
             swap(&from_u, &to_u);
             swap(&from_v, &to_v);
-#pragma omp parallel for
             for (int j = 0; j < du->height; j++) {
                 float sigma_u, sigma_v, A11, A22, A12, B1, B2;
                 for (int i = 0; i < du->width; i++) {

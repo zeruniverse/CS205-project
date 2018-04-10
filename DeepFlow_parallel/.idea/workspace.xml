@@ -14,8 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ac46a53-f5aa-47e4-96e3-293b8b37657a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compile_acc.sh" beforeDir="false" afterPath="$PROJECT_DIR$/compile_acc.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src_acc/solver_acc.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_acc/solver_acc.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,11 +27,20 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="compile_acc.sh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="compile_acc.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/compile_acc.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
               <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="solver_acc.c" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src_acc/solver_acc.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="183">
+              <caret line="89" column="33" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -110,12 +118,12 @@
         <option value="$PROJECT_DIR$/src_acc/opticalflow_acc.h" />
         <option value="$PROJECT_DIR$/src_acc/image_acc.c" />
         <option value="$PROJECT_DIR$/src_acc/opticalflow_acc.c" />
-        <option value="$PROJECT_DIR$/src_acc/solver_acc.c" />
         <option value="$PROJECT_DIR$/src_acc/io.h" />
         <option value="$PROJECT_DIR$/deepflow2_acc.c" />
         <option value="$PROJECT_DIR$/src_acc/opticalflow_aux_acc.c" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/compile_acc.sh" />
+        <option value="$PROJECT_DIR$/src_acc/solver_acc.c" />
       </list>
     </option>
   </component>
@@ -143,6 +151,11 @@
             <path>
               <item name="DeepFlow" type="b2602c69:ProjectViewProjectNode" />
               <item name="DeepFlow_parallel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DeepFlow" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepFlow_parallel" type="462c0819:PsiDirectoryNode" />
+              <item name="src_acc" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -209,12 +222,12 @@
       <workItem from="1523138835022" duration="3718000" />
       <workItem from="1523142639656" duration="21865000" />
       <workItem from="1523213524403" duration="10801000" />
-      <workItem from="1523327886663" duration="571000" />
+      <workItem from="1523327886663" duration="655000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40417000" />
+    <option name="totallyTimeSpent" value="40501000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="786" extended-state="6" />
@@ -525,13 +538,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src_acc/solver_acc.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src_acc/opticalflow_aux_acc.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -594,6 +600,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src_acc/solver_acc.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="89" column="33" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
         </state>
       </provider>
     </entry>
