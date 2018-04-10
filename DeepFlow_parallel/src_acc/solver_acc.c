@@ -69,9 +69,11 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
 
     if (from_u == NULL) {
         printf("Failed to alloc memory of size %d for u", N);
+        exit(-1);
     }
     if (from_v == NULL) {
         printf("Failed to alloc memory of size %d for v", N);
+        exit(-1);
     }
 
     float *to_u = (float *) acc_malloc(N * sizeof(float));
@@ -79,9 +81,11 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
 
     if (to_u == NULL) {
         printf("Failed to alloc memory of size %d for u", N);
+        exit(-1);
     }
     if (to_v == NULL) {
         printf("Failed to alloc memory of size %d for v", N);
+        exit(-1);
     }
 
     float *A11m = (float *) malloc(N * sizeof(float));
@@ -134,8 +138,8 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
                     float new_u = A22 * B1 - A12 * B2;
                     float new_v = -A12 * B1 + A11 * B2;
 
-                    //to_u[j * stride + i] = new_u;
-                    //to_v[j * stride + i] = new_v;
+                    to_u[j * stride + i] = new_u;
+                    to_v[j * stride + i] = new_v;
                 }
             }
 #pragma acc parallel loop
@@ -168,8 +172,11 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
                     A12 = A12m[j * stride + i];
                     A22 = A22m[j * stride + i];
 
-                    from_u[j * stride + i] = A22 * B1 - A12 * B2;
-                    from_v[j * stride + i] = -A12 * B1 + A11 * B2;
+                    float new_u = A22 * B1 - A12 * B2;
+                    float new_v = -A12 * B1 + A11 * B2;
+
+                    //from_u[j * stride + i] = A22 * B1 - A12 * B2;
+                    //from_v[j * stride + i] = -A12 * B1 + A11 * B2;
                 }
             }
         }
