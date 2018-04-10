@@ -113,15 +113,15 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
                         sigma_u -= dph[j * stride + i] * from_u[j * stride + i + 1];
                         sigma_v -= dph[j * stride + i] * from_v[j * stride + i + 1];
                     }
-                    B1 = b1_data[j * stride + i] - sigma_u;
-                    B2 = b2_data[j * stride + i] - sigma_v;
+                    //B1 = b1_data[j * stride + i] - sigma_u;
+                    //B2 = b2_data[j * stride + i] - sigma_v;
 
-                    A11 = A11m[j * stride + i];
-                    A12 = A12m[j * stride + i];
-                    A22 = A22m[j * stride + i];
+                    //A11 = A11m[j * stride + i];
+                    //A12 = A12m[j * stride + i];
+                    //A22 = A22m[j * stride + i];
 
-                    to_u[j * stride + i] = A22 * B1 - A12 * B2;
-                    to_v[j * stride + i] = -A12 * B1 + A11 * B2;
+                    //to_u[j * stride + i] = A22 * B1 - A12 * B2;
+                    //to_v[j * stride + i] = -A12 * B1 + A11 * B2;
                 }
             }
 #pragma acc parallel loop
