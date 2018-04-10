@@ -64,8 +64,15 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
     const int H = du->height;
     const int W = du->width;
 
-    float *from_u = du->data;
-    float *from_v = dv->data;
+    float *from_u = (float *) acc_malloc(N * sizeof(float));
+    float *from_v = (float *) acc_malloc(N * sizeof(float));
+
+    if (from_u == NULL) {
+        printf("Failed to alloc memory of size %d for u", N);
+    }
+    if (from_v == NULL) {
+        printf("Failed to alloc memory of size %d for v", N);
+    }
 
     float *to_u = (float *) acc_malloc(N * sizeof(float));
     float *to_v = (float *) acc_malloc(N * sizeof(float));
@@ -91,7 +98,7 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
     float *dpv = dpsis_vert->data;
 
 
-#pragma acc data copyin(dph[0:N], dpv[0:N], A11m[0:N], A12m[0:N], A22m[0:N], b1_data[0:N], b2_data[0:N]) deviceptr(to_u, to_v) copy(from_u[0:N], from_v[0:N])
+#pragma acc data copyin(dph[0:N], dpv[0:N], A11m[0:N], A12m[0:N], A22m[0:N], b1_data[0:N], b2_data[0:N]) deviceptr(to_u, to_v, from_u, from_v)
     {
         for (int iter = 0; iter < iterations / 2; iter++) {
 #pragma acc parallel loop independent num_gangs(1) num_workers(1)
