@@ -92,7 +92,7 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
         for (int iter = 0; iter < iterations / 2; iter++) {
 #pragma acc parallel loop independent private(j)
             for (int j = 0; j < H; j++) {
-#pragma acc loop independent private(j)
+#pragma acc loop independent private(i)
                 for (int i = 0; i < W; i++) {
                     float sigma_u, sigma_v, A11, A22, A12, B1, B2;
                     sigma_u = 0.0f;
