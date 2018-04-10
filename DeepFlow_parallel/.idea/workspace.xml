@@ -14,34 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ac46a53-f5aa-47e4-96e3-293b8b37657a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/deepflow2_rbsor.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src_common/malloc.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src_common/malloc_impl.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src_rbsor/image_rbsor.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src_rbsor/image_rbsor.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src_rbsor/io_rbsor.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src_rbsor/io_rbsor.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src_rbsor/opticalflow_aux_rbsor.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src_rbsor/opticalflow_aux_rbsor.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src_rbsor/opticalflow_rbsor.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src_rbsor/opticalflow_rbsor.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src_rbsor/solver_rbsor.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src_rbsor/solver_rbsor.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_rbsor.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/image.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/image.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/opticalflow.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/opticalflow.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/opticalflow_aux.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/opticalflow_aux.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/solver.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/solver.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_acc/image_acc.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_acc/image_acc.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_acc/opticalflow_acc.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_acc/opticalflow_acc.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_acc/opticalflow_aux_acc.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_acc/opticalflow_aux_acc.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_acc/solver_acc.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_acc/solver_acc.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_omp/image_omp.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_omp/image_omp.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_omp/opticalflow_aux_omp.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_omp/opticalflow_aux_omp.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_omp/opticalflow_omp.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_omp/opticalflow_omp.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_omp/solver_omp.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_omp/solver_omp.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src_rbsor/solver_rbsor.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_rbsor/solver_rbsor.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,11 +27,14 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test_rbsor.sh" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test_rbsor.sh">
+      <file leaf-file-name="solver_rbsor.c" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src_rbsor/solver_rbsor.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="97" selection-start-column="97" selection-end-column="97" />
+            <state relative-caret-position="117">
+              <caret line="128" column="30" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
+              <folding>
+                <element signature="e#659#677#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -90,13 +66,13 @@
       <find>malloc</find>
       <find>memal</find>
       <find>mema</find>
-      <find>-&gt;</find>
       <find>USE_ACC</find>
       <find>ACC</find>
       <find>src_mpi</find>
       <find>mpi</find>
       <find>pragm</find>
       <find>#include &lt;malloc.h&gt;</find>
+      <find>-&gt;</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -153,12 +129,12 @@
         <option value="$PROJECT_DIR$/src_omp/solver_omp.c" />
         <option value="$PROJECT_DIR$/src_rbsor/image_rbsor.c" />
         <option value="$PROJECT_DIR$/src_rbsor/opticalflow_aux_rbsor.c" />
-        <option value="$PROJECT_DIR$/src_rbsor/solver_rbsor.c" />
         <option value="$PROJECT_DIR$/src_common/malloc_impl.c" />
         <option value="$PROJECT_DIR$/src_common/malloc.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src_rbsor/opticalflow_rbsor.c" />
         <option value="$PROJECT_DIR$/test_rbsor.sh" />
+        <option value="$PROJECT_DIR$/src_rbsor/solver_rbsor.c" />
       </list>
     </option>
   </component>
@@ -186,6 +162,11 @@
             <path>
               <item name="DeepFlow" type="b2602c69:ProjectViewProjectNode" />
               <item name="DeepFlow_parallel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DeepFlow" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepFlow_parallel" type="462c0819:PsiDirectoryNode" />
+              <item name="samples" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -267,7 +248,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45990000" />
+    <option name="totallyTimeSpent" value="49483000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="786" extended-state="0" />
@@ -275,14 +256,14 @@
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17152777" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" visible="true" weight="0.3286517" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3286517" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.3286517" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286517" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3286517" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3286517" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -315,15 +296,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="change all memalign to malloc" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/TIME">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="13" lean-forward="true" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/x86_64-linux-gnu/bits/mathcalls.h" />
-    <entry file="file:///usr/lib/gcc/x86_64-linux-gnu/5/include/xmmintrin.h" />
     <entry file="file://$PROJECT_DIR$/src_acc/acc.h" />
     <entry file="file://$PROJECT_DIR$/src_acc/io.h">
       <provider selected="true" editor-type-id="text-editor">
@@ -509,24 +481,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/opticalflow.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/opticalflow_aux.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
           <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/solver.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -579,13 +537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src_omp/solver_omp.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src_rbsor/image_rbsor.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="158">
@@ -597,13 +548,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src_rbsor/solver_rbsor.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -648,8 +592,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test_rbsor.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="97" selection-start-column="97" selection-end-column="97" />
+        <state relative-caret-position="30">
+          <caret line="2" column="63" selection-start-line="2" selection-start-column="63" selection-end-line="2" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src_omp/solver_omp.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1135">
+          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samples/1.ppm">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/opticalflow.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-719">
+          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/solver.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="64" column="26" selection-start-line="64" selection-start-column="26" selection-end-line="64" selection-end-column="26" />
+          <folding>
+            <element signature="e#659#677#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samples/my_output_rbsor.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src_rbsor/solver_rbsor.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="128" column="30" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
+          <folding>
+            <element signature="e#659#677#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
