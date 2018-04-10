@@ -90,8 +90,9 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
 #pragma acc data copyin(dph[0:N], dpv[0:N], A11m[0:N], A12m[0:N], A22m[0:N], b1_data[0:N], b2_data[0:N], to_u[0:N], to_v[0:N]) copy(from_u[0:N], from_v[0:N])
     {
         for (int iter = 0; iter < iterations / 2; iter++) {
-#pragma acc parallel loop independent
+#pragma acc parallel loop independent num_gang(1)
             for (int j = 0; j < H; j++) {
+#pragma acc loop independent
                 for (int i = 0; i < W; i++) {
                     float sigma_u, sigma_v, A11, A22, A12, B1, B2;
                     sigma_u = 0.0f;
@@ -125,6 +126,7 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
             }
 #pragma acc parallel loop
             for (int j = 0; j < H; j++) {
+#pragma acc loop
                 for (int i = 0; i < W; i++) {
                     float sigma_u, sigma_v, A11, A22, A12, B1, B2;
                     sigma_u = 0.0f;
