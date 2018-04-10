@@ -124,7 +124,7 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
                     to_v[j * stride + i] = -A12 * B1 + A11 * B2;
                 }
             }
-#pragma acc parallel loop copyin(to_u[0:N], to_v[0:N]) copyout(from_u[0:N], from_v[0:N])
+#pragma acc parallel loop
             for (int j = 0; j < H; j++) {
 #pragma acc loop
                 for (int i = 0; i < W; i++) {
