@@ -64,8 +64,8 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
     const int H = du->height;
     const int W = du->width;
 
-    float *from_u = (float *) acc_malloc(N * sizeof(float));
-    float *from_v = (float *) acc_malloc(N * sizeof(float));
+    float *from_u = du->data;
+    float *from_v = dv->data;
 
     if (from_u == NULL) {
         printf("Failed to alloc memory of size %d for u", N);
