@@ -14,7 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ac46a53-f5aa-47e4-96e3-293b8b37657a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src_acc/solver_acc.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_acc/solver_acc.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_acc.sh" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,11 +36,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="solver_acc.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="solver_acc.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src_acc/solver_acc.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
+            <state relative-caret-position="306">
+              <caret line="104" column="17" lean-forward="true" selection-start-line="104" selection-start-column="17" selection-end-line="104" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_acc.sh" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test_acc.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="25" selection-start-column="25" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -124,6 +133,7 @@
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/compile_acc.sh" />
         <option value="$PROJECT_DIR$/src_acc/solver_acc.c" />
+        <option value="$PROJECT_DIR$/test_acc.sh" />
       </list>
     </option>
   </component>
@@ -176,8 +186,8 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src_acc" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src_acc" />
       <recent name="$PROJECT_DIR$/src_mpi" />
       <recent name="$PROJECT_DIR$/samples" />
       <recent name="$PROJECT_DIR$/src_omp" />
@@ -222,18 +232,18 @@
       <workItem from="1523138835022" duration="3718000" />
       <workItem from="1523142639656" duration="21865000" />
       <workItem from="1523213524403" duration="10801000" />
-      <workItem from="1523327886663" duration="832000" />
+      <workItem from="1523327886663" duration="935000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40678000" />
+    <option name="totallyTimeSpent" value="40781000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="786" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17152777" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17152777" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.3286517" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -241,7 +251,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3286517" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3286517" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -260,13 +270,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/samples/backward.match">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/samples/forward.match">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -605,8 +608,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src_acc/solver_acc.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
+        <state relative-caret-position="306">
+          <caret line="104" column="17" lean-forward="true" selection-start-line="104" selection-start-column="17" selection-end-line="104" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_acc.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="25" selection-start-column="25" selection-end-column="25" />
         </state>
       </provider>
     </entry>
