@@ -76,8 +76,8 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
         exit(-1);
     }
 
-    float *to_u = (float *) malloc(N * sizeof(float));
-    float *to_v = (float *) malloc(N * sizeof(float));
+    float *to_u = (float *) acc_malloc(N * sizeof(float));
+    float *to_v = (float *) acc_malloc(N * sizeof(float));
 
     if (to_u == NULL) {
         printf("Failed to alloc memory of size %d for u", N);
@@ -102,7 +102,7 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
     const float *dpv = dpsis_vert->data;
 
 
-#pragma acc data copyin(dph[0:N], dpv[0:N], A11m[0:N], A12m[0:N], A22m[0:N], b1_data[0:N], b2_data[0:N], to_u[0:N], to_v[0:N]) copy(from_u[0:N], from_v[0:N])
+#pragma acc data copyin(dph[0:N], dpv[0:N], A11m[0:N], A12m[0:N], A22m[0:N], b1_data[0:N], b2_data[0:N]) copy(from_u[0:N], from_v[0:N]) deviceptr(to_u, to_v)
     {
         for (int iter = 0; iter < iterations / 2; iter++) {
 #pragma acc parallel loop independent
@@ -135,16 +135,13 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
                     A12 = A12m[j * stride + i];
                     A22 = A22m[j * stride + i];
 
-                    float new_u = A22 * B1 - A12 * B2;
-                    float new_v = -A12 * B1 + A11 * B2;
-
-                    to_u[j * stride + i] = new_u;
-                    to_v[j * stride + i] = new_v;
+                    to_u[j * stride + i] = A22 * B1 - A12 * B2;
+                    to_v[j * stride + i] = -A12 * B1 + A11 * B2;
                 }
             }
-#pragma acc parallel loop
+#pragma acc parallel loop independent
             for (int j = 0; j < H; j++) {
-#pragma acc loop
+#pragma acc loop independent private(j)
                 for (int i = 0; i < W; i++) {
                     float sigma_u, sigma_v, A11, A22, A12, B1, B2;
                     sigma_u = 0.0f;
@@ -172,9 +169,6 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
                     A12 = A12m[j * stride + i];
                     A22 = A22m[j * stride + i];
 
-                    float new_u = A22 * B1 - A12 * B2;
-                    float new_v = -A12 * B1 + A11 * B2;
-
                     from_u[j * stride + i] = A22 * B1 - A12 * B2;
                     from_v[j * stride + i] = -A12 * B1 + A11 * B2;
                 }
@@ -185,6 +179,6 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
     free(A11m);
     free(A12m);
     free(A22m);
-    free(to_u);
-    free(to_v);
+    acc_free(to_u);
+    acc_free(to_v);
 }

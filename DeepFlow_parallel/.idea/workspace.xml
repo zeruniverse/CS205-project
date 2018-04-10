@@ -2,9 +2,9 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="DeepFlow" targetName="DeepFlow" />
-      <config projectName="DeepFlow" targetName="DeepFlow_acc" />
       <config projectName="DeepFlow" targetName="DeepFlow_mpi" />
+      <config projectName="DeepFlow" targetName="DeepFlow_acc" />
+      <config projectName="DeepFlow" targetName="DeepFlow" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -14,6 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ac46a53-f5aa-47e4-96e3-293b8b37657a" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src_acc/solver_acc.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_acc/solver_acc.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -26,33 +27,12 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file leaf-file-name="solver_acc.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src_acc/solver_acc.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="107" column="37" selection-start-line="107" selection-start-column="37" selection-end-line="107" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="opticalflow_acc.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src_acc/opticalflow_acc.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="71" column="28" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="solver_acc.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src_acc/solver_acc.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="2" lean-forward="true" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
-              <folding>
-                <element signature="e#659#677#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="310">
+              <caret line="182" column="12" selection-start-line="182" selection-start-column="12" selection-end-line="182" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -158,6 +138,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -174,7 +155,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -236,6 +216,7 @@
       <workItem from="1523142639656" duration="21865000" />
       <workItem from="1523213524403" duration="10801000" />
       <workItem from="1523327886663" duration="935000" />
+      <workItem from="1523376887763" duration="133000" />
     </task>
     <task id="LOCAL-00001" summary="change all memalign to malloc">
       <created>1523333148581</created>
@@ -248,41 +229,30 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43295000" />
+    <option name="totallyTimeSpent" value="43525000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="786" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="786" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17152777" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17152777" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.3286517" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3286517" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3286517" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3286517" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17152777" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="CMake" order="7" weight="0.3286517" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3286517" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3286517" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Messages" order="7" visible="true" weight="0.32957393" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3286517" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,29 +266,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="change all memalign to malloc" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src_acc/solver_acc.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="65" column="29" lean-forward="true" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samples/forward.match">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="11" lean-forward="true" selection-end-line="13130" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/DeepFlow_release2_0.cbp" />
     <entry file="file://$PROJECT_DIR$/src_omp/opticalflow.c" />
     <entry file="file://$PROJECT_DIR$/src/io.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
           <caret line="541" column="28" selection-start-line="541" selection-start-column="22" selection-end-line="541" selection-end-column="28" />
-          <folding>
-            <element signature="e#659#675#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -333,9 +285,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-          <folding>
-            <element signature="e#712#730#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -350,9 +299,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
           <caret line="110" column="22" selection-start-line="110" selection-start-column="17" selection-end-line="110" selection-end-column="22" />
-          <folding>
-            <element signature="e#659#677#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -402,9 +348,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="61">
           <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
-          <folding>
-            <element signature="e#659#678#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -426,9 +369,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
-          <folding>
-            <element signature="e#714#733#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -436,9 +376,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
           <caret line="172" column="22" selection-start-line="172" selection-start-column="22" selection-end-line="172" selection-end-column="22" />
-          <folding>
-            <element signature="e#659#678#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -455,9 +392,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
           <caret line="52" column="74" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="74" />
-          <folding>
-            <element signature="e#659#677#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -486,9 +420,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
-          <folding>
-            <element signature="e#659#677#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -496,9 +427,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="101">
           <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
-          <folding>
-            <element signature="e#659#678#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -507,9 +435,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="95" column="24" selection-start-line="95" selection-start-column="24" selection-end-line="95" selection-end-column="24" />
-          <folding>
-            <element signature="e#659#677#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -583,9 +508,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="212" column="24" selection-start-line="212" selection-start-column="21" selection-end-line="212" selection-end-column="24" />
-          <folding>
-            <element signature="e#659#675#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -593,9 +515,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="30" column="47" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
-          <folding>
-            <element signature="e#720#738#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -610,9 +529,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
-          <folding>
-            <element signature="e#714#733#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -620,9 +536,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-454">
           <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding>
-            <element signature="e#659#677#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -636,7 +549,7 @@
     <entry file="file://$PROJECT_DIR$/src_acc/solver_acc.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" column="2" lean-forward="true" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+          <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
           <folding>
             <element signature="e#659#677#0" expanded="true" />
           </folding>
@@ -645,8 +558,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src_acc/solver_acc.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="107" column="37" selection-start-line="107" selection-start-column="37" selection-end-line="107" selection-end-column="37" />
+        <state relative-caret-position="310">
+          <caret line="182" column="12" selection-start-line="182" selection-start-column="12" selection-end-line="182" selection-end-column="12" />
         </state>
       </provider>
     </entry>
