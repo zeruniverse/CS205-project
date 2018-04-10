@@ -95,11 +95,11 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
     calculate_constants(A11m, A12m, A22m,
                         du, dv, a11, a12, a22, b1, b2, dpsis_horiz, dpsis_vert);
 
-    float *b1_data = b1->data;
-    float *b2_data = b2->data;
+    const float *b1_data = b1->data;
+    const float *b2_data = b2->data;
 
-    float *dph = dpsis_horiz->data;
-    float *dpv = dpsis_vert->data;
+    const float *dph = dpsis_horiz->data;
+    const float *dpv = dpsis_vert->data;
 
 
 #pragma acc data copyin(dph[0:N], dpv[0:N], A11m[0:N], A12m[0:N], A22m[0:N], b1_data[0:N], b2_data[0:N]) deviceptr(to_u, to_v, from_u, from_v)
@@ -120,11 +120,11 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
                         sigma_u -= dph[j * stride + i - 1] * from_u[j * stride + i - 1];
                         sigma_v -= dph[j * stride + i - 1] * from_v[j * stride + i - 1];
                     }
-                    if (j < du->height - 1) {
+                    if (j < H - 1) {
                         sigma_u -= dpv[j * stride + i] * from_u[(j + 1) * stride + i];
                         sigma_v -= dpv[j * stride + i] * from_v[(j + 1) * stride + i];
                     }
-                    if (i < du->width - 1) {
+                    if (i < W - 1) {
                         sigma_u -= dph[j * stride + i] * from_u[j * stride + i + 1];
                         sigma_v -= dph[j * stride + i] * from_v[j * stride + i + 1];
                     }
@@ -157,11 +157,11 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
                         sigma_u -= dph[j * stride + i - 1] * to_u[j * stride + i - 1];
                         sigma_v -= dph[j * stride + i - 1] * to_v[j * stride + i - 1];
                     }
-                    if (j < du->height - 1) {
+                    if (j < H - 1) {
                         sigma_u -= dpv[j * stride + i] * to_u[(j + 1) * stride + i];
                         sigma_v -= dpv[j * stride + i] * to_v[(j + 1) * stride + i];
                     }
-                    if (i < du->width - 1) {
+                    if (i < W - 1) {
                         sigma_u -= dph[j * stride + i] * to_u[j * stride + i + 1];
                         sigma_v -= dph[j * stride + i] * to_v[j * stride + i + 1];
                     }
