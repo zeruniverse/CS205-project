@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/hongxiangqiu/Desktop/clion-2018.1/bin/cmake/bin/cmake
+CMAKE_COMMAND = "/Users/hongxiangqiu/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4203.549/CLion.app/Contents/bin/cmake/bin/cmake"
 
 # The command to remove a file.
-RM = /home/hongxiangqiu/Desktop/clion-2018.1/bin/cmake/bin/cmake -E remove -f
+RM = "/Users/hongxiangqiu/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4203.549/CLion.app/Contents/bin/cmake/bin/cmake" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hongxiangqiu/CS205-project/DeepFlow_parallel
+CMAKE_SOURCE_DIR = "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug
+CMAKE_BINARY_DIR = "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/DeepFlow_mpi.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/DeepFlow_mpi.dir/flags.make
 
 CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.o: CMakeFiles/DeepFlow_mpi.dir/flags.make
 CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.o: ../deepflow2_mpi.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.o   -c /home/hongxiangqiu/CS205-project/DeepFlow_parallel/deepflow2_mpi.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.o"
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.o   -c "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/deepflow2_mpi.c"
 
 CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/hongxiangqiu/CS205-project/DeepFlow_parallel/deepflow2_mpi.c > CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.i
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/deepflow2_mpi.c" > CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.i
 
 CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/hongxiangqiu/CS205-project/DeepFlow_parallel/deepflow2_mpi.c -o CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.s
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/deepflow2_mpi.c" -o CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.s
 
 CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/DeepFlow_mpi.dir/deepflow2_mpi.c.o.provides.build: CMakeFiles/DeepFlo
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.o: CMakeFiles/DeepFlow_mpi.dir/flags.make
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.o: ../src_mpi/image_mpi.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.o   -c /home/hongxiangqiu/CS205-project/DeepFlow_parallel/src_mpi/image_mpi.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.o"
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.o   -c "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/src_mpi/image_mpi.c"
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/hongxiangqiu/CS205-project/DeepFlow_parallel/src_mpi/image_mpi.c > CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.i
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/src_mpi/image_mpi.c" > CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.i
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/hongxiangqiu/CS205-project/DeepFlow_parallel/src_mpi/image_mpi.c -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.s
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/src_mpi/image_mpi.c" -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.s
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/DeepFlow_mpi.dir/src_mpi/image_mpi.c.o.provides.build: CMakeFiles/Dee
 
 CMakeFiles/DeepFlow_mpi.dir/src/io.c.o: CMakeFiles/DeepFlow_mpi.dir/flags.make
 CMakeFiles/DeepFlow_mpi.dir/src/io.c.o: ../src/io.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/DeepFlow_mpi.dir/src/io.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/DeepFlow_mpi.dir/src/io.c.o   -c /home/hongxiangqiu/CS205-project/DeepFlow_parallel/src/io.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/DeepFlow_mpi.dir/src/io.c.o"
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/DeepFlow_mpi.dir/src/io.c.o   -c "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/src/io.c"
 
 CMakeFiles/DeepFlow_mpi.dir/src/io.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/DeepFlow_mpi.dir/src/io.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/hongxiangqiu/CS205-project/DeepFlow_parallel/src/io.c > CMakeFiles/DeepFlow_mpi.dir/src/io.c.i
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/src/io.c" > CMakeFiles/DeepFlow_mpi.dir/src/io.c.i
 
 CMakeFiles/DeepFlow_mpi.dir/src/io.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/DeepFlow_mpi.dir/src/io.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/hongxiangqiu/CS205-project/DeepFlow_parallel/src/io.c -o CMakeFiles/DeepFlow_mpi.dir/src/io.c.s
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/src/io.c" -o CMakeFiles/DeepFlow_mpi.dir/src/io.c.s
 
 CMakeFiles/DeepFlow_mpi.dir/src/io.c.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/DeepFlow_mpi.dir/src/io.c.o.provides.build: CMakeFiles/DeepFlow_mpi.d
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.o: CMakeFiles/DeepFlow_mpi.dir/flags.make
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.o: ../src_mpi/opticalflow_mpi.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.o   -c /home/hongxiangqiu/CS205-project/DeepFlow_parallel/src_mpi/opticalflow_mpi.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.o"
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.o   -c "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/src_mpi/opticalflow_mpi.c"
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/hongxiangqiu/CS205-project/DeepFlow_parallel/src_mpi/opticalflow_mpi.c > CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.i
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/src_mpi/opticalflow_mpi.c" > CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.i
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/hongxiangqiu/CS205-project/DeepFlow_parallel/src_mpi/opticalflow_mpi.c -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.s
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/src_mpi/opticalflow_mpi.c" -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.s
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.o.requires:
 
@@ -155,16 +155,16 @@ CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.o.provides.build: CMakeFil
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.o: CMakeFiles/DeepFlow_mpi.dir/flags.make
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.o: ../src_mpi/opticalflow_aux_mpi.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.o   -c /home/hongxiangqiu/CS205-project/DeepFlow_parallel/src_mpi/opticalflow_aux_mpi.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.o"
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.o   -c "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/src_mpi/opticalflow_aux_mpi.c"
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/hongxiangqiu/CS205-project/DeepFlow_parallel/src_mpi/opticalflow_aux_mpi.c > CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.i
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/src_mpi/opticalflow_aux_mpi.c" > CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.i
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/hongxiangqiu/CS205-project/DeepFlow_parallel/src_mpi/opticalflow_aux_mpi.c -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.s
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/src_mpi/opticalflow_aux_mpi.c" -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.s
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.o.requires:
 
@@ -179,16 +179,16 @@ CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.o.provides.build: CMak
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.o: CMakeFiles/DeepFlow_mpi.dir/flags.make
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.o: ../src_mpi/solver_mpi.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.o   -c /home/hongxiangqiu/CS205-project/DeepFlow_parallel/src_mpi/solver_mpi.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.o"
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.o   -c "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/src_mpi/solver_mpi.c"
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/hongxiangqiu/CS205-project/DeepFlow_parallel/src_mpi/solver_mpi.c > CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.i
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/src_mpi/solver_mpi.c" > CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.i
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/hongxiangqiu/CS205-project/DeepFlow_parallel/src_mpi/solver_mpi.c -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.s
+	/usr/local/bin/gcc-7 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/src_mpi/solver_mpi.c" -o CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.s
 
 CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.o.requires:
 
@@ -220,10 +220,10 @@ DeepFlow_mpi: CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_mpi.c.o
 DeepFlow_mpi: CMakeFiles/DeepFlow_mpi.dir/src_mpi/opticalflow_aux_mpi.c.o
 DeepFlow_mpi: CMakeFiles/DeepFlow_mpi.dir/src_mpi/solver_mpi.c.o
 DeepFlow_mpi: CMakeFiles/DeepFlow_mpi.dir/build.make
-DeepFlow_mpi: /usr/lib/x86_64-linux-gnu/libjpeg.so
-DeepFlow_mpi: /usr/lib/x86_64-linux-gnu/libpng.so
+DeepFlow_mpi: /usr/local/lib/libjpeg.dylib
+DeepFlow_mpi: /usr/local/lib/libpng.dylib
 DeepFlow_mpi: CMakeFiles/DeepFlow_mpi.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable DeepFlow_mpi"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable DeepFlow_mpi"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DeepFlow_mpi.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -245,6 +245,6 @@ CMakeFiles/DeepFlow_mpi.dir/clean:
 .PHONY : CMakeFiles/DeepFlow_mpi.dir/clean
 
 CMakeFiles/DeepFlow_mpi.dir/depend:
-	cd /home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hongxiangqiu/CS205-project/DeepFlow_parallel /home/hongxiangqiu/CS205-project/DeepFlow_parallel /home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug /home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug /home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles/DeepFlow_mpi.dir/DependInfo.cmake --color=$(COLOR)
+	cd "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel" "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel" "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug" "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug" "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug/CMakeFiles/DeepFlow_mpi.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/DeepFlow_mpi.dir/depend
 

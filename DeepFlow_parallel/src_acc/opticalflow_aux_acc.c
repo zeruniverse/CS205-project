@@ -115,10 +115,7 @@ image_t *compute_smoothness_weight(color_image_t *im, float coef, const convolut
     float *lumxp = lum_x->data, *lumyp = lum_y->data;
     for (i = 0; i < lum->height * lum->stride; i++) {
         *lump = -coef * __builtin_ia32_sqrtps((*lumxp) * (*lumxp) + (*lumyp) * (*lumyp));
-        lump[0][0] = 0.5f * expf(lump[0][0]);
-        lump[0][1] = 0.5f * expf(lump[0][1]);
-        lump[0][2] = 0.5f * expf(lump[0][2]);
-        lump[0][3] = 0.5f * expf(lump[0][3]);
+        lump[0] = 0.5f * expf(lump[0]);
         lump += 1;
         lumxp += 1;
         lumyp += 1;

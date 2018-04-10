@@ -1,4 +1,31 @@
-/home/hongxiangqiu/Desktop/clion-2018.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/hongxiangqiu/CS205-project/DeepFlow_parallel
+"/Users/hongxiangqiu/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4203.549/CLion.app/Contents/bin/cmake/bin/cmake" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=gcc-7 -DCMAKE_CXX_COMPILER=g++-7 -G "CodeBlocks - Unix Makefiles" "/Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel"
+-- The C compiler identification is GNU 7.3.0
+-- The CXX compiler identification is GNU 7.3.0
+-- Checking whether C compiler has -isysroot
+-- Checking whether C compiler has -isysroot - yes
+-- Checking whether C compiler supports OSX deployment target flag
+-- Checking whether C compiler supports OSX deployment target flag - yes
+-- Check for working C compiler: /usr/local/bin/gcc-7
+-- Check for working C compiler: /usr/local/bin/gcc-7 -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Checking whether CXX compiler has -isysroot
+-- Checking whether CXX compiler has -isysroot - yes
+-- Checking whether CXX compiler supports OSX deployment target flag
+-- Checking whether CXX compiler supports OSX deployment target flag - yes
+-- Check for working CXX compiler: /usr/local/bin/g++-7
+-- Check for working CXX compiler: /usr/local/bin/g++-7 -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found JPEG: /usr/local/lib/libjpeg.dylib  
+-- Found ZLIB: /usr/lib/libz.dylib (found version "1.2.11") 
+-- Found PNG: /usr/local/lib/libpng.dylib (found version "1.4.12") 
+-- Found OpenACC_C: -fopenacc (found version "2.0") 
+-- Found OpenACC_CXX: -fopenacc (found version "2.0") 
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/hongxiangqiu/CS205-project/DeepFlow_parallel/cmake-build-debug
+-- Build files have been written to: /Users/hongxiangqiu/Dropbox (Qiu & Wu)/Harvard/cs205/CS205-project/DeepFlow_parallel/cmake-build-debug
