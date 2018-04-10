@@ -59,8 +59,10 @@ void calculate_constants(float *A11m, float *A12m, float *A22m,
 void sor_coupled_mpi(image_t *du, image_t *dv, const image_t *a11, const image_t *a12, const image_t *a22,
                      const image_t *b1, const image_t *b2, const image_t *dpsis_horiz,
                      const image_t *dpsis_vert, const int iterations, const float omega) {
-    float *buffer_u = (float *) memalign(16, du->stride * du->height * sizeof(float));
-    float *buffer_v = (float *) memalign(16, dv->stride * dv->height * sizeof(float));
+    const int N = du->stride*du->height;
+
+    float *buffer_u = (float *) memalign(16, N * sizeof(float));
+    float *buffer_v = (float *) memalign(16, N * sizeof(float));
 
     float *from_u = du->data;
     float *from_v = dv->data;
@@ -68,20 +70,20 @@ void sor_coupled_mpi(image_t *du, image_t *dv, const image_t *a11, const image_t
     float *to_u = buffer_u;
     float *to_v = buffer_v;
 
-    float *A11m = (float *) memalign(16, du->stride * du->height * sizeof(float));
-    float *A12m = (float *) memalign(16, du->stride * du->height * sizeof(float));
-    float *A22m = (float *) memalign(16, du->stride * du->height * sizeof(float));
+    float *A11m = (float *) memalign(16, N * sizeof(float));
+    float *A12m = (float *) memalign(16, N * sizeof(float));
+    float *A22m = (float *) memalign(16, N * sizeof(float));
 
-    const size_t N = du->stride*du->height;
     calculate_constants(A11m, A12m, A22m,
                         du, dv, a11, a12, a22, b1, b2, dpsis_horiz, dpsis_vert);
 
-    const size_t stride = du->stride;
-    const float* const b1_data = b1->data;
-    const float* const b2_data = b2->data;
+    const int stride = du->stride;
+    float* b1_data = b1->data;
+    float* b2_data = b2->data;
 
-    const float* const dph = dpsis_horiz->data;
-    const float* const dpv = dpsis_vert->data;
+    float* dph = dpsis_horiz->data;
+    float* dpv = dpsis_vert->data;
+
 #pragma acc data copyin(dph[0:N], dpv[0:N], A11m[0:N], A12m[0:N], A22m[0:N], b1_data[0:N], b2_data[0:N])
 {
     for (int iter = 0; iter < iterations/2; iter++) {
