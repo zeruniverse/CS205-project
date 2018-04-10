@@ -62,7 +62,7 @@ void compute_one_level(image_t *wx, image_t *wy, color_image_t *im1, color_image
         sub_laplacian(b1, wx, smooth_horiz, smooth_vert);
         sub_laplacian(b2, wy, smooth_horiz, smooth_vert);
         // solve system
-        sor_coupled_mpi(du, dv, a11, a12, a22, b1, b2, smooth_horiz, smooth_vert, params->n_solver_iteration, params->sor_omega);
+        sor_coupled_acc(du, dv, a11, a12, a22, b1, b2, smooth_horiz, smooth_vert, params->n_solver_iteration, params->sor_omega);
         // update flow plus flow increment
         int i;
         float *uup =  uu->data, *vvp = vv->data, *wxp = wx->data, *wyp = wy->data, *dup = du->data, *dvp = dv->data;
