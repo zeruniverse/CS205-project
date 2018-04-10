@@ -34,7 +34,7 @@ image_t *image_new(const int width, const int height) {
     image->width = width;
     image->height = height;
     image->stride = ((width + 3) / 4) * 4;
-    image->data = (float *) memalign(16, image->stride * height * sizeof(float));
+    image->data = (float *) malloc(image->stride * height * sizeof(float));
     if (image->data == NULL) {
         fprintf(stderr, "Error: image_new() - not enough memory !\n");
         exit(1);
@@ -87,7 +87,7 @@ color_image_t *color_image_new(const int width, const int height) {
     image->width = width;
     image->height = height;
     image->stride = ((width + 3) / 4) * 4;
-    image->c1 = (float *) memalign(16, 3 * image->stride * height * sizeof(float));
+    image->c1 = (float *) malloc(3 * image->stride * height * sizeof(float));
     if (image->c1 == NULL) {
         fprintf(stderr, "Error: color_image_new() - not enough memory !\n");
         exit(1);
@@ -123,7 +123,7 @@ void resize_if_needed_newsize(image_t *im, const int w, const int h) {
         im->width = w;
         im->height = h;
         im->stride = ((w + 3) / 4) * 4;
-        float *data = (float *) memalign(16, im->stride * h * sizeof(float));
+        float *data = (float *) malloc(im->stride * h * sizeof(float));
         if (data == NULL) {
             fprintf(stderr, "Error: resize_if_needed_newsize() - not enough memory !\n");
             exit(1);

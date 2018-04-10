@@ -61,8 +61,8 @@ void sor_coupled_mpi(image_t *du, image_t *dv, const image_t *a11, const image_t
                      const image_t *dpsis_vert, const int iterations, const float omega) {
     const int N = du->stride*du->height;
 
-    float *buffer_u = (float *) memalign(16, N * sizeof(float));
-    float *buffer_v = (float *) memalign(16, N * sizeof(float));
+    float *buffer_u = (float *) malloc(N * sizeof(float));
+    float *buffer_v = (float *) malloc(N * sizeof(float));
 
     float *from_u = du->data;
     float *from_v = dv->data;
@@ -70,9 +70,9 @@ void sor_coupled_mpi(image_t *du, image_t *dv, const image_t *a11, const image_t
     float *to_u = buffer_u;
     float *to_v = buffer_v;
 
-    float *A11m = (float *) memalign(16, N * sizeof(float));
-    float *A12m = (float *) memalign(16, N * sizeof(float));
-    float *A22m = (float *) memalign(16, N * sizeof(float));
+    float *A11m = (float *) malloc(N * sizeof(float));
+    float *A12m = (float *) malloc(N * sizeof(float));
+    float *A22m = (float *) malloc(N * sizeof(float));
 
     calculate_constants(A11m, A12m, A22m,
                         du, dv, a11, a12, a22, b1, b2, dpsis_horiz, dpsis_vert);
