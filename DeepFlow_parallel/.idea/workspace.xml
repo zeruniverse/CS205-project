@@ -31,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/src_acc/solver_acc.c">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="309">
-              <caret line="93" column="104" selection-start-line="93" selection-start-column="104" selection-end-line="93" selection-end-column="104" />
+              <caret line="93" column="125" selection-start-line="93" selection-start-column="125" selection-end-line="93" selection-end-column="125" />
             </state>
           </provider>
         </entry>
@@ -248,7 +248,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42737000" />
+    <option name="totallyTimeSpent" value="42787000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="786" extended-state="6" />
@@ -646,7 +646,7 @@
     <entry file="file://$PROJECT_DIR$/src_acc/solver_acc.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
-          <caret line="93" column="104" selection-start-line="93" selection-start-column="104" selection-end-line="93" selection-end-column="104" />
+          <caret line="93" column="125" selection-start-line="93" selection-start-column="125" selection-end-line="93" selection-end-column="125" />
         </state>
       </provider>
     </entry>
