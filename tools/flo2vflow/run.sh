@@ -1,6 +1,6 @@
 i=1
 j=2
-convertCommandLine="./generator"
+convertCommandLine="./converter"
 
 while true; do
   file1="input/forward_${i}_${j}.flo"
