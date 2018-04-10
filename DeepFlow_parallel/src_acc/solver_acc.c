@@ -94,6 +94,7 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
             for (int j = 0; j < H; j++) {
 #pragma acc loop independent
                 for (int i = 0; i < W; i++) {
+                    printf("0\n");
                     float sigma_u, sigma_v, A11, A22, A12, B1, B2;
                     sigma_u = 0.0f;
                     sigma_v = 0.0f;
@@ -113,15 +114,20 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
                         sigma_u -= dph[j * stride + i] * from_u[j * stride + i + 1];
                         sigma_v -= dph[j * stride + i] * from_v[j * stride + i + 1];
                     }
+                    printf("1\n");
                     B1 = b1_data[j * stride + i] - sigma_u;
                     B2 = b2_data[j * stride + i] - sigma_v;
 
+                    printf("2\n");
                     A11 = A11m[j * stride + i];
                     A12 = A12m[j * stride + i];
                     A22 = A22m[j * stride + i];
 
+                    printf("3\n");
                     to_u[j * stride + i] = A22 * B1 - A12 * B2;
                     to_v[j * stride + i] = -A12 * B1 + A11 * B2;
+
+                    printf("4\n");
                 }
             }
 #pragma acc parallel loop
