@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "image_mpi.h"
+#include "image_omp.h"
 
 typedef struct optical_flow_params_s {
   float alpha;             // smoothness weight

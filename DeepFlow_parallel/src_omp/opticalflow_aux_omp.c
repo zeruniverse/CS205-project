@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <math.h>
 #include <malloc.h>
 #include <string.h>
-#include "opticalflow_aux_mpi.h"
+#include "opticalflow_aux_omp.h"
 
 #include <xmmintrin.h>
 

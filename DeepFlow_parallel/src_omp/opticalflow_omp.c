@@ -19,10 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string.h>
 #include <malloc.h>
 
-#include "opticalflow_mpi.h"
-#include "opticalflow_aux_mpi.h"
-#include "solver_mpi.h"
-#include "image_mpi.h"
+#include "opticalflow_omp.h"
+#include "opticalflow_aux_omp.h"
+#include "solver_omp.h"
+#include "image_omp.h"
 
 #include <xmmintrin.h>
 typedef __v4sf v4sf;
@@ -65,7 +65,8 @@ void compute_one_level(image_t *wx, image_t *wy, color_image_t *im1, color_image
         sub_laplacian(b1, wx, smooth_horiz, smooth_vert);
         sub_laplacian(b2, wy, smooth_horiz, smooth_vert);
         // solve system
-        sor_coupled_mpi(du, dv, a11, a12, a22, b1, b2, smooth_horiz, smooth_vert, params->n_solver_iteration, params->sor_omega);
+        sor_coupled_omp(du, dv, a11, a12, a22, b1, b2, smooth_horiz, smooth_vert, params->n_solver_iteration,
+                        params->sor_omega);
         // update flow plus flow increment
         int i;
         v4sf *uup = (v4sf*) uu->data, *vvp = (v4sf*) vv->data, *wxp = (v4sf*) wx->data, *wyp = (v4sf*) wy->data, *dup = (v4sf*) du->data, *dvp = (v4sf*) dv->data;

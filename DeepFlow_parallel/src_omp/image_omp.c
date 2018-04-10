@@ -20,8 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <malloc.h>
 #include <math.h>
 
-#include "image_mpi.h"
-#include "mpi.h"
+#include "image_omp.h"
+#include "omp.h"
 
 #include <xmmintrin.h>
 

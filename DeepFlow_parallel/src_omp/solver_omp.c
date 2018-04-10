@@ -20,11 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string.h>
 #include <malloc.h>
 
-#include "image_mpi.h"
-#include "solver_mpi.h"
+#include "image_omp.h"
+#include "solver_omp.h"
 
 #include <xmmintrin.h>
-#include "mpi.h"
+#include "omp.h"
 
 typedef __v4sf v4sf;
 
@@ -65,7 +65,7 @@ void calculate_constants(float *A11m, float *A12m, float *A22m,
     }
 }
 
-void sor_coupled_mpi(image_t *du, image_t *dv, const image_t *a11, const image_t *a12, const image_t *a22,
+void sor_coupled_omp(image_t *du, image_t *dv, const image_t *a11, const image_t *a12, const image_t *a22,
                      const image_t *b1, const image_t *b2, const image_t *dpsis_horiz,
                      const image_t *dpsis_vert, const int iterations, float omega) {
     float *buffer_u = (float *) memalign(16, du->stride * du->height * sizeof(float));
