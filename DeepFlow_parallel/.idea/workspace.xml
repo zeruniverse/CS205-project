@@ -13,20 +13,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ac46a53-f5aa-47e4-96e3-293b8b37657a" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src_omp/io_omp.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src_omp/io_omp.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_mpi/image_mpi.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_omp/image_omp.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_mpi/image_mpi.h" beforeDir="false" afterPath="$PROJECT_DIR$/src_omp/image_omp.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_mpi/mpi.h" beforeDir="false" afterPath="$PROJECT_DIR$/src_omp/omp.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_mpi/opticalflow_aux_mpi.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_omp/opticalflow_aux_omp.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_mpi/opticalflow_aux_mpi.h" beforeDir="false" afterPath="$PROJECT_DIR$/src_omp/opticalflow_aux_omp.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_mpi/opticalflow_mpi.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_omp/opticalflow_omp.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_mpi/opticalflow_mpi.h" beforeDir="false" afterPath="$PROJECT_DIR$/src_omp/opticalflow_omp.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_mpi/solver_mpi.c" beforeDir="false" afterPath="$PROJECT_DIR$/src_omp/solver_omp.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_mpi/solver_mpi.h" beforeDir="false" afterPath="$PROJECT_DIR$/src_omp/solver_omp.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_acc.sh" beforeDir="false" afterPath="$PROJECT_DIR$/test_acc.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_mpi.sh" beforeDir="false" afterPath="$PROJECT_DIR$/test_omp.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_mpi_no_match.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deepflow2_mpi.c" beforeDir="false" afterPath="$PROJECT_DIR$/deepflow2_mpi.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_omp.sh" beforeDir="false" afterPath="$PROJECT_DIR$/test_omp.sh" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,12 +30,12 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test_acc.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_acc.sh">
+    <leaf>
+      <file leaf-file-name="deepflow2_mpi.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/deepflow2_mpi.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="38" selection-start-line="1" selection-end-line="1" selection-end-column="38" />
+            <state relative-caret-position="210">
+              <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -51,17 +43,8 @@
       <file leaf-file-name="test_omp.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test_omp.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="57" selection-start-line="2" selection-start-column="57" selection-end-line="2" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_ori.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_ori.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+            <state>
+              <caret column="37" selection-start-column="37" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -120,7 +103,6 @@
         <option value="$PROJECT_DIR$/src_omp/solver_omp.h" />
         <option value="$PROJECT_DIR$/src_mpi/opticalflow_mpi.h" />
         <option value="$PROJECT_DIR$/src_mpi/mpi.h" />
-        <option value="$PROJECT_DIR$/deepflow2_mpi.c" />
         <option value="$PROJECT_DIR$/src_mpi/image_mpi.c" />
         <option value="$PROJECT_DIR$/src/solver.c" />
         <option value="$PROJECT_DIR$/src_mpi/opticalflow_aux_mpi.h" />
@@ -141,11 +123,14 @@
         <option value="$PROJECT_DIR$/src_acc/opticalflow_acc.c" />
         <option value="$PROJECT_DIR$/src_acc/solver_acc.c" />
         <option value="$PROJECT_DIR$/src_omp/mpi.h" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src_omp/solver_omp.c" />
         <option value="$PROJECT_DIR$/test_acc.sh" />
         <option value="$PROJECT_DIR$/test_mpi.sh" />
         <option value="$PROJECT_DIR$/test_mpi_no_match.sh" />
+        <option value="$PROJECT_DIR$/src_omp/io_omp.h" />
+        <option value="$PROJECT_DIR$/src_omp/io_omp.c" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/deepflow2_mpi.c" />
         <option value="$PROJECT_DIR$/test_omp.sh" />
       </list>
     </option>
@@ -168,6 +153,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -175,11 +161,25 @@
               <item name="DeepFlow" type="b2602c69:ProjectViewProjectNode" />
               <item name="DeepFlow_parallel" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="DeepFlow" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepFlow_parallel" type="462c0819:PsiDirectoryNode" />
+              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DeepFlow" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepFlow_parallel" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DeepFlow" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepFlow_parallel" type="462c0819:PsiDirectoryNode" />
+              <item name="src_omp" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -190,15 +190,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.toDoOptions" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src_omp" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src_acc" />
       <recent name="$PROJECT_DIR$/src_mpi" />
       <recent name="$PROJECT_DIR$/samples" />
-      <recent name="$PROJECT_DIR$/src_omp" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -253,30 +253,41 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44757000" />
+    <option name="totallyTimeSpent" value="44911000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="786" extended-state="0" />
+    <frame x="64" y="-11" width="1377" height="912" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17152777" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17090909" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="CMake" order="7" weight="0.3286517" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32914573" />
+      <window_info anchor="bottom" id="CMake" order="7" weight="0.32957393" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3286517" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3286517" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32914573" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17152777" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="7" visible="true" weight="0.32957393" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="CMake" order="7" weight="0.3286517" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3286517" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3286517" />
+      <window_info anchor="bottom" id="Messages" order="7" visible="true" weight="0.32957393" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,13 +316,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/io.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/opticalflow.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -337,13 +341,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="5" column="35" lean-forward="true" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deepflow2_mpi.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-267">
-          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -390,21 +387,7 @@
       </provider>
     </entry>
     <entry file="file:///usr/include/malloc.h" />
-    <entry file="file://$PROJECT_DIR$/src_omp/image_omp.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="32" column="47" lean-forward="true" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/string.h" />
-    <entry file="file://$PROJECT_DIR$/src_omp/image_omp.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="52" column="74" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gprof_results/ori.stats">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
@@ -538,13 +521,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gprof_results/mpi_ori.stats">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/gprof_results/mpi_ori.stats" />
     <entry file="file://$PROJECT_DIR$/src_omp/omp.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -552,13 +529,6 @@
           <folding>
             <element signature="e#92#108#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -576,13 +546,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_mpi_no_match.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test_mpi_no_match.sh" />
     <entry file="file://$PROJECT_DIR$/test_ori.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -590,10 +554,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/io.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src_omp/io_omp.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src_omp/io_omp.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src_omp/image_omp.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="13" lean-forward="true" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src_omp/image_omp.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="47" lean-forward="true" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="41" column="16" lean-forward="true" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deepflow2_mpi.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test_omp.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="57" selection-start-line="2" selection-start-column="57" selection-end-line="2" selection-end-column="57" />
+        <state>
+          <caret column="37" selection-start-column="37" selection-end-column="37" />
         </state>
       </provider>
     </entry>

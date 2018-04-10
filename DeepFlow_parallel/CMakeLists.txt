@@ -41,7 +41,7 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}
 add_executable(DeepFlow_omp
         deepflow2_mpi.c
         src_omp/image_omp.c
-        src/io.c
+        src_omp/io_omp.c
         src_omp/opticalflow_omp.c
         src_omp/opticalflow_aux_omp.c
         src_omp/solver_omp.c

@@ -18,9 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdlib.h>
 #include <string.h>
 
-#include "src_mpi/image_mpi.h"
-#include "src/opticalflow.h"
-#include "src/io.h"
+#include "src_omp/image_omp.h"
+#include "src_omp/opticalflow_omp.h"
+#include "src_omp/io_omp.h"
 
 int main(int argc, char ** argv){
   
