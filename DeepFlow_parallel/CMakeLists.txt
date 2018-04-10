@@ -72,11 +72,10 @@ if(USE_ACC)
         src_acc/io.c
         src_acc/opticalflow_acc.c
         src_acc/opticalflow_aux_acc.c
-        src_acc/solver_acc.c
-            )
+        src_acc/solver_acc.c)
     target_link_libraries(DeepFlow_acc ${JPEG_LIBRARY})
     target_link_libraries(DeepFlow_acc ${PNG_LIBRARY})
     target_link_libraries(DeepFlow_acc m)
     set_target_properties(DeepFlow_acc PROPERTIES
-             COMPILE_FLAGS "${OpenACC_C_FLAGS}")
+             COMPILE_FLAGS "-acc -Minfo")
 endif()
