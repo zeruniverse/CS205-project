@@ -64,14 +64,11 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
     const int H = du->height;
     const int W = du->width;
 
-    float *buffer_u = (float *) malloc(N * sizeof(float));
-    float *buffer_v = (float *) malloc(N * sizeof(float));
-
     float *from_u = du->data;
     float *from_v = dv->data;
 
-    float *to_u = buffer_u;
-    float *to_v = buffer_v;
+    float *to_u = (float *) malloc(N * sizeof(float));
+    float *to_v = (float *) malloc(N * sizeof(float));
 
     float *A11m = (float *) malloc(N * sizeof(float));
     float *A12m = (float *) malloc(N * sizeof(float));
@@ -164,6 +161,6 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
     free(A11m);
     free(A12m);
     free(A22m);
-    free(buffer_u);
-    free(buffer_v);
+    free(to_u);
+    free(to_v);
 }
