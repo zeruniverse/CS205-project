@@ -26,7 +26,8 @@ add_executable(DeepFlow
         src/io.c
         src/opticalflow.c
         src/opticalflow_aux.c
-        src/solver.c)
+        src/solver.c
+        src_common/malloc_impl.c)
 target_link_libraries(DeepFlow ${JPEG_LIBRARY})
 target_link_libraries(DeepFlow ${PNG_LIBRARY})
 target_link_libraries(DeepFlow m)
@@ -45,10 +46,12 @@ add_executable(DeepFlow_omp
         src_omp/opticalflow_omp.c
         src_omp/opticalflow_aux_omp.c
         src_omp/solver_omp.c
-        src_omp/omp.h)
+        src_omp/omp.h
+        src_common/malloc_impl.c)
 target_link_libraries(DeepFlow_omp ${JPEG_LIBRARY})
 target_link_libraries(DeepFlow_omp ${PNG_LIBRARY})
 target_link_libraries(DeepFlow_omp m)
+
 if (USE_MPI)
     find_package(MPI REQUIRED)
     include_directories(${MPI_INCLUDE_PATH})
@@ -57,3 +60,15 @@ if (USE_MPI)
     set_target_properties(DeepFlow_mpi PROPERTIES
             LINK_FLAGS "${MPI_LINK_FLAGS}")
 endif ()
+
+add_executable(DeepFlow_rbsor
+        deepflow2_rbsor.c
+        src_rbsor/image_rbsor.c
+        src_rbsor/io_rbsor.c
+        src_rbsor/opticalflow_rbsor.c
+        src_rbsor/opticalflow_aux_rbsor.c
+        src_rbsor/solver_rbsor.c
+        src_common/malloc_impl.c)
+target_link_libraries(DeepFlow_rbsor ${JPEG_LIBRARY})
+target_link_libraries(DeepFlow_rbsor ${PNG_LIBRARY})
+target_link_libraries(DeepFlow_rbsor m)

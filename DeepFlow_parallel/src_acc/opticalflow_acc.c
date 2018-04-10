@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-#include <malloc.h>
+#include "../src_common/malloc.h"
 
 #include "opticalflow_acc.h"
 #include "opticalflow_aux_acc.h"
