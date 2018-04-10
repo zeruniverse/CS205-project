@@ -70,6 +70,13 @@ void sor_coupled_acc(image_t *du, image_t *dv, const image_t *a11, const image_t
     float *to_u = (float *) acc_malloc(N * sizeof(float));
     float *to_v = (float *) acc_malloc(N * sizeof(float));
 
+    if (to_u == NULL) {
+        printf("Failed to alloc memory of size %d for u", N);
+    }
+    if (to_v == NULL) {
+        printf("Failed to alloc memory of size %d for v", N);
+    }
+
     float *A11m = (float *) malloc(N * sizeof(float));
     float *A12m = (float *) malloc(N * sizeof(float));
     float *A22m = (float *) malloc(N * sizeof(float));
