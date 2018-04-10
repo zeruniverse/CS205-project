@@ -1,5 +1,4 @@
 rm -rf build
 mkdir build
 cd build
-cmake .. -DCMAKE_C_COMPILER=pgcc
-make DeepFlow_acc
+pgcc -acc -Minfo ../deepflow2_acc.c ../src_acc/*.c -lm -ljpeg -lpng -o DeepFlow_acc

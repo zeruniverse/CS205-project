@@ -23,11 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "image_acc.h"
 #include "solver_acc.h"
 
-void swap(float **a, float **b) {
-    float *temp = *a;
-    *a = *b;
-    *b = temp;
-}
+#include "openacc.h"
 
 void calculate_constants(float *A11m, float *A12m, float *A22m,
                          image_t *du, image_t *dv,
@@ -76,54 +72,89 @@ void sor_coupled_mpi(image_t *du, image_t *dv, const image_t *a11, const image_t
     float *A12m = (float *) memalign(16, du->stride * du->height * sizeof(float));
     float *A22m = (float *) memalign(16, du->stride * du->height * sizeof(float));
 
+    const size_t N = du->stride*du->height;
     calculate_constants(A11m, A12m, A22m,
                         du, dv, a11, a12, a22, b1, b2, dpsis_horiz, dpsis_vert);
 
-    swap(&from_u, &to_u);
-    swap(&from_v, &to_v);
+    const size_t stride = du->stride;
+    const float* const b1_data = b1->data;
+    const float* const b2_data = b2->data;
 
-    for (int iter = 0; iter < iterations; iter++) {
-        swap(&from_u, &to_u);
-        swap(&from_v, &to_v);
-#pragma acc loop
+    const float* const dph = dpsis_horiz->data;
+    const float* const dpv = dpsis_vert->data;
+#pragma acc data copyin(dph[0:N], dpv[0:N], A11m[0:N], A12m[0:N], A22m[0:N], b1_data[0:N], b2_data[0:N])
+{
+    for (int iter = 0; iter < iterations/2; iter++) {
+#pragma acc parallel loop copyin(from_u[0:N], from_v[0:N]) copyout(to_u[0:N], to_v[0:N])
         for (int j = 0; j < du->height; j++) {
+#pragma acc loop
             for (int i = 0; i < du->width; i++) {
                 float sigma_u, sigma_v, A11, A22, A12, B1, B2;
                 sigma_u = 0.0f;
                 sigma_v = 0.0f;
                 if (j > 0) {
-                    sigma_u -= dpsis_vert->data[(j - 1) * du->stride + i] * from_u[(j - 1) * du->stride + i];
-                    sigma_v -= dpsis_vert->data[(j - 1) * du->stride + i] * from_v[(j - 1) * du->stride + i];
+                    sigma_u -= dpv[(j - 1) * stride + i] * from_u[(j - 1) * stride + i];
+                    sigma_v -= dpv[(j - 1) * stride + i] * from_v[(j - 1) * stride + i];
                 }
                 if (i > 0) {
-                    sigma_u -= dpsis_horiz->data[j * du->stride + i - 1] * from_u[j * du->stride + i - 1];
-                    sigma_v -= dpsis_horiz->data[j * du->stride + i - 1] * from_v[j * du->stride + i - 1];
+                    sigma_u -= dph[j * stride + i - 1] * from_u[j * stride + i - 1];
+                    sigma_v -= dph[j * stride + i - 1] * from_v[j * stride + i - 1];
                 }
                 if (j < du->height - 1) {
-                    sigma_u -= dpsis_vert->data[j * du->stride + i] * from_u[(j + 1) * du->stride + i];
-                    sigma_v -= dpsis_vert->data[j * du->stride + i] * from_v[(j + 1) * du->stride + i];
+                    sigma_u -= dpv[j * stride + i] * from_u[(j + 1) * stride + i];
+                    sigma_v -= dpv[j * stride + i] * from_v[(j + 1) * stride + i];
                 }
                 if (i < du->width - 1) {
-                    sigma_u -= dpsis_horiz->data[j * du->stride + i] * from_u[j * du->stride + i + 1];
-                    sigma_v -= dpsis_horiz->data[j * du->stride + i] * from_v[j * du->stride + i + 1];
+                    sigma_u -= dph[j * stride + i] * from_u[j * stride + i + 1];
+                    sigma_v -= dph[j * stride + i] * from_v[j * stride + i + 1];
                 }
-                B1 = b1->data[j * du->stride + i] - sigma_u;
-                B2 = b2->data[j * du->stride + i] - sigma_v;
+                B1 = b1_data[j * stride + i] - sigma_u;
+                B2 = b2_data[j * stride + i] - sigma_v;
 
-                A11 = A11m[j * du->stride + i];
-                A12 = A12m[j * du->stride + i];
-                A22 = A22m[j * du->stride + i];
+                A11 = A11m[j * stride + i];
+                A12 = A12m[j * stride + i];
+                A22 = A22m[j * stride + i];
 
-                to_u[j * du->stride + i] = A22 * B1 - A12 * B2;
-                to_v[j * du->stride + i] = -A12 * B1 + A11 * B2;
+                to_u[j * stride + i] = A22 * B1 - A12 * B2;
+                to_v[j * stride + i] = -A12 * B1 + A11 * B2;
+            }
+        }
+#pragma acc parallel loop copyin(to_u[0:N], to_v[0:N]) copyout(from_u[0:N], from_v[0:N])
+        for (int j = 0; j < du->height; j++) {
+#pragma acc loop
+            for (int i = 0; i < du->width; i++) {
+                float sigma_u, sigma_v, A11, A22, A12, B1, B2;
+                sigma_u = 0.0f;
+                sigma_v = 0.0f;
+                if (j > 0) {
+                    sigma_u -= dpv[(j - 1) * stride + i] * to_u[(j - 1) * stride + i];
+                    sigma_v -= dpv[(j - 1) * stride + i] * to_v[(j - 1) * stride + i];
+                }
+                if (i > 0) {
+                    sigma_u -= dph[j * stride + i - 1] * to_u[j * stride + i - 1];
+                    sigma_v -= dph[j * stride + i - 1] * to_v[j * stride + i - 1];
+                }
+                if (j < du->height - 1) {
+                    sigma_u -= dpv[j * stride + i] * to_u[(j + 1) * stride + i];
+                    sigma_v -= dpv[j * stride + i] * to_v[(j + 1) * stride + i];
+                }
+                if (i < du->width - 1) {
+                    sigma_u -= dph[j * stride + i] * to_u[j * stride + i + 1];
+                    sigma_v -= dph[j * stride + i] * to_v[j * stride + i + 1];
+                }
+                B1 = b1_data[j * stride + i] - sigma_u;
+                B2 = b2_data[j * stride + i] - sigma_v;
+
+                A11 = A11m[j * stride + i];
+                A12 = A12m[j * stride + i];
+                A22 = A22m[j * stride + i];
+
+                from_u[j * stride + i] = A22 * B1 - A12 * B2;
+                from_v[j * stride + i] = -A12 * B1 + A11 * B2;
             }
         }
     }
-
-    if (to_u != du->data) {
-        memcpy(du->data, to_u, du->stride * du->height * sizeof(float));
-        memcpy(dv->data, to_v, dv->stride * dv->height * sizeof(float));
-    }
+}
 
     free(A11m);
     free(A12m);
