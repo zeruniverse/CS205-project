@@ -1,0 +1,3 @@
+/tmp/CS205-project/src/Jacobi_OMP/build/CMakeFiles/rebuild_cache.dir
+/tmp/CS205-project/src/Jacobi_OMP/build/CMakeFiles/deepflow2-omp.dir
+/tmp/CS205-project/src/Jacobi_OMP/build/CMakeFiles/edit_cache.dir
