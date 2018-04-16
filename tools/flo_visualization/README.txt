@@ -1,3 +1,5 @@
+This code is from [here](http://vision.middlebury.edu/flow/data/) and it generates the color encoding for `.flo` files (for visualization).
+
 Some utilities for reading, writing, and color-coding .flo images
 
 Daniel Scharstein, 7/2/07
