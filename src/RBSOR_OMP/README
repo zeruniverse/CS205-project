@@ -1,1 +1,1 @@
-This is the serial Red Black SOR implementation of Deepflow. See src/solver.c for details.
+This is the OMP Red Black SOR implementation of Deepflow. See src/solver.c for details.
