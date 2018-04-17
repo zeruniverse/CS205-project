@@ -47,54 +47,6 @@ void calculate_constants(float *A11m, float *A12m, float *A22m,
     }
 }
 
-void rbsor_step(const int red,
-                float *du, float *dv,
-                const float omega,
-                const int W, const int H, const int stride,
-                const float *dph, const float *dpv,
-                const float *A11m, const float *A12m, const float *A22m,
-                const float *b1d, const float *b2d) {
-    const int N = stride * H;
-    #pragma acc data copyin(dph[0:N], dpv[0:N], A11m[0:N], A12m[0:N], A22m[0:N], b1d[0:N], b2d[0:N]) copy(du[0:N], dv[0:N])
-    {
-        #pragma acc parallel loop independent
-        for (int j = 0; j < H; j++) {
-            #pragma acc loop independent private(j)
-            for (int i = (j % 2) + 1 - red; i < W; i += 2) {
-                float sigma_u, sigma_v, A11, A22, A12, B1, B2;
-                sigma_u = 0.0f;
-                sigma_v = 0.0f;
-                if (j > 0) {
-                    sigma_u -= dpv[(j - 1) * stride + i] * du[(j - 1) * stride + i];
-                    sigma_v -= dpv[(j - 1) * stride + i] * dv[(j - 1) * stride + i];
-                }
-                if (i > 0) {
-                    sigma_u -= dph[j * stride + i - 1] * du[j * stride + i - 1];
-                    sigma_v -= dph[j * stride + i - 1] * dv[j * stride + i - 1];
-                }
-                if (j < H - 1) {
-                    sigma_u -= dpv[j * stride + i] * du[(j + 1) * stride + i];
-                    sigma_v -= dpv[j * stride + i] * dv[(j + 1) * stride + i];
-                }
-                if (i < W - 1) {
-                    sigma_u -= dph[j * stride + i] * du[j * stride + i + 1];
-                    sigma_v -= dph[j * stride + i] * dv[j * stride + i + 1];
-                }
-                B1 = b1d[j * stride + i] - sigma_u;
-                B2 = b2d[j * stride + i] - sigma_v;
-
-                A11 = A11m[j * stride + i];
-                A12 = A12m[j * stride + i];
-                A22 = A22m[j * stride + i];
-
-                du[j * stride + i] =
-                        (1.0f - omega) * du[j * stride + i] + omega * (A22 * B1 - A12 * B2);
-                dv[j * stride + i] =
-                        (1.0f - omega) * dv[j * stride + i] + omega * (-A12 * B1 + A11 * B2);
-            }
-        }
-    }
-}
 
 void sor_coupled(image_t *du, image_t *dv, const image_t *a11, const image_t *a12, const image_t *a22,
                        const image_t *b1, const image_t *b2, const image_t *dpsis_horiz,
@@ -118,18 +70,82 @@ void sor_coupled(image_t *du, image_t *dv, const image_t *a11, const image_t *a1
     const float *dph = dpsis_horiz->data;
     const float *b1d = b1->data;
     const float *b2d = b2->data;
+    #pragma acc data copyin(dph[0:N], dpv[0:N], A11m[0:N], A12m[0:N], A22m[0:N], b1d[0:N], b2d[0:N]) copy(dud[0:N], dvd[0:N])
+    {
+        for (int iter = 0; iter < iterations; iter++) {
+            #pragma acc parallel loop independent
+            for (int j = 0; j < H; j++) {
+                #pragma acc loop independent private(j)
+                for (int i = (j % 2) + 1; i < W; i += 2) {
+                    float sigma_u, sigma_v, A11, A22, A12, B1, B2;
+                    sigma_u = 0.0f;
+                    sigma_v = 0.0f;
+                    if (j > 0) {
+                        sigma_u -= dpv[(j - 1) * stride + i] * dud[(j - 1) * stride + i];
+                        sigma_v -= dpv[(j - 1) * stride + i] * dvd[(j - 1) * stride + i];
+                    }
+                    if (i > 0) {
+                        sigma_u -= dph[j * stride + i - 1] * dud[j * stride + i - 1];
+                        sigma_v -= dph[j * stride + i - 1] * dvd[j * stride + i - 1];
+                    }
+                    if (j < H - 1) {
+                        sigma_u -= dpv[j * stride + i] * dud[(j + 1) * stride + i];
+                        sigma_v -= dpv[j * stride + i] * dvd[(j + 1) * stride + i];
+                    }
+                    if (i < W - 1) {
+                        sigma_u -= dph[j * stride + i] * dud[j * stride + i + 1];
+                        sigma_v -= dph[j * stride + i] * dvd[j * stride + i + 1];
+                    }
+                    B1 = b1d[j * stride + i] - sigma_u;
+                    B2 = b2d[j * stride + i] - sigma_v;
 
-    for (int iter = 0; iter < iterations; iter++) {
-        rbsor_step(0,
-                   dud, dvd,
-                   omega,
-                   W, H, stride, dph, dpv,
-                   A11m, A12m, A22m, b1d, b2d);
-        rbsor_step(1,
-                   dud, dvd,
-                   omega,
-                   W, H, stride, dph, dpv,
-                   A11m, A12m, A22m, b1d, b2d);
+                    A11 = A11m[j * stride + i];
+                    A12 = A12m[j * stride + i];
+                    A22 = A22m[j * stride + i];
+
+                    dud[j * stride + i] =
+                            (1.0f - omega) * du[j * stride + i] + omega * (A22 * B1 - A12 * B2);
+                    dvd[j * stride + i] =
+                            (1.0f - omega) * dv[j * stride + i] + omega * (-A12 * B1 + A11 * B2);
+                }
+            }
+            #pragma acc parallel loop independent
+            for (int j = 0; j < H; j++) {
+                #pragma acc loop independent private(j)
+                for (int i = (j % 2); i < W; i += 2) {
+                    float sigma_u, sigma_v, A11, A22, A12, B1, B2;
+                    sigma_u = 0.0f;
+                    sigma_v = 0.0f;
+                    if (j > 0) {
+                        sigma_u -= dpv[(j - 1) * stride + i] * dud[(j - 1) * stride + i];
+                        sigma_v -= dpv[(j - 1) * stride + i] * dvd[(j - 1) * stride + i];
+                    }
+                    if (i > 0) {
+                        sigma_u -= dph[j * stride + i - 1] * dud[j * stride + i - 1];
+                        sigma_v -= dph[j * stride + i - 1] * dvd[j * stride + i - 1];
+                    }
+                    if (j < H - 1) {
+                        sigma_u -= dpv[j * stride + i] * dud[(j + 1) * stride + i];
+                        sigma_v -= dpv[j * stride + i] * dvd[(j + 1) * stride + i];
+                    }
+                    if (i < W - 1) {
+                        sigma_u -= dph[j * stride + i] * dud[j * stride + i + 1];
+                        sigma_v -= dph[j * stride + i] * dvd[j * stride + i + 1];
+                    }
+                    B1 = b1d[j * stride + i] - sigma_u;
+                    B2 = b2d[j * stride + i] - sigma_v;
+
+                    A11 = A11m[j * stride + i];
+                    A12 = A12m[j * stride + i];
+                    A22 = A22m[j * stride + i];
+
+                    dud[j * stride + i] =
+                            (1.0f - omega) * du[j * stride + i] + omega * (A22 * B1 - A12 * B2);
+                    dvd[j * stride + i] =
+                            (1.0f - omega) * dv[j * stride + i] + omega * (-A12 * B1 + A11 * B2);
+                }
+            }
+        }
     }
 
     free(A11m);
