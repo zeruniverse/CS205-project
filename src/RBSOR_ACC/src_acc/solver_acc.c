@@ -104,9 +104,9 @@ void sor_coupled(image_t *du, image_t *dv, const image_t *a11, const image_t *a1
                     A22 = A22m[j * stride + i];
 
                     dud[j * stride + i] =
-                            (1.0f - omega) * du[j * stride + i] + omega * (A22 * B1 - A12 * B2);
+                            (1.0f - omega) * dud[j * stride + i] + omega * (A22 * B1 - A12 * B2);
                     dvd[j * stride + i] =
-                            (1.0f - omega) * dv[j * stride + i] + omega * (-A12 * B1 + A11 * B2);
+                            (1.0f - omega) * dvd[j * stride + i] + omega * (-A12 * B1 + A11 * B2);
                 }
             }
             #pragma acc parallel loop independent
@@ -140,9 +140,9 @@ void sor_coupled(image_t *du, image_t *dv, const image_t *a11, const image_t *a1
                     A22 = A22m[j * stride + i];
 
                     dud[j * stride + i] =
-                            (1.0f - omega) * du[j * stride + i] + omega * (A22 * B1 - A12 * B2);
+                            (1.0f - omega) * dud[j * stride + i] + omega * (A22 * B1 - A12 * B2);
                     dvd[j * stride + i] =
-                            (1.0f - omega) * dv[j * stride + i] + omega * (-A12 * B1 + A11 * B2);
+                            (1.0f - omega) * dvd[j * stride + i] + omega * (-A12 * B1 + A11 * B2);
                 }
             }
         }
