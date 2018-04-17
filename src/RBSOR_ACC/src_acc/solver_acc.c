@@ -54,7 +54,7 @@ void rbsor_step(const int red,
                 const float *dph, const float *dpv,
                 const float *A11m, const float *A12m, const float *A22m,
                 const float *b1d, const float *b2d) {
-    const int N = du->stride * du->height;
+    const int N = H * W;
     #pragma acc data copyin(dph[0:N], dpv[0:N], A11m[0:N], A12m[0:N], A22m[0:N], b1d[0:N], b2d[0:N]) copy(du[0:N], dv[0:N])
     {
         #pragma acc parallel loop independent
