@@ -27,7 +27,7 @@ Team: Shiyu Huang, Hongxiang Qiu, Zeyu Zhao, Zongren Zou
   + [Slow Motion Video (Advanced Feature)](README.md#slow-motion-video)
 + [References](README.md#references)
 + [Appendix](README.md#appendix)
-  + [Prepare Test Data](README.md#how-to-prepare-test-data)
+  + [Prepare Test Data](README.md#prepare-test-data)  
   + [Run Code](README.md#run-code)
 
 ## Introduction
