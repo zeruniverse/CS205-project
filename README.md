@@ -28,7 +28,7 @@ Team: Shiyu Huang, Hongxiang Qiu, Zeyu Zhao, Zongren Zou
 + [References](README.md#references)
 + [Appendix](README.md#appendix)
   + [Prepare Test Data](README.md#prepare-test-data)  
-  + [Run Code](README.md#run-code)
+  + [Run Code](README.md#run-code)
 
 ## Introduction
 Deep Flow is ...
