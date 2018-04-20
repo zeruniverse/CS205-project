@@ -6,7 +6,7 @@ Team: Shiyu Huang, Hongxiang Qiu, Zeyu Zhao, Zongren Zou
 
 + [Introduction](README.md#introduction)
 + [Prepare Data](README.md#prepare-data)
-+ [Implementations](README.md#Implementations)
++ [Implementations](README.md#implementations)
 + [Applications](README.md#applications)
   + [Video Stylization](README.md#video-stylization)
   + [Slow Motion Video](README.md#slow-motion-video)
