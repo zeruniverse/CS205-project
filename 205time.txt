@@ -12,7 +12,23 @@ video: 360p: (323 seconds per 1s)
  720p: (1316 seconds per 1s)
  1080p: 118 seconds per pair (2950 seconds per 1s)
 
-jacobi-serial: 2img: 360p-, 720p- 16.574 seconds, 1080p - 35.765 seconds
- video: 360p:
-  720p:
+jacobi-serial: 2img: 360p- 3.870 seconds, 720p- 16.574 seconds, 1080p - 35.765 seconds
+ video: 360p: (192 seconds per 1s)
+  720p: (788 seconds per 1s)
   1080p: (1791 seconds per 1s)
+
+Rbsor-serial: 2img: 360p- 3.687 seconds,720p- 15.812 seconds, 1080p-34.476 seconds,
+ video: 360p: (183 seconds per 1s)
+ 720p: (752 seconds per 1s)
+ 1080p: (1725 seconds per 1s)
+
+RBSOR-OMP:
+
+2img, 360p thread=2- 2.518 seconds, thread=4 - 1.910seconds, thread=8 - 2.048 seconds
+720p thread=2- 11.588 seconds, thread=4- 9.160 seconds, thread=8- 9.171 seconds
+1080p thread=2- 25.253 seconds, thread=4- 19.730 seconds, thread=8- 19.883 seconds
+
+video: 360p:
+360p - 4thread - (102 seconds per 1s)
+720p - 4threads - (414 seconds per 1s)
+1080p - 4threads- (1004 seconds per 1s)
