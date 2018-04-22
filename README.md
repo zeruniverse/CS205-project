@@ -82,6 +82,19 @@ This is `how to run our model` part. If you followed the previous section or dow
   + A folder named `out` containing all frames
   + A folder named `match` containing all matches
 
+The guide assumes you use AWS m4.2xlarge node with Ubuntu Server 16.04 LTS (HVM).
+
+First, you should install required packages:
+
+```bash
+sudo apt-get update
+sudo apt-get install cmake
+sudo apt-get install build-essential
+sudo apt-get install libjpeg-dev
+sudo apt-get install libpng-dev
+sudo apt-get install unzip
+```
+
 All source code for our implementations are in [`src`](src/) folder, please first compile according to [this guide](src/README.md) and copy the executable under the same folder with the data.
 
 ### Two Images
@@ -96,9 +109,10 @@ export OMP_NUM_THREADS=X
 
 For all serial and OpenMP implementations, run with command:
 ```bash
-./deepflow2 ak1.ppm ak2.ppm akflow.flo -match ak_forward.match
+time ./deepflow2 ak1.ppm ak2.ppm akflow.flo -match ak_forward.match
 ```
 
+You will get wall time (real) in terminal.
 ### Video
 
 TODO. NEED A COMMENTED SCRIPT
