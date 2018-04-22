@@ -10,19 +10,18 @@ executable = "/deepflow2"
 ppm_root = "/frame"
 match_root = "/match"
 omp_threads=4
+if not path.exists("/tmp"):
+    run = Popen(["mkdir", "/tmp"])
+    run.communicate()
+run = Popen(["hadoop", "fs", "-get", "-f", executable, "/tmp/deepflow2"])
+run.communicate()
+run = Popen(["chmod", "777", "/tmp/deepflow2"])
+run.communicate()
 
 for line in sys.stdin.readlines():
     prev, next = line.split(",")
     prev = int(prev)
     next = int(next)
-    if not path.exists("/tmp"):
-        run = Popen(["mkdir", "/tmp"])
-        run.communicate()
-    if not path.exists("/tmp/deepflow2"):
-        run = Popen(["hadoop", "fs", "-get", "-f", executable, "/tmp/deepflow2"])
-        run.communicate()
-        run = Popen(["chmod", "777", "/tmp/deepflow2"])
-        run.communicate()
     ppm1 = ppm_root+"/"+"frame_%06d.ppm" % prev
     ppm2 = ppm_root+"/"+"frame_%06d.ppm" % next
     match_forward = match_root+"/"+"forward_{}_{}.match".format(prev,next)
