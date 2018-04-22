@@ -4,17 +4,17 @@ compiler:
 script: 
   - cmake --version
   - cd src
-  - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak1.ppm"
-  - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak2.ppm"
-  - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak_forward.match"
+#  - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak1.ppm"
+#  - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak2.ppm"
+#  - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak_forward.match"
   
   - cd Jacobi_OMP
   - mkdir build
   - cd build
   - cmake ..
   - make
-  - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
-  - ls -lh out.flo
+#  - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
+#  - ls -lh out.flo
   - cd ../..
 
   - cd Jacobi_serial
@@ -22,8 +22,8 @@ script:
   - cd build
   - cmake ..
   - make
-  - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
-  - ls -lh out.flo
+#  - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
+#  - ls -lh out.flo
   - cd ../..
 
   - cd RBSOR_OMP
@@ -31,8 +31,8 @@ script:
   - cd build
   - cmake ..
   - make
-  - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
-  - ls -lh out.flo
+#  - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
+#  - ls -lh out.flo
   - cd ../..
 
   - cd RBSOR_serial
@@ -40,8 +40,8 @@ script:
   - cd build
   - cmake ..
   - make
-  - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
-  - ls -lh out.flo
+#  - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
+#  - ls -lh out.flo
   - cd ../..
 
   - cd SOR_serial
@@ -49,8 +49,8 @@ script:
   - cd build
   - cmake ..
   - make
-  - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
-  - ls -lh out.flo
+#  - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
+#  - ls -lh out.flo
   - cd ../..
 
   - cd 'SOR_serial_optimized_(original_implementation)'
@@ -58,6 +58,6 @@ script:
   - cd build
   - cmake ..
   - make
-  - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
-  - ls -lh out.flo
+#  - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
+#  - ls -lh out.flo
   - cd ../..
