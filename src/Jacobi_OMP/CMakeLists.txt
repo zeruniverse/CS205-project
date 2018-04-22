@@ -35,6 +35,6 @@ add_executable(deepflow2
         src/solver_omp.c
         src/omp.h
         src/malloc_impl.c)
-target_link_libraries(deepflow2-omp ${JPEG_LIBRARY})
-target_link_libraries(deepflow2-omp ${PNG_LIBRARY})
-target_link_libraries(deepflow2-omp m)
+target_link_libraries(deepflow2 ${JPEG_LIBRARY})
+target_link_libraries(deepflow2 ${PNG_LIBRARY})
+target_link_libraries(deepflow2 m)

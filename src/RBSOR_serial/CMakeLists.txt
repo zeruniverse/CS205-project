@@ -27,6 +27,6 @@ add_executable(deepflow2
         src/opticalflow_aux.c
         src/solver.c
         src/malloc_impl.c)
-target_link_libraries(deepflow2_rbsor ${JPEG_LIBRARY})
-target_link_libraries(deepflow2_rbsor ${PNG_LIBRARY})
-target_link_libraries(deepflow2_rbsor m)
+target_link_libraries(deepflow2 ${JPEG_LIBRARY})
+target_link_libraries(deepflow2 ${PNG_LIBRARY})
+target_link_libraries(deepflow2 m)
