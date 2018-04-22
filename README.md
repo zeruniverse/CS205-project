@@ -1,5 +1,7 @@
 # Parallelized Deepflow
 
+[![Build Status](https://travis-ci.org/zeruniverse/CS205-project.svg?branch=master)](https://travis-ci.org/zeruniverse/CS205-project)
+
 Team: Shiyu Huang, Hongxiang Qiu, Zeyu Zhao, Zongren Zou
 
 **This README focuses on how to run our code and reproduce our results. For background, analysis and detailed results, see our project page.**
