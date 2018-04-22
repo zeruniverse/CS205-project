@@ -26,3 +26,5 @@ for i in range(1, int(sys.argv[1])):
     put3.communicate()
     print("files {} successfully submitted".format(i))
 
+Popen(["hadoop", "fs", "-put", "-f", "out/frame_%06d.ppm" % int(sys.argv[1]),
+                 ppm_root+"/frame_%06d.ppm" % int(sys.argv[1])]).communicate()
