@@ -99,6 +99,8 @@ sudo apt-get install libpng-dev
 sudo apt-get install unzip
 ```
 
+If you are using other systems, please ensure you have new `gcc` and `g++`, otherwise, you might get compile error of `error: ‘for’ loop initial declarations are only allowed in C99 mode`. The workaround for old compilers is adding `-std=gnu99` flag into `CMAKE_C_FLAGS` in the file `CMakeLists.txt`.
+
 All source code for our implementations are in [`src`](src/) folder, please first compile according to [this guide](src/README.md) and copy the executable under the same folder with the data.
 
 ### Two Images
