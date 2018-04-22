@@ -1,0 +1,18 @@
+m4.2xlarge
+
+() indicates 1-2 to 25-26, 1 pair more than actual 1 second...
+
+orig-serial-opt: 2img: 360p- 4.598 seconds, 720p- 19.382 seconds, 1080p- 42.582seconds
+ video: 360p- 1s-217 seconds, 2s-443 seconds, 3s-669 seconds, (226 seconds per 1s)
+  720p- 1s-891 seconds, 2s-1816 seconds, 3s-2742 seconds (926 seconds per 1s)
+  1080p- 85 seconds per pair (2129 seconds per 1s)
+ 
+orig-no-opt (serial): 2img 360p- 6.494 seconds, 720p- 26.997seconds,1080p- 59.326 seconds
+video: 360p: (323 seconds per 1s)
+ 720p: (1316 seconds per 1s)
+ 1080p: 118 seconds per pair (2950 seconds per 1s)
+
+jacobi-serial: 2img: 360p-, 720p- 16.574 seconds, 1080p - 35.765 seconds
+ video: 360p:
+  720p:
+  1080p: (1791 seconds per 1s)
