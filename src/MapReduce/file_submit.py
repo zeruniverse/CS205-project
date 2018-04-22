@@ -4,7 +4,7 @@ import sys
 ppm_root = "/frame"
 match_root = "/match"
 flow_root = "/flow"
-executable = "deepflow2-static"
+executable = "deepflow2"
 input_file = "file_list.txt"
 put = Popen(["hadoop", "fs", "-mkdir" , ppm_root])
 put.communicate()
