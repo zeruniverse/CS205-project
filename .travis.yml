@@ -1,6 +1,6 @@
-language: cpp
+language: c
 compiler:
-  - g++
+  - cc
 script: 
   - cmake --version
   - cd src
@@ -10,7 +10,7 @@ script:
   - cd build
   - cmake ..
   - make
-  - ./deepflow2
+  - ./deepflow2 -h
   - cd ../..
 
   - cd Jacobi_serial
@@ -18,7 +18,7 @@ script:
   - cd build
   - cmake ..
   - make
-  - ./deepflow2
+  - ./deepflow2 -h
   - cd ../..
 
   - cd RBSOR_OMP
@@ -26,7 +26,7 @@ script:
   - cd build
   - cmake ..
   - make
-  - ./deepflow2
+  - ./deepflow2 -h
   - cd ../..
 
   - cd RBSOR_serial
@@ -34,7 +34,7 @@ script:
   - cd build
   - cmake ..
   - make
-  - ./deepflow2
+  - ./deepflow2 -h
   - cd ../..
 
   - cd SOR_serial
@@ -42,7 +42,7 @@ script:
   - cd build
   - cmake ..
   - make
-  - ./deepflow2
+  - ./deepflow2 -h
   - cd ../..
 
   - cd 'SOR_serial_optimized_(original_implementation)'
@@ -50,5 +50,5 @@ script:
   - cd build
   - cmake ..
   - make
-  - ./deepflow2
+  - ./deepflow2 -h
   - cd ../..
