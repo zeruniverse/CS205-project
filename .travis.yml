@@ -1,15 +1,5 @@
-language: cpp
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - gcc-7
-      - g++-7
-      - cmake
+language: c
 script:
-  - export CC=gcc-7
-  - export CXX=g++-7
   - cmake --version
   - cd src
   - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak1.ppm"
