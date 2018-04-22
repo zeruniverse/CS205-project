@@ -36,11 +36,12 @@ video: 360p:
 Mapreduce-OMP:
 360p - 2 nodes - 4thread - (159 seconds per 1s).
 720p - 2 nodes - 4thread - (280 seconds per 1s).
-1080p - 2 nodes - 4 thread - 
+1080p - 2 nodes - 4 thread - (seconds per 1s)
 
 Mapreduce-serial:
 360p - 2 nodes - (172 seconds per 1s)
-720p - 2 nodes - ()
+720p - 2 nodes - (321 seconds per 1s)
+1080p - 2 nodes - (611 seconds per 1s)
 
 
 g3.4xlarge:
