@@ -6,14 +6,17 @@ from subprocess import Popen, PIPE
 import os
 
 from os import path
-executable = "/DeepFlow_omp"
+executable = "/deepflow2-static"
 ppm_root = "/frame"
 match_root = "/match"
-if not path.exists("/tmp/deepflow2"):
-    run = Popen(["hadoop", "fs", "-get", executable, "/tmp/deepflow2"])
+
+if not path.exists("/tmp"):
+    run = Popen(["mkdir", "/tmp"])
     run.communicate()
-    run = Popen(["chmod", "+x", "/tmp/deepflow2"])
-    run.communicate()
+run = Popen(["hadoop", "fs", "-get", "-f", executable, "/tmp/deepflow2"])
+run.communicate()
+run = Popen(["chmod", "777", "/tmp/deepflow2"])
+run.communicate()
 
 for line in sys.stdin.readlines():
     prev, next = line.split(",")
@@ -35,11 +38,13 @@ for line in sys.stdin.readlines():
     Popen(["/tmp/deepflow2", "/tmp/1.ppm", "/tmp/2.ppm", "/tmp/forward.flo","-match","/tmp/forward.match"]),
     Popen(["/tmp/deepflow2", "/tmp/2.ppm", "/tmp/1.ppm", "/tmp/backward.flo", "-match", "/tmp/backward.match"])
     ]
-    [x.communicate() for x in run]
-
+    for x in run:
+        x.communicate()
     run = [
     Popen(["hadoop", "fs", "-put", "/tmp/forward.flo", "/flow/forward_{}_{}.flo".format(prev,next)]),
     Popen(["hadoop", "fs", "-put", "/tmp/backward.flo", "/flow/backward_{}_{}.flo".format(next,prev)])
     ]
-    [x.communicate() for x in run]
-    print('succ')
+    for x in run:
+        x.communicate()
+
+    print("pair" + str(prev) + "succ")

@@ -3,3 +3,7 @@ out/
 match/
 
 .idea/
+
+deepflow2-static
+DeepFlow_omp
+mapper_backup.py

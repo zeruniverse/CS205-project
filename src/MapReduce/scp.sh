@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+server="$1"
+scp -i ~/.ssh/cs205-key.pem deepflow2-static "$server"
+scp -i ~/.ssh/cs205-key.pem -r match/ "$server"
+scp -i ~/.ssh/cs205-key.pem -r out/ "$server"
+scp -i ~/.ssh/cs205-key.pem file_list.txt "$server"
+scp -i ~/.ssh/cs205-key.pem file_submit.py "$server"
+scp -i ~/.ssh/cs205-key.pem mapper.py "$server"
+scp -i ~/.ssh/cs205-key.pem reducer.py "$server"
+scp -i ~/.ssh/cs205-key.pem file_get.py "$server"
