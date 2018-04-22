@@ -19,7 +19,7 @@ find_package(PNG REQUIRED)
 include_directories(${JPEG_INCLUDE_DIR})
 include_directories(${PNG_INCLUDE_DIR})
 
-add_executable(deepflow2_rbsor
+add_executable(deepflow2
         deepflow2.c
         src/image.c
         src/io.c
