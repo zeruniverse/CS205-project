@@ -10,14 +10,13 @@ executable = "/deepflow2"
 ppm_root = "/frame"
 match_root = "/match"
 omp_threads=4
-
 if not path.exists("/tmp"):
     run = Popen(["mkdir", "/tmp"])
-    run.wait()
+    run.communicate()
 run = Popen(["hadoop", "fs", "-get", "-f", executable, "/tmp/deepflow2"])
-run.wait()
+run.communicate()
 run = Popen(["chmod", "777", "/tmp/deepflow2"])
-run.wait()
+run.communicate()
 
 for line in sys.stdin.readlines():
     prev, next = line.split(",")
@@ -34,23 +33,23 @@ for line in sys.stdin.readlines():
     Popen(["hadoop", "fs", "-get", "-f", match_backward, "/tmp/backward_{}_{}.match".format(next,prev)])
     ]
     for x in run:
-        x.wait()
+        x.communicate()
     run = [
     Popen(["/tmp/deepflow2", "/tmp/frame_%06d.ppm" % prev, "/tmp/frame_%06d.ppm" % next,
            "/tmp/forward_{}_{}.flo".format(prev,next),"-match","/tmp/forward_{}_{}.match".format(prev,next)],
-         env = dict(os.environ, OMP_NUM_THREADS=omp_threads)),
+         env=dict(os.environ, OMP_NUM_THREADS=str(omp_threads))),
     Popen(["/tmp/deepflow2", "/tmp/frame_%06d.ppm" % next, "/tmp/frame_%06d.ppm" % prev,
            "/tmp/backward_{}_{}.flo".format(next,prev), "-match", "/tmp/backward_{}_{}.match".format(next,prev)],
-         env = dict(os.environ, OMP_NUM_THREADS=omp_threads))
+         env=dict(os.environ, OMP_NUM_THREADS=str(omp_threads)))
     ]
     for x in run:
-        x.wait()
+        x.communicate()
     run = [
     Popen(["hadoop", "fs", "-put", "/tmp/forward_{}_{}.flo".format(prev,next), "/flow/forward_{}_{}.flo".format(prev,next)]),
     Popen(["hadoop", "fs", "-put", "/tmp/backward_{}_{}.flo".format(next,prev), "/flow/backward_{}_{}.flo".format(next,prev)])
     ]
     for x in run:
-        x.wait()
+        x.communicate()
     run = [
         Popen(["rm", "-f", "/tmp/forward_{}_{}.flo".format(prev,next)]),
         Popen(["rm", "-f", "/tmp/backward_{}_{}.flo".format(next,prev)]),
@@ -60,5 +59,5 @@ for line in sys.stdin.readlines():
         Popen(["rm", "-f", "/tmp/frame_%06d.ppm" % next]),
     ]
     for x in run:
-        x.wait()
+        x.communicate()
     print("pair" + str(prev) + "succ")
