@@ -32,3 +32,22 @@ video: 360p:
 360p - 4thread - (102 seconds per 1s)
 720p - 4threads - (414 seconds per 1s)
 1080p - 4threads- (1004 seconds per 1s)
+
+Mapreduce-OMP:
+360p - 2 nodes - 4thread - (159 seconds per 1s).
+720p - 2 nodes - 4thread - (280 seconds per 1s).
+1080p - 2 nodes - 4 thread - 
+
+Mapreduce-serial:
+360p - 2 nodes - (172 seconds per 1s)
+720p - 2 nodes - ()
+
+
+g3.4xlarge:
+2img - 
+360p: 3.737 seconds
+720p: 16.499 seconds
+1080p: 28.385 seconds
+
+video -
+1080p - (1418 seconds per 1s).
