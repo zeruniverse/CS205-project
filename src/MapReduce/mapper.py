@@ -9,6 +9,7 @@ from os import path
 executable = "/deepflow2"
 ppm_root = "/frame"
 match_root = "/match"
+omp_threads=4
 
 if not path.exists("/tmp"):
     run = Popen(["mkdir", "/tmp"])
@@ -36,9 +37,11 @@ for line in sys.stdin.readlines():
         x.communicate()
     run = [
     Popen(["/tmp/deepflow2", "/tmp/frame_%06d.ppm" % prev, "/tmp/frame_%06d.ppm" % next,
-           "/tmp/forward_{}_{}.flo".format(prev,next),"-match","/tmp/forward_{}_{}.match".format(prev,next)]),
+           "/tmp/forward_{}_{}.flo".format(prev,next),"-match","/tmp/forward_{}_{}.match".format(prev,next)],
+         env = dict(os.environ, OMP_NUM_THREADS=omp_threads)),
     Popen(["/tmp/deepflow2", "/tmp/frame_%06d.ppm" % next, "/tmp/frame_%06d.ppm" % prev,
-           "/tmp/backward_{}_{}.flo".format(next,prev), "-match", "/tmp/backward_{}_{}.match".format(next,prev)])
+           "/tmp/backward_{}_{}.flo".format(next,prev), "-match", "/tmp/backward_{}_{}.match".format(next,prev)],
+         env = dict(os.environ, OMP_NUM_THREADS=omp_threads))
     ]
     for x in run:
         x.communicate()
