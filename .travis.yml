@@ -2,6 +2,7 @@ language: cpp
 compiler:
   - g++
 script: 
+  - cmake --version
   - cd src
 
   - cd Jacobi_OMP
