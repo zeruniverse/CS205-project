@@ -6,7 +6,7 @@ from subprocess import Popen, PIPE
 import os
 
 from os import path
-executable = "/deepflow2-static"
+executable = "/deepflow2"
 ppm_root = "/frame"
 match_root = "/match"
 
