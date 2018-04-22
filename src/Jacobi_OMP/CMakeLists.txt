@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 set(PG FALSE)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -O3 -fPIC -Wall -msse4")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -O3 -fPIC -Wall -msse4 -std=gnu99")
 
 if (PG)
     message("Profiling mode")
