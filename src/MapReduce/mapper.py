@@ -27,24 +27,35 @@ for line in sys.stdin.readlines():
     match_forward = match_root+"/"+"forward_{}_{}.match".format(prev,next)
     match_backward = match_root + "/"+"backward_{}_{}.match".format(next,prev)
     run =[
-    Popen(["hadoop", "fs", "-get", "-f", ppm1, "/tmp/1.ppm"]),
-    Popen(["hadoop", "fs", "-get", "-f", ppm2, "/tmp/2.ppm"]),
-    Popen(["hadoop", "fs", "-get", "-f", match_forward, "/tmp/forward.match"]),
-    Popen(["hadoop", "fs", "-get", "-f", match_backward, "/tmp/backward.match"])
+    Popen(["hadoop", "fs", "-get", "-f", ppm1, "/tmp/frame_%06d.ppm" % prev]),
+    Popen(["hadoop", "fs", "-get", "-f", ppm2, "/tmp/frame_%06d.ppm" % next]),
+    Popen(["hadoop", "fs", "-get", "-f", match_forward, "/tmp/forward_{}_{}.match".format(prev,next)]),
+    Popen(["hadoop", "fs", "-get", "-f", match_backward, "/tmp/backward_{}_{}.match".format(next,prev)])
     ]
     for x in run:
         x.communicate()
     run = [
-    Popen(["/tmp/deepflow2", "/tmp/1.ppm", "/tmp/2.ppm", "/tmp/forward.flo","-match","/tmp/forward.match"]),
-    Popen(["/tmp/deepflow2", "/tmp/2.ppm", "/tmp/1.ppm", "/tmp/backward.flo", "-match", "/tmp/backward.match"])
+    Popen(["/tmp/deepflow2", "/tmp/frame_%06d.ppm" % prev, "/tmp/frame_%06d.ppm" % next,
+           "/tmp/forward_{}_{}.flo".format(prev,next),"-match","/tmp/forward_{}_{}.match".format(prev,next)]),
+    Popen(["/tmp/deepflow2", "/tmp/frame_%06d.ppm" % next, "/tmp/frame_%06d.ppm" % prev,
+           "/tmp/backward_{}_{}.flo".format(next,prev), "-match", "/tmp/backward_{}_{}.match".format(next,prev)])
     ]
     for x in run:
         x.communicate()
     run = [
-    Popen(["hadoop", "fs", "-put", "/tmp/forward.flo", "/flow/forward_{}_{}.flo".format(prev,next)]),
-    Popen(["hadoop", "fs", "-put", "/tmp/backward.flo", "/flow/backward_{}_{}.flo".format(next,prev)])
+    Popen(["hadoop", "fs", "-put", "/tmp/forward_{}_{}.flo".format(prev,next), "/flow/forward_{}_{}.flo".format(prev,next)]),
+    Popen(["hadoop", "fs", "-put", "/tmp/backward_{}_{}.flo".format(next,prev), "/flow/backward_{}_{}.flo".format(next,prev)])
     ]
     for x in run:
         x.communicate()
-
+    run = [
+        Popen(["rm", "-f", "/tmp/forward_{}_{}.flo".format(prev,next)]),
+        Popen(["rm", "-f", "/tmp/backward_{}_{}.flo".format(next,prev)]),
+        Popen(["rm", "-f", "/tmp/forward_{}_{}.match".format(prev,next)]),
+        Popen(["rm", "-f", "/tmp/backward_{}_{}.match".format(next,prev)]),
+        Popen(["rm", "-f", "/tmp/frame_%06d.ppm" % prev]),
+        Popen(["rm", "-f", "/tmp/frame_%06d.ppm" % next]),
+    ]
+    for x in run:
+        x.communicate()
     print("pair" + str(prev) + "succ")
