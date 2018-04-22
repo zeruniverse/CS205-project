@@ -1,0 +1,53 @@
+language: cpp
+compiler:
+  - gcc
+script: 
+  - cd src
+
+  - cd Jacobi_OMP
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
+  - ./deepflow2
+  - cd ..
+
+  - cd Jacobi_serial
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
+  - ./deepflow2
+  - cd ..
+
+  - cd RBSOR_OMP
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
+  - ./deepflow2
+  - cd ..
+
+  - cd RBSOR_serial
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
+  - ./deepflow2
+  - cd ..
+
+  - cd SOR_serial
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
+  - ./deepflow2
+  - cd ..
+
+  - cd 'SOR_serial_optimized_(original_implementation)'
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
+  - ./deepflow2
+  - cd ..
