@@ -5,3 +5,16 @@ There is an existing software to produce slow motion video based on optical flow
 We wrote a tool to convert deepflow result into sVflow format (used by the slow motion software).
 
 Below is how to use deepflow to generate slow motion videos.
+
+1. Download the open source slowmotion software from their website and follow their instruction to install the software. 
+https://github.com/slowmoVideo/slowmoVideo
+
+2. Create a project in slowmotion project. Use their user interface to set the slow rate of the video.
+
+3. Use our tool to convert the .flo files produced by our algorithm to sVflow format.
+
+4. Go to the folder of the slowmotion project. 
+
+5. Add the .sVflow files produced in step 3 to cache/oFlowOrig folder. The slowmoVideo also parses the original video. In most cases it is consisitent with the parsing in our software. To guarantee that frame files match the flow files, you can also replace the frames in frames/orig with the frame files used to produce flow files. 
+
+6. Click "render" in the slowmotion software. It will use our .flo files to produce slow motion videos. The software calls ffmpeg library to produce video. On some platforms the default ffmpeg does not perform well. In this case, you can go to rendered/ folder in the project folder to retrieve the rendered frames and produce the video seperately. 
