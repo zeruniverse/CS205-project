@@ -61,7 +61,7 @@ python file_submit.py END_FRAME
 
 ```bash
 cd /etc/hadoop/conf
-sudo vim mapped-site.xml
+sudo vim mapred-site.xml
 ### Change the following settings:
 # mapreduce.map.memory.mb: 15360
 # mapreduce.reduce.memory.mb: 1536
