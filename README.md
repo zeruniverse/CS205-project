@@ -1,8 +1,8 @@
 # Parallelized Deepflow
 
 [![Build Status](https://travis-ci.org/zeruniverse/CS205-project.svg?branch=master)](https://travis-ci.org/zeruniverse/CS205-project)
-![Environment](https://img.shields.io/badge/gcc-6+-blue.svg)
-![Environment](https://img.shields.io/badge/g++-6+-blue.svg)
+![Environment](https://img.shields.io/badge/gcc-4.8+-blue.svg)
+![Environment](https://img.shields.io/badge/g++-4.8+-blue.svg)
 
 Team: Shiyu Huang, Hongxiang Qiu, Zeyu Zhao, Zongren Zou
 
