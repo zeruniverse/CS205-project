@@ -92,11 +92,11 @@ First, you should install required packages:
 
 ```bash
 sudo apt-get update
-sudo apt-get install cmake
-sudo apt-get install build-essential
-sudo apt-get install libjpeg-dev
-sudo apt-get install libpng-dev
-sudo apt-get install unzip
+sudo apt-get install -y cmake
+sudo apt-get install -y build-essential
+sudo apt-get install -y libjpeg-dev
+sudo apt-get install -y libpng-dev
+sudo apt-get install -y unzip
 ```
 
 If you are using other systems, please ensure you have new `gcc` and `g++`, otherwise, you might get compile error of `error: ‘for’ loop initial declarations are only allowed in C99 mode`. The workaround for old compilers is adding `-std=gnu99` flag into `CMAKE_C_FLAGS` in the file `CMakeLists.txt`.
