@@ -38,7 +38,7 @@ Mapreduce-OMP:
 720p - 2 nodes - 4thread - (280 seconds per 1s).
 1080p - 2 nodes - 4 thread - (556 seconds per 1s)
 
-360p - 4 nodes - 4 thread - ()
+360p - 4 nodes - 4 thread - (82.75 seconds per 1s)
 720p -4 nodes - 4 thread - (193 seconds per 1s)
 1080p - 4 nodes -4 thread - (307 seconds per 1s)
 
@@ -47,7 +47,7 @@ Mapreduce-serial:
 720p - 2 nodes - (321 seconds per 1s)
 1080p - 2 nodes - (655 seconds per 1s)
 
-360p -4 nodes - ()
+360p -4 nodes - (87 seconds per 1s)
 720p -4 nodes - (207 seconds per 1s)
 1080p - 4 nodes - (351 seconds per 1s)
 
