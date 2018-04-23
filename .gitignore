@@ -1,5 +1,0 @@
-.DS_Store
-*.out
-*.o
-*.a
-cmake-build-debug/
