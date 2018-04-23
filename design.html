@@ -23,7 +23,37 @@
         </header><!-- /#banner -->
         
 <section id="content" class="body">    
-    <h2 class='entry-title'>TODO</h2>
+    <h2 class='entry-title'>TODO: Jacobi</h2>
+    <hr />
+    <h2 class='entry-title'>Red-Black SOR (Advanced Feature)</h2>
+
+    <h3>TODO: RBSOR DESIGN</h3>
+
+    <p> We generate the flow for gun smoke using original SOR implementation, Jacobi implementation and Red-Black SOR implementation. Below is the visualization for the resulting flow (left: SOR, middle: Jacobi, right: Red-Black SOR)</p>
+
+    <figure style="clear:both">
+            <img src="img/sor.png" alt="frames" width="210" style='margin-right:5px'>
+            <img src="img/jacobi.png" alt="frames" width="210" style='margin-left:5px'>
+            <img src="img/rbsor.png" alt="frames" width="210" style='margin-left:5px'>
+    </figure>
+
+    <p>It's not easy to see their differences, though if you are careful enough, you can find the Red-Black SOR and SOR results are visually same while Jacobi result is somehow different. To make the differences visible, we generate the diff-picture for both Jacobi (left) and Red-Black SOR (right) with original SOR (black means same, otherwise, the values are different on that pixel) below. In order to make the differences visible, we multiplied the difference by 5.</p>
+
+    <figure style="clear:both">
+            <img src="img/jacobidiff.png" alt="frames" width="330" style='margin-left:5px'>
+            <img src="img/rbsordiff.png" alt="frames" width="330" style='margin-left:5px'>
+    </figure>
+
+    <p>Since our goal is that the parallelized output should be as similar as that of the original SOR output, From the diff-picture, we can conclude Red-Black SOR is significantly better than Jacobi.</p>
+    <hr />
+    <h2 class='entry-title'>Parallelization</h2>
+    <h3>OpenMP</h3>
+    <h3>OpenACC</h3>
+    <h3>MPI</h3>
+    <h3>MapReduce</h3>
+    <h3>MPI+OpenMP</h3>
+    <h3>MapReduce+OpenMP</h3>
+
 </section>
 <footer id="contentinfo" class="body">
         <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a></p>
