@@ -38,9 +38,15 @@ Mapreduce-OMP:
 720p - 2 nodes - 4thread - (280 seconds per 1s).
 1080p - 2 nodes - 4 thread - (556 seconds per 1s)
 
-360p - 4 nodes - 4 thread - (82.75 seconds per 1s)
+360p - 4 nodes - 4 thread - (83 seconds per 1s)
 720p -4 nodes - 4 thread - (193 seconds per 1s)
 1080p - 4 nodes -4 thread - (307 seconds per 1s)
+
+--* 8 nodes are 4 m4.2xlarge + 4 r4.2xlarge *--
+
+360p - 8 nodes - 4 thread - (48 seconds per 1s)
+720p -8 nodes - 4 thread - (91 seconds per 1s)
+1080p - 8 nodes -4 thread - (147 seconds per 1s)
 
 Mapreduce-serial:
 360p - 2 nodes - (172 seconds per 1s)
@@ -50,6 +56,12 @@ Mapreduce-serial:
 360p -4 nodes - (87 seconds per 1s)
 720p -4 nodes - (207 seconds per 1s)
 1080p - 4 nodes - (351 seconds per 1s)
+
+--* 8 nodes are 4 m4.2xlarge + 4 r4.2xlarge *--
+
+360p - 8 nodes- (40 seconds per 1s)
+720p -8 nodes -  (112 seconds per 1s)
+1080p - 8 nodes  (149 seconds per 1s)
 
 ```sample log
 packageJobJar: [] [/usr/lib/hadoop/hadoop-streaming-2.8.3-amzn-0.jar] /tmp/streamjob8786016485968869600.jar tmpDir=null
