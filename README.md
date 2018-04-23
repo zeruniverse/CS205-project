@@ -6,7 +6,7 @@
 
 Team: Shiyu Huang, Hongxiang Qiu, Zeyu Zhao, Zongren Zou
 
-**This README focuses on how to run our code and reproduce our results. For background, analysis and detailed results, see our project page.**
+**This README focuses on how to run our code and reproduce our results. For background, analysis and detailed results, see our [project website](https://zeruniverse.github.io/CS205-project/).**
 
 **Table of Contents** 
 
