@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)https://blog.getpelican.com/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+        <title>Parallelized Deepflow</title>
+        <link rel="stylesheet" href="main.css" type="text/css">
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="index.html">Parallelized DeepFlow</a></h1>
+                <nav><ul>
+                      <li><a href="index.html">Introduction</a></li>
+                      <li><a href="design.html">Design</a></li>
+                      <li><a href="performance.html">Performance</a></li>
+                      <li class="active"><a href="applications.html">Applications</a></li>
+                      <li><a href="Conclusion.html">Conclusion</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+        
+<section id="content" class="body">
+    <h2 class='entry-title'>Sample Video</h2>
+    <p>Here, we show two applications of DeepFlow algorithm on video processing. For both applications, we use the following sample video. This video is a ~4 seconds clip of <a href="https://www.youtube.com/watch?v=YskVs5VyqHk">a YouTube video</a>.</p>
+    <p> </p>
+    <iframe style="display:block;margin:0 auto" width="560" height="315" src="https://www.youtube.com/embed/UIuqtqeNiU8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <p> </p>
+
+    <hr />
+
+    <h2 class='entry-title'>Video Stylization</h2>
+    <p>We can use deep learning to apply the style of one picture to another. For example, by appling the style of Vincent van Gogh's paint to your selfie, you will get your portrait painted by him. In this example, we will use the paint <a href="https://en.wikipedia.org/wiki/The_Starry_Night">The Starry Night</a> below.</p>
+
+    <figure style="clear:both">
+            <img src="img/starry-night.jpg" alt="starry-night" width="675" style='margin-right:5px'>
+    </figure>
+
+    <p>If we want to transfer the style of a video, we can simply process frame by frame. However, the resulting video will be very noisy due to the loss of temporal consistency. Incorporating temporal loss in the loss function will fix the noisiness and the temporal loss can be calculated using optical flow.</p>
+
+    <p>There's an <a href="https://github.com/manuelruder/artistic-videos">existing implementation</a> of video style transfer and this implementation uses DeepFlow to calculate the optical flow between frames. The stylization of videos is very slow and companies like <a href="https://deepart.io/video/">deepart</a> charges &euro;99 (~US$123) for stylizing a 10-second video.</p>
+
+    <p>We present the stylization result of the sample video below.</p>
+    <p> </p>
+    <iframe style="display:block;margin:0 auto" width="560" height="315" src="https://www.youtube.com/embed/-d9m3iaYs7A" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <p> </p>
+    <p>You can stylize any video of your choice following our guide <a href="https://github.com/zeruniverse/CS205-project/blob/master/application/stylize_guide.md">here</a>.</p>
+
+    <hr />
+    <h2 class='entry-title'>Slow Motion Video (Advanced Feature)</h2>
+
+    <p>With slow motion cameras, we can track objects with high speed (such as bullet). However, we might want the captured video to go even slower so we can see the details more clearly (for example, the sample video above).</p>
+
+    <p>An intuitive way to further slow down the video is simply reducing the FPS, which has negative impact on the video quality. Another way is to interpolate fake frames between each pair of original frames using optical flow, and the resulting video will look much more smooth.</p>
+
+    <p>We use DeepFlow to generate optical flow and the generated fake slow motion video is below (1 fake frame between each pair so it's 2x slow down).</p>
+
+    <p> </p>
+    <iframe style="display:block;margin:0 auto" width="560" height="315" src="https://www.youtube.com/embed/v-gCcF4bAHo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <p> </p>
+
+    <p>There's only existing slow motion video software using default OpenCV optical flow algorithm. We wrote a tool to make the software able to use DeepFlow (so we listed it as an advanced feature). You can try your own video or reproduce our results by following <a href="https://github.com/zeruniverse/CS205-project/blob/master/application/slowmo_guide.md">this guide</a>.</p>
+    
+</section>
+<footer id="contentinfo" class="body">
+        <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a></p>
+</footer><!-- /#contentinfo -->
+
+</body></html>
