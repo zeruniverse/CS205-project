@@ -1,65 +1,86 @@
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="CS205 Project">
-    <meta name="author" content="CS205 Group 5">
+<!-- saved from url=(0028)https://blog.getpelican.com/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+        <title>Parallelized Deepflow</title>
+        <link rel="stylesheet" href="main.css" type="text/css">
 
-    <title>Parallelized Deepflow</title>
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="index.html">Parallelized DeepFlow</a></h1>
+                <nav><ul>
+                      <li class="active"><a href="index.html">Introduction</a></li>
+                      <li><a href="design.html">Design</a></li>
+                      <li><a href="performance.html">Performance</a></li>
+                      <li><a href="applications.html">Applications</a></li>
+                      <li><a href="Conclusion.html">Conclusion</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+        
+<section id="content" class="body">    
+    <h2 class='entry-title'>Optical Flow</h2>
+          <p>Optical flow computation is a key component in many computer vision systems designed for tasks such as action detection or activity recognition. It has many important applications in computer vision, including slow motion video generation, object tracking and etc. Starting from the famous Horn-Schunck algorithm (B. K. Horn and B. G. Schunck. Determining optical flow. Proc. SPIE 0281, Techniques and Applications of Image Understanding, 1981.) and Lucas-Kanade algorithm (B. D. Lucas and T. Kanade. An iterative image registration technique with an application to stereo vision. In IJCAI, volume 81, pages 674–679, 1981), researchers have conducted decades of pioneering research, achieving great development in this area.</p>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+          <p>Below is a visualization of optical flow. The left GIF is two consecutive frames in a video and the right picture is the visualization of the computed optical flow. (source: <a href="https://people.csail.mit.edu/celiu/OpticalFlow/">https://people.csail.mit.edu/celiu/OpticalFlow/</a>)</p>
 
-  <body>
+          <figure style="clear:both">
+            <img src="img/optflow.gif" alt="frames" width="330" style='margin-right:5px'>
+            <img src="img/optflow.jpg" alt="frames" width="330" style='margin-left:5px'>
+          </figure>
 
-    <div class="container">
-      <div class="masthead">
-        <h1 class="text-muted">Parallelized Deepflow</h3>
-        <!-- Static navbar -->
-      <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="index.html">Introduction</a></li>
-              <li><a href="design.html">Design</a></li>
-              <li><a href="performance.html">Performance</a></li>
-              <li><a href="applications.html">Applications</a></li>
-              <li><a href="Conclusion.html">Conclusion</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </nav>
-      </div>
+          <p>Optical flow algorithm aims at computing pattern of apparent motion of objects. Given two consecutive images, we would like to compute how each pixel moves from the first image to the second image. Imagine there are three-dimensional vectors describing the motion of the objects in 3-D space. Ideally, the optical flow is the 2-D projection of the three-dimensional vectors on the image. In computer vision, we call this projected two-dimensional vector as flow field. There are four important assumptions for optical flow algorithm:</p>
 
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-lg-12">
-          <h2>Optical Flow</h2>
-          <p class="text-danger">As of v9.1.2, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
+          <ol>
+            <li>Brightness constancy: The image grey value of the pixel does not change during the motion.</li>
+            <li>Gradient constancy: it is useful to allow some small variations in the brightness because it often appears in natural scenes. So we assume that the gradient of the image grey value does not vary due to the displacement.</li>
+            <li>Smoothness: The movement is a smooth movement.</li>
+            <li>Small displacement: Between each pair of consecutive images, the corresponding pixels do not move too far.</li>
+            <li>Spatial coherence: points move like their neighbors within patches.</li>
+          </ol> 
+          <p>Most optical flow algorithms develop their ideas on the basis of these assumptions.</p>
+    <hr />
+    <h2 class='entry-title'>DeepFlow</h2>
+    <p>There're many algorithms for optical flow estimation, each with its own focus of special optimization in some aspects. One of the state-of-the-art algorithm is the <a href="https://thoth.inrialpes.fr/src/deepflow/">DeepFlow algorithm</a>. This algorithm has its focus on solving large displacement in optical flow estimation. This property makes it ideal for slow motion video applications (in the scenario of generating slow motion videos, the original videos are likely to have large displacement between consecutive frames).</p>
+    <p>The deep flow algorithm mainly has two steps:</p>
+    <h3>DeepMatching</h3>
+    <p>The matching algorithm is used to compute the matching of corresponding pixels in consecutive frames. The <a href="http://lear.inrialpes.fr/src/deepmatching/">deep matching algorithm</a> is built upon a multi-stage architecture with about 6 layers (depending on the image size), interleaving convolutions and max-pooling (a structure similar to deep convolutional nets). The matching stage is to prepare for the flow computation stage.</p>
 
-      <!-- Site footer -->
-      <footer class="footer">
-        <p><hr /></p>
-        <p>&copy; CS 205 Group 5. Default Bootstrap Web Template</p>
-      </footer>
+    <p>The deep matching code is already parallelized and we will just use the existing implementation in our project. Therefore we will skip further explanations on this part.</p>
+    <h3>DeepFlow</h3>
+    <p>Deep flow is a variational refinement method that blends the result from deep matching algorithm into an energy minimization framework. The energy that the algorithm minimizes (equation below) is a weighted sum of data term E<sub>D</sub>,  smoothness term E<sub>s</sub> and matching term E<sub>M</sub>.</p>
 
-    </div> <!-- /container -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-  </body>
-</html>
+          <figure style="clear:both">
+            <img src="img/Energy_minimization.png" alt="energy_eq" width="330" style='margin-right:5px'>
+          </figure>
+
+    <p>E<sub>D</sub> is a combination of separate penalization of the color and gradient constancy assumptions with a normalization factor.</p>
+          <figure style="clear:both">
+            <img src="img/Data_term.png" alt="energy_eq" width="330" style='margin-right:5px'>
+          </figure>
+
+    <p>E<sub>s</sub> is based on the smoothness assumption. It is a robust penalization of the gradient flow norm.</p>
+        <figure style="clear:both">
+            <img src="img/Smooth_term.png" alt="energy_eq" width="330" style='margin-right:5px'>
+        </figure>
+
+    <p>E<sub>M</sub> penalizes the difference between the flow and the pre-computed matching vector from deep matching.</p>
+    <figure style="clear:both">
+            <img src="img/Match_term.png" alt="energy_eq" width="330" style='margin-right:5px'>
+    </figure>
+    where:
+    <figure style="clear:both">
+            <img src="img/Match_term_component.png" alt="energy_eq" width="330" style='margin-right:5px'>
+    </figure>
+
+    <p>Obviously, the energy function is non-convex and non-linear. But it can be approximated by a linear system. The original implementation uses Successive Over Relaxation (SOR) method to solve the linear system.</p>
+</section>
+<footer id="contentinfo" class="body">
+        <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a></p>
+</footer><!-- /#contentinfo -->
+
+</body></html>
