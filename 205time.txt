@@ -24,9 +24,9 @@ Rbsor-serial: 2img: 360p- 3.687 seconds,720p- 15.812 seconds, 1080p-34.476 secon
 
 RBSOR-OMP:
 
-2img, 360p thread=2- 2.518 seconds, thread=4 - 1.910seconds, thread=8 - 2.048 seconds
-720p thread=2- 11.588 seconds, thread=4- 9.160 seconds, thread=8- 9.171 seconds
-1080p thread=2- 25.253 seconds, thread=4- 19.730 seconds, thread=8- 19.883 seconds
+2img, 360p thread=2- 2.518 seconds, thread=4 - 1.910seconds, thread=8 - 2.048 seconds (m4.4xlarge - 8thread - 1.698 seconds)
+720p thread=2- 11.588 seconds, thread=4- 9.160 seconds, thread=8- 9.171 seconds (m4.4xlarge - 8thread - 7.959 seconds)
+1080p thread=2- 25.253 seconds, thread=4- 19.730 seconds, thread=8- 19.883 seconds (m4.4xlarge - 8thread - 17.174 seconds)
 
 video: 360p:
 360p - 4thread - (102 seconds per 1s)
