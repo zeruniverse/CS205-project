@@ -151,6 +151,8 @@
     <hr/>
 
     <h2 class='entry-title'>Parallelization Implementation</h2>
+    <p><b>Parallelization is based on Jacobi or Red-Black SOR algorithm introduced above. The original SOR algorithm is not parallelizable.</b></p>
+
     <h3>OpenMP</h3>
     <p>As we said, in each iteration of Jacobi/Red-Black SOR the elements could be processed independently, thus the OpenMP parallization is fairly straight forward. We simply wrap the the for loop with appropriate pragmas.</p>
 
@@ -164,7 +166,7 @@
     <h3>MPI+OpenMP</h3>
     <h3>MapReduce + OpenMP</h3>
     <p>We choose Hadoop Streaming as our platform for MapReduce. 
-        In our task, the map task is calling the binary executable of DeepFlow (OpenMP) on each individual pairs of consecutive image files along with the correpsonding .match file to generate .flo files. 
+        In our task, the map task is calling the binary executable of DeepFlow (Red-Black OpenMP implementation) on each individual pairs of consecutive image files along with the correpsonding .match file to generate .flo files. 
         The reduce task is an identity function (we can simply set mapred.reduce.tasks=0). By default, Hadoop streaming only supports streaming data as input and output. It is hard to properly format the image files and .match files as streaming input.</p>
 
     <p>Our solution is to make use of the Hadoop File System (HDFS). We upload all the input files as well as the binary executable to the HDFS through the master node. The map task at each slave node works as follows:</p>
