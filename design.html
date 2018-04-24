@@ -137,7 +137,16 @@
     In addition, we make sure data is only copied to GPU once, and copied out after the last iteration.
 
     <h3>MPI</h3>
-    <h3>MapReduce</h3>
+        <h3>MapReduce</h3>
+    <p>We choose Hadoop Streaming as our platform for MapReduce. 
+        In our task, the map task is calling the binary executable of Deep Flow on each individual pairs of consecutive image files along with the correpsonding .match file to generate .flo files. 
+        The reduce task is an identity function. By default Hadoop streaming only supports streaming data as input and output. 
+        It is hard to properly format the image files and .match files as streaming input.</p>
+    <p>Our solution is to make use of the Hadoop File System (HDFS). We upload all the input files as well as the binary executable to the HDFS through the master node. 
+        The map task at each slave node works as follows: 1. It downloads binary executable file to the local machine. 
+        2. The streaming data is the name of the input files used for computation. The slave node downloads the required input files from HDFS to the local machine. 
+        3. Each slave node calls the binary executable on the input files to compute .flo files locally. 4. The local machine uploads the resulting .flo file to HDFS. 
+        5. We get the final output from HDFS at master node.  </p>
     <h3>MPI+OpenMP</h3>
     <h3>MapReduce+OpenMP</h3>
 
