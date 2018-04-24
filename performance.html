@@ -22,8 +22,83 @@
                 </ul></nav>
         </header><!-- /#banner -->
         
-<section id="content" class="body">    
-    <h2 class='entry-title'>TODO</h2>
+<section id="content" class="body">
+    <h2 class='entry-title'>Evaluation Data & Platform</h2>
+    <p>We evaluated our implementations with the sample video (<a href="https://github.com/zeruniverse/CS205-project/releases/download/0.01/bunny.mp4">Bunny</a> and <a href="https://github.com/zeruniverse/CS205-project/releases/download/0.01/nyc1080.mp4">NYC</a>). The frames of videos (<a href="https://github.com/zeruniverse/CS205-project/releases/download/0.01/bunny_640x360_frame.zip">360p</a>, <a href="https://github.com/zeruniverse/CS205-project/releases/download/0.01/bunny_1280x720_first999_frame.zip">720p</a>, <a href="https://github.com/zeruniverse/CS205-project/releases/download/0.01/nyc_1920x1080_frame.zip">1080p</a>) can be extracted with <a href="https://en.wikipedia.org/wiki/FFmpeg">FFmpeg</a> and the pairwise matches (<a href="https://github.com/zeruniverse/CS205-project/releases/download/0.01/bunny_640x360_match.zip">360p</a>, <a href="https://github.com/zeruniverse/CS205-project/releases/download/0.01/bunny_1280x720_match.zip">720p</a>, <a href="https://github.com/zeruniverse/CS205-project/releases/download/0.01/nyc_1920x1080_match.zip">1080p</a>) can be generated using our <a href="https://github.com/zeruniverse/CS205-project/blob/master/tools/deepmatching-video.sh">helper script</a> (HPC-ready). Please see our <a href="https://github.com/zeruniverse/CS205-project/blob/master/README.md#prepare-data">GitHub README</a> for details if you want to prepare your data with your own video. We generated both forward and backward flows for videos since both <a href="applications.html">applications</a> we presented use them. Therefore, if we have N frames in a video, we need to generate (N-1)*2 flows. We use <a href="https://www.rc.fas.harvard.edu/resources/odyssey-quickstart-guide/">Odyssey</a> to generate matches.</p>
+
+    <p>For evaluating DeepFlow between two images, we generate forward flow between first two frames of the above videos (so we have 360p, 720p and 1080p images). The command is:</p>
+
+    <pre>time ./deepflow2 out/frame_000001.ppm out/frame_000002.ppm flow.flo -match match/forward_1_2.match</pre>
+
+    <p>For evaluating DeepFlow for processing videos, except MapReduce, we process pair by pair serially using a <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/Jacobi_serial/video_flow.sh">bash script</a>. The accumulated time will be outputed on terminal. Since we know <b>the time cost increase linearly as the video length increases by theory</b>, we only report the <b>average per second video processing time</b>. Since all our video are with 25fps, that's the time to generate 50 flows (For 1-second length video, it's actually 48 flows. But with a video long enough, that's 50 flows per second on average). For videos of 360p, we run for 101 frames (the accumulated time divide by 4 is the average per second time). For video with 720p and 1080p, we run for 26 frames (the accumulated time is the average per second time). The command is:</p>
+
+    <pre>bash video_flow.sh</pre>
+
+    <p>To make fair comparison, we use <b>AWS m4.2xlarge</b> for all experiments except OpenACC (where we use <b>AWS g3.4xlarge</b>). The reason we don't use Odyssey is that it doesn't provide some necessary libraries and we don't have privilege to install them. Except MapReduce (where we use <b>emr-5.13.0</b>), we use <b>Ubuntu Server 16.04 LTS (HVM)</b> (ami-4e79ed36) as the operating system. All of original implementation and our implementations uses <b>-O3</b> compile flag.</p>
+
+    <hr />
+    <h2 class='entry-title'>Serial</h2>
+
+    <p>The table below shows the processing time for a pair of images. "SOR Serial Optimized" is the original implementation. The optimization stands for serial optimization which reduces the number of calculations.</p>
+
+    <table style="border: 1px solid black;text-align:center">
+        <caption>Time for generating flow between two images</caption>
+        <tr style="border: 1px solid black;"><th></th><th>360p Images</th><th>720p Images</th><th>1080p Images</th></tr>
+        <tr><td>SOR Serial</td><td>6.494 seconds</td><td>26.997 seconds</td><td>59.326 seconds</td></tr>
+        <tr><td><b>SOR Serial Optimized</b></td><td>4.598 seconds</td><td>19.382 seconds</td><td>42.582 seconds</td></tr>
+        <tr><td>Jacobi Serial</td><td>3.870 seconds</td><td>16.574 seconds</td><td>35.765 seconds</td></tr>
+        <tr><td>Red-Black SOR Serial</td><td>3.687 seconds</td><td>15.812 seconds</td><td>34.476 seconds</td></tr>
+    </table>
+
+    <p>From SOR to Jacobi or Red-Black SOR, we removed dependencies inside the big iteration (so iterations inside the big iteration becomes independent). With -O3 flag, compilers can probably optimize our code more. Therefore, it's not surprising that our Jacobi and Red-Black SOR is faster than even the optimized SOR. However, as discussed in the <a href="design.html#rbsor">design page</a>, the result of Jacobi is pretty different from the original implementation, which indicates Jacobi is probably not good to use. Further considering that Red-Black SOR is faster than Jacobi, we have totally no reason to use it. Before we came up with Red-Black SOR, <b>we implemented the OpenMP and OpenACC versions of Jacobi. However, we didn't evaluate them due to the reason stated</b>.</p>
+
+    <p>We also shows the video result below:</p>
+
+    <table style="border: 1px solid black;text-align:center">
+        <caption>Average per-second video processing time (flow generation)</caption>
+        <tr style="border: 1px solid black;"><th></th><th>360p Video</th><th>720p Video</th><th>1080p Video</th></tr>
+        <tr><td>SOR Serial</td><td>323 seconds</td><td>1316 seconds</td><td>2950 seconds</td></tr>
+        <tr><td><b>SOR Serial Optimized</b></td><td>226 seconds</td><td>926 seconds</td><td>2129 seconds</td></tr>
+        <tr><td>Jacobi Serial</td><td>192 seconds</td><td>788 seconds</td><td>1791 seconds</td></tr>
+        <tr><td>Red-Black SOR Serial</td><td>183 seconds</td><td>752 seconds</td><td>1725 seconds</td></tr>
+    </table>
+
+    <p>Just by replacing original SOR solver with Red-Black SOR, we achieved <b>1.235 speedup</b>. <b>All parallel implementations below are based on the serial version of Red-Black SOR, and we choose the serial Red-Black SOR result as the baseline</b>.</p>
+
+    <hr />
+
+    <h2 class='entry-title'>OpenMP</h2>
+
+    <p>The following two tables show the OpenMP result.</p>
+
+    <table style="border: 1px solid black;text-align:center">
+        <caption>Time for generating flow between two images</caption>
+        <tr style="border: 1px solid black;"><th></th><th>360p Images</th><th>720p Images</th><th>1080p Images</th></tr>
+        <tr><td>1 thread (serial)</td><td>3.687 seconds</td><td>15.812 seconds</td><td>34.476 seconds</td></tr>
+        <tr><td>2 threads</td><td>2.518 seconds</td><td>11.588 seconds</td><td>25.253 seconds</td></tr>
+        <tr><td>4 threads</td><td>1.910 seconds</td><td>9.160 seconds</td><td>19.730 seconds</td></tr>
+        <tr><td>8 threads</td><td>2.048 seconds</td><td>9.171 seconds</td><td>19.883 seconds</td></tr>
+        <tr><td>8 threads on m4.4xlarge</td><td>1.698 seconds</td><td>7.959 seconds</td><td>17.174 seconds</td></tr>
+    </table>
+
+    <p>To our surprise, the 8-thread result is worse than the 4-thread result. We investigated this and found we only have 4 actual cores in m4.2xlarge nodes (2 threads per core due to hyper-threading). This means if we have 2 threads in a core, the 2 threads will both slow down due to resources sharing. To show the general trend, we also tested on m4.4xlarge nodes where 8 cores (16 threads) are available. The result is normal (slightly faster than 4-thread).</p>
+
+    <table style="border: 1px solid black;text-align:center">
+        <caption>Average per-second video processing time (flow generation)</caption>
+        <tr style="border: 1px solid black;"><th></th><th>360p Video</th><th>720p Video</th><th>1080p Video</th></tr>
+        <tr><td>1 thread (serial)</td><td>183 seconds</td><td>752 seconds</td><td>1725 seconds</td></tr>
+        <tr><td>4 threads</td><td>102 seconds</td><td>414 seconds</td><td>1004 seconds</td></tr>
+    </table>
+
+    <p>(Since testing on video is really time consuming, we only test with OMP_NUM_THREADS=4 as this performs best on m4.2xlarge node for 2 images)</p>
+
+    <p>The following plot shows the speedup for DeepFlow between two images. The left one is the speedup plot for m4.2xlarge node, the right one is replacing the 8-thread result by the 8-thread result on m4.4xlarge (taking out the hyper-threading factor). <b>The right plot should represent the general trend</b>. The video result should be similar.</p>
+
+    <figure style="clear:both">
+            <img src="img/omp_org.png" alt="omp-org" width="330" style='margin-left:5px'>
+            <img src="img/omp_fix.png" alt="omp-fix" width="330" style='margin-left:5px'>
+    </figure>
+
 </section>
 <footer id="contentinfo" class="body">
         <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a></p>
