@@ -27,24 +27,52 @@
 </header><!-- /#banner -->
 
 <section id="content" class="body">
-    <h2 class='entry-title'>Overview</h2>
-    <h4>SOR: original implementation</h4>
-    <h4>Jacobi: parallelization</h4>
-    <h4>Red-Black SOR (Advanced Feature): parallelization with better convergence</h4>
+    <h2 class='entry-title'>Profiling</h2>
 
+    <p>As the first step of the parallelization, we need to figure out which part of DeepFlow takes most of the execution time. Below is our profiling result. You can reproduce our profiling result by setting PG flag to TRUE in our <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/SOR_serial_optimized_(original_implementation)/CMakeLists.txt">CMakeLists.txt</a>.</p>
+    
+    <figure style="clear:both">
+        <img src="img/profiling.png" alt="profiling" width="660" style='margin-right:5px'>
+    </figure>
+
+    <p>More than 78% of the time is spent on a function called <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/SOR_serial_optimized_(original_implementation)/src/solver.c">sor_coupled</a>. That's where Successive Over Relaxation (SOR) method is used to solve the linear system. So we will parallelize this linear solver.</p>
     <hr />
-    <h2 class='entry-title'>Jacobi, SOR, and Red-Black SOR</h2>
-    Jacobi, SOR and Red-Black SOR are all optimization algorithms solving linear systems.
-    All of them are iterative methods. The main difference between Jacobi and SOR is in Jacobi, we update X<sub>i,t</sub> based
-    on X<sub>i,t-1</sub>; while in SOR we need X<sub>i-1,t</sub> to update X<sub>i,t</sub>.
-    The advantage of SOR is that it converges faster than Jacobi, but the drawback is it has serial dependency within
-    each time step/iteration.
-    Red-Black SOR is similar to SOR, but in each iteration we only update 'odd' or 'even' elements, thus when we update
-    the 'odd'('even') parts 'even'('odd') parts are fixed.
-    In this way we can prevent data dependency within each iteration. Red-Black SOR has slightly slower convergence than
-    SOR but in practice they are very close.
-    <br/>
-    The differences among the three are illustrated in following gif images.
+
+    <h2 class='entry-title'>Algorithm Change</h2>
+    <p>Jacobi, SOR and Red-Black SOR are all optimization algorithms solving linear systems and all of them are iterative methods.</p>
+
+    <h3>SOR (original implementation)</h3>
+    <p>The original DeepFlow implementation is based on SOR method. Below is the equation for SOR to solve Ax=b.</p>
+    <figure style="clear:both">
+        <img src="img/sor_eq.png" alt="SOR equation" width="330" style='margin-right:5px'>
+    </figure>
+
+    <p>where t stands for the current step and t-1 stands for the last step. As we can see, the right hand side of the above equation has x<sup>t</sup> terms, which means <b>there're dependencies inside each step</b>. Therefore, <b>the SOR algorithm is not parallelizable and we need to change the algorithm</b>.</p>
+
+    <p>Here is the <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/SOR_serial/src/solver.c">code for SOR</a> in case you want to know more details.</p>
+
+    <h3>Jacobi (parallelizable implementation)</h3>
+
+    <p>We first came up with Jacobi. The equation for Jacobi is shown below.</p>
+
+    <figure style="clear:both">
+        <img src="img/jacobi_eq.png" alt="Jacobi equation" width="330" style='margin-right:5px'>
+    </figure>
+
+    <p>As we can see, all x<sup>t</sup> terms at right hand side are eliminated and thus there's no dependencies inside each step. Based on the equation, it's also simple to change the original algorithm from SOR to Jacobi at the high level, just replace &omega; with 1 and all x<sup>t</sup> terms with x<sup>t-1</sup>.
+    <p>Here is the <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/Jacobi_serial/src/solver.c">code for Jacobi</a> in case you want to know more details. We also implemented the <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/Jacobi_OMP/src/solver_omp.c">OpenMP</a> and <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/Jacobi_ACC/src_acc/solver_acc.c">OpenACC</a> parallelization for Jacobi.</p>
+
+    <h3 id="rbsor">Red-Black SOR (Advanced Feature): parallelizable with better convergence</h3>
+
+    <p>Red-Black SOR is similar to SOR, but in each iteration we only update 'odd' or 'even' elements, thus when we update the 'odd'('even') parts 'even'('odd') parts are fixed. In this way we can prevent data dependency within each iteration. Red-Black SOR has slightly slower convergence than SOR but in practice they are very close. Both Red-Black SOR and SOR converge faster than Jacobi.</p>
+
+    <p>The implementation of Red-Black SOR is more involved so we list it as an advanced feature.</p>
+
+    <p>Here is the <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_serial/src/solver.c">code for Red-Black SOR</a> in case you want to know more details. We also implemented the <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_OMP/src/solver.c">OpenMP</a> and <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_ACC/src_acc/solver_acc.c">OpenACC</a> parallelization for Red-Black SOR.</p>
+
+    <h3>Comparison</h3>
+    <p>Below is the visualization of the three algorithms (serial version). In each step, we update all 9 elements in the matrix (Red-Black SOR updates half of them in each step). As can be seen, while updating an element, SOR uses other elements updated in the same step, whereas other two algorithms don't have this dependency. It is also obvious that SOR and Red-Black SOR converges faster than Jacobi.</p>
+
     <table>
         <thead>
         <tr>
@@ -72,12 +100,8 @@
         </tr>
     </table>
 
-    <hr/>
-    <h2 class='entry-title'>Algorithm Parallelizability</h2>
-    As we explained there is serial data dependency in SOR, but not in Jacobi or Red-Black SOR. Theoretically within
-    each iteration, each cell can be processed independently.
-    <br/>
-    The following gif images illustrates paralleled Jacobi and Red-Black SOR.
+    <p>As we explained there is serial data dependency in SOR, but not in Jacobi or Red-Black SOR. Theoretically within each step, each cell can be processed independently. Below is the visualization of the parallelized Jacobi and Red-Black SOR, which is how our OpenMP and OpenACC parallelization works. <b>Note: to make the comparison fair, you should compare Jacobi at step X with Red-Black SOR at step 2X (the data processed by Red-Black SOR in each step is halved) and in our implementation, we also doubled the steps for Red-Black SOR</b>.</p>
+
     <table>
         <thead>
         <tr>
@@ -99,9 +123,7 @@
         </tr>
     </table>
 
-    <hr/>
-
-    <h2 class='entry-title' id="rbsor">Empirical Experiments on Convergence and Quality</h2>
+    <h3>Empirical Experiments on Convergence and Quality</h3>
 
     <p> We generate the flow for gun smoke using original SOR implementation, Jacobi implementation and Red-Black SOR
         implementation. Below is the visualization for the resulting flow (left: SOR, middle: Jacobi, right: Red-Black
@@ -127,29 +149,36 @@
     <p>Since our goal is that the parallelized output should be as similar as that of the original SOR output, From the
         diff-picture, we can conclude Red-Black SOR is significantly better than Jacobi.</p>
     <hr/>
+
     <h2 class='entry-title'>Parallelization Implementation</h2>
     <h3>OpenMP</h3>
-    As we said, in each iteration of Jacobi/RBSOR the elements could be processed independently, thus the OpenMP parallization is fairly straight forward.
-    We simply wrap the the for loop with appropriate pragmas.
+    <p>As we said, in each iteration of Jacobi/Red-Black SOR the elements could be processed independently, thus the OpenMP parallization is fairly straight forward. We simply wrap the the for loop with appropriate pragmas.</p>
 
     <h3>OpenACC</h3>
-    Similar to OpenMP, we simply use pragmas to tell the compiler that the loops are independent within each iteration.
-    In addition, we make sure data is only copied to GPU once, and copied out after the last iteration.
+
+    <p>Similar to OpenMP, we simply use pragmas to tell the compiler that the loops are independent within each iteration. In addition, we make sure data is only copied to GPU once, and copied out after the last iteration.</p>
+
+    <p>Since PGCC does not support v4sf type, we also rewrote all related code.</p>
 
     <h3>MPI</h3>
-    <h3>MapReduce</h3>
-    <p>We choose Hadoop Streaming as our platform for MapReduce. 
-        In our task, the map task is calling the binary executable of Deep Flow on each individual pairs of consecutive image files along with the correpsonding .match file to generate .flo files. 
-        The reduce task is an identity function. By default Hadoop streaming only supports streaming data as input and output. 
-        It is hard to properly format the image files and .match files as streaming input.</p>
-    <p>Our solution is to make use of the Hadoop File System (HDFS). We upload all the input files as well as the binary executable to the HDFS through the master node. 
-        The map task at each slave node works as follows: 1. It downloads binary executable file to the local machine. 
-        2. The streaming data is the name of the input files used for computation. The slave node downloads the required input files from HDFS to the local machine. 
-        3. Each slave node calls the binary executable on the input files to compute .flo files locally. 4. The local machine uploads the resulting .flo file to HDFS. 
-        5. We get the final output from HDFS at master node.  </p>
     <h3>MPI+OpenMP</h3>
-    <h3>MapReduce+OpenMP</h3>
+    <h3>MapReduce + OpenMP</h3>
+    <p>We choose Hadoop Streaming as our platform for MapReduce. 
+        In our task, the map task is calling the binary executable of DeepFlow (OpenMP) on each individual pairs of consecutive image files along with the correpsonding .match file to generate .flo files. 
+        The reduce task is an identity function (we can simply set mapred.reduce.tasks=0). By default, Hadoop streaming only supports streaming data as input and output. It is hard to properly format the image files and .match files as streaming input.</p>
 
+    <p>Our solution is to make use of the Hadoop File System (HDFS). We upload all the input files as well as the binary executable to the HDFS through the master node. The map task at each slave node works as follows:</p>
+    <ol>
+        <li>It downloads binary executable file to the local machine.</li>
+        <li>The streaming data is the name of the input files used for computation. The slave node downloads the required input files from HDFS to the local machine.</li>
+        <li>Each slave node calls the binary executable on the input files to compute .flo files locally.</li> 
+        <li>The local machine uploads the resulting .flo file to HDFS.</li>
+        <li>We get the final output from HDFS at master node.</li> 
+    </ol>
+
+    <p>In addition, to increase the throughput, we <b>generate the forward and backward flows for a pair of frames simultaneously on a worker node</b>.</p>
+
+    <p>The mapper implementation is <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/MapReduce/mapper.py">here</a>.</p>
 </section>
 <footer id="contentinfo" class="body">
     <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing
