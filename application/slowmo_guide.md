@@ -2,7 +2,7 @@
 
 There is an existing software to produce slow motion video based on optical flow. However, it uses the Farneback algorithm in OpenCV (old algorithm) and the flow file is stored in different format.
 
-We wrote a tool to convert deepflow result into sVflow format (used by the slow motion software).
+We wrote a [tool](https://github.com/zeruniverse/CS205-project/tree/master/tools/flo2svflow) to convert deepflow result into sVflow format (used by the slow motion software).
 
 Below is how to use deepflow to generate slow motion videos.
 
