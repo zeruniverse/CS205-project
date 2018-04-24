@@ -177,7 +177,9 @@ In the terminal, you can see accumulated time cost after the completion of each 
 
 ### OpenACC
 
-First follow the course guide to install `pgcc` in g3.4xlarge node. We use `RBSOR_ACC` implementation as example, all `*_ACC` can be compiled and executed in the same manner.
+First follow the course guide to install `pgcc` in g3.4xlarge node and then install libraries described above.
+
+We use `RBSOR_ACC` implementation as example, all `*_ACC` can be compiled and executed in the same manner.
 
 Compile it:
 
