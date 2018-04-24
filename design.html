@@ -137,7 +137,7 @@
     In addition, we make sure data is only copied to GPU once, and copied out after the last iteration.
 
     <h3>MPI</h3>
-        <h3>MapReduce</h3>
+    <h3>MapReduce</h3>
     <p>We choose Hadoop Streaming as our platform for MapReduce. 
         In our task, the map task is calling the binary executable of Deep Flow on each individual pairs of consecutive image files along with the correpsonding .match file to generate .flo files. 
         The reduce task is an identity function. By default Hadoop streaming only supports streaming data as input and output. 
