@@ -31,7 +31,7 @@ Below is a visualization example of the optical flow.
 
 |Images             |  Flow|
 |:-------------------------:|:-------------------------:|
-|![opt](https://people.csail.mit.edu/celiu/OpticalFlow/car_input.gif)  |  ![flo](https://people.csail.mit.edu/celiu/OpticalFlow/car_flow.jpg)|
+|![opt](https://zeruniverse.github.io/CS205-project/img/optflow.gif)  |  ![flo](https://zeruniverse.github.io/CS205-project/img/optflow.jpg)|
 
 (source: https://people.csail.mit.edu/celiu/OpticalFlow/)
 
