@@ -97,11 +97,17 @@
 
     <p>(Since testing on video is really time consuming, we only test with OMP_NUM_THREADS=4 as this performs best on m4.2xlarge node for 2 images)</p>
 
-    <p>The following plot shows the speedup for DeepFlow between two images. The left one is the speedup plot for m4.2xlarge node, the right one is replacing the 8-thread result by the 8-thread result on m4.4xlarge (taking out the hyper-threading factor). <b>The right plot should represent the general trend</b>. The video result should be similar.</p>
+    <p>The following plot shows the speedup for DeepFlow between <b>two images</b>. The left one is the speedup plot for m4.2xlarge node, the right one is replacing the 8-thread result by the 8-thread result on m4.4xlarge (taking out the hyper-threading factor). <b>The right plot should represent the general trend</b>.</p>
 
     <figure style="clear:both">
             <img src="img/omp_org.png" alt="omp-org" width="330" style='margin-left:5px'>
             <img src="img/omp_fix.png" alt="omp-fix" width="330" style='margin-left:5px'>
+    </figure>
+
+    <p>The following plot shows the improvement of OpenMP on video:</p>
+
+    <figure style="clear:both">
+            <img src="img/omp_video.png" alt="omp-video" width="660">
     </figure>
 
     <hr />
