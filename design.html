@@ -1,54 +1,142 @@
 <!DOCTYPE html>
 <!-- saved from url=(0028)https://blog.getpelican.com/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <head>
         <title>Parallelized Deepflow</title>
         <link rel="stylesheet" href="main.css" type="text/css">
 
         <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-</head>
+    </head>
 
 <body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="index.html">Parallelized DeepFlow</a></h1>
-                <nav><ul>
-                      <li><a href="index.html">Introduction</a></li>
-                      <li class="active"><a href="design.html">Design</a></li>
-                      <li><a href="performance.html">Performance</a></li>
-                      <li><a href="applications.html">Applications</a></li>
-                      <li><a href="conclusion.html">Conclusion</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-        
-<section id="content" class="body">    
-    <h2 class='entry-title'>TODO: Jacobi</h2>
+<header id="banner" class="body">
+    <h1><a href="index.html">Parallelized DeepFlow</a></h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Introduction</a></li>
+            <li class="active"><a href="design.html">Design</a></li>
+            <li><a href="performance.html">Performance</a></li>
+            <li><a href="applications.html">Applications</a></li>
+            <li><a href="conclusion.html">Conclusion</a></li>
+        </ul>
+    </nav>
+</header><!-- /#banner -->
+
+<section id="content" class="body">
+    <h2 class='entry-title'>Overview</h2>
+    <h4>SOR: original implementation</h4>
+    <h4>Jacobi: parallelization</h4>
+    <h4>Red-Black SOR (Advanced Feature): parallelization with better convergence</h4>
+
     <hr />
-    <h2 class='entry-title'>Red-Black SOR (Advanced Feature)</h2>
 
-    <h3>TODO: RBSOR DESIGN</h3>
+    <h2 class='entry-title'>Jacobi, SOR, and Red-Black SOR</h2>
+    Jacobi, SOR and Red-Black SOR are all optimization algorithms solving linear systems.
+    All of them are iterative methods. The main difference between Jacobi and SOR is in Jacobi, we update X_{i,t} based
+    on X_{i,t-1}; while in SOR we need X_{i-1,t} to update X_{i,t}.
+    The advantage of SOR is that it converges faster than Jacobi, but the drawback is it has serial dependency within
+    each time step/iteration.
+    Red-Black SOR is similar to SOR, but in each iteration we only update 'odd' or 'even' elements, thus when we update
+    the 'odd'('even') parts 'even'('odd') parts are fixed.
+    In this way we can prevent data dependency within each iteration. Red-Black SOR has slightly slower convergence than
+    SOR but in practice they are very close.
+    <br/>
+    The differences among the three are illustrated in following gif images.
+    <table>
+        <thead>
+        <tr>
+            <th>
+                Jacobi (Serial)
+            </th>
+            <th>
+                SOR (Serial)
+            </th>
+            <th>
+                RedBlack SOR (Serial)
+            </th>
+        </tr>
+        </thead>
+        <tr>
+            <td>
+                <img src="img/serial_jacobi.gif" style="width: 200px"/>
+            </td>
+            <td>
+                <img src="img/serial_sor.gif" style="width: 200px"/>
+            </td>
+            <td>
+                <img src="img/serial_rb_sor.gif" style="width: 200px"/>
+            </td>
+        </tr>
+    </table>
 
-    <p> We generate the flow for gun smoke using original SOR implementation, Jacobi implementation and Red-Black SOR implementation. Below is the visualization for the resulting flow (left: SOR, middle: Jacobi, right: Red-Black SOR)</p>
+    <hr/>
+    <h2 class='entry-title'>Algorithm Parallelizability</h2>
+    As we explained there is serial data dependency in SOR, but not in Jacobi or Red-Black SOR. Theoretically within
+    each iteration, each cell can be processed independently.
+    <br/>
+    The following gif images illustrates paralleled Jacobi and Red-Black SOR.
+    <table>
+        <thead>
+        <tr>
+            <th>
+                Jacobi (Parallel)
+            </th>
+            <th>
+                RedBlack SOR (Parallel)
+            </th>
+        </tr>
+        </thead>
+        <tr>
+            <td>
+                <img src="img/parallel_jacobi.gif" style="width: 300px"/>
+            </td>
+            <td>
+                <img src="img/parallel_rb_sor.gif" style="width: 300px"/>
+            </td>
+        </tr>
+    </table>
+
+    <hr/>
+
+    <h2 class='entry-title'>Empirical Experiments on Convergence and Quality</h2>
+
+    <p> We generate the flow for gun smoke using original SOR implementation, Jacobi implementation and Red-Black SOR
+        implementation. Below is the visualization for the resulting flow (left: SOR, middle: Jacobi, right: Red-Black
+        SOR)</p>
 
     <figure style="clear:both">
-            <img src="img/sor.png" alt="frames" width="210" style='margin-right:5px'>
-            <img src="img/jacobi.png" alt="frames" width="210" style='margin-left:5px'>
-            <img src="img/rbsor.png" alt="frames" width="210" style='margin-left:5px'>
+        <img src="img/sor.png" alt="frames" width="210" style='margin-right:5px'>
+        <img src="img/jacobi.png" alt="frames" width="210" style='margin-left:5px'>
+        <img src="img/rbsor.png" alt="frames" width="210" style='margin-left:5px'>
     </figure>
 
-    <p>It's not easy to see their differences, though if you are careful enough, you can find the Red-Black SOR and SOR results are visually same while Jacobi result is somehow different. To make the differences visible, we generate the diff-picture for both Jacobi (left) and Red-Black SOR (right) with original SOR (black means same, otherwise, the values are different on that pixel) below. In order to make the differences visible, we multiplied the difference by 5.</p>
+    <p>It's not easy to see their differences, though if you are careful enough, you can find the Red-Black SOR and SOR
+        results are visually same while Jacobi result is somehow different. To make the differences visible, we generate
+        the diff-picture for both Jacobi (left) and Red-Black SOR (right) with original SOR (black means same,
+        otherwise, the values are different on that pixel) below. In order to make the differences visible, we
+        multiplied the difference by 5.</p>
 
     <figure style="clear:both">
-            <img src="img/jacobidiff.png" alt="frames" width="330" style='margin-left:5px'>
-            <img src="img/rbsordiff.png" alt="frames" width="330" style='margin-left:5px'>
+        <img src="img/jacobidiff.png" alt="frames" width="330" style='margin-left:5px'>
+        <img src="img/rbsordiff.png" alt="frames" width="330" style='margin-left:5px'>
     </figure>
 
-    <p>Since our goal is that the parallelized output should be as similar as that of the original SOR output, From the diff-picture, we can conclude Red-Black SOR is significantly better than Jacobi.</p>
-    <hr />
-    <h2 class='entry-title'>Parallelization</h2>
+    <p>Since our goal is that the parallelized output should be as similar as that of the original SOR output, From the
+        diff-picture, we can conclude Red-Black SOR is significantly better than Jacobi.</p>
+    <hr/>
+    <h2 class='entry-title'>Parallelization Implementation</h2>
     <h3>OpenMP</h3>
+    As we said, in each iteration of Jacobi/RBSOR the elements could be processed independently, thus the OpenMP parallization is fairly straight forward.
+    We simply wrap the the for loop with appropriate pragmas.
+
     <h3>OpenACC</h3>
+    Similar to OpenMP, we simply use pragmas to tell the compiler that the loops are independent within each iteration.
+    In addition, we make sure data is only copied to GPU once, and copied out after the last iteration.
+
     <h3>MPI</h3>
     <h3>MapReduce</h3>
     <h3>MPI+OpenMP</h3>
@@ -56,7 +144,9 @@
 
 </section>
 <footer id="contentinfo" class="body">
-        <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a></p>
+    <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing
+        Magazine</a></p>
 </footer><!-- /#contentinfo -->
 
-</body></html>
+</body>
+</html>
