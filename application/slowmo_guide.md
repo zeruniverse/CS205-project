@@ -11,7 +11,7 @@ https://github.com/slowmoVideo/slowmoVideo
 
 2. Create a project in slowmotion project. Use their user interface to set the slow rate of the video.
 
-3. Use our tool to convert the .flo files produced by our algorithm to sVflow format.
+3. Use our [tool](https://github.com/zeruniverse/CS205-project/tree/master/tools/flo2svflow) to convert the .flo files produced by our algorithm to sVflow format.
 
 4. Go to the folder of the slowmotion project. 
 
