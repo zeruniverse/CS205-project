@@ -6,7 +6,25 @@
 
 Team: Shiyu Huang, Hongxiang Qiu, Zeyu Zhao, Zongren Zou
 
-**This README focuses on how to run our code and reproduce our results. For background, analysis and detailed results, see our [project website](https://zeruniverse.github.io/CS205-project/).**
+## Project Website
+
+**This README focuses on how to run our code and reproduce our results. For background, analysis, detailed results, and etc. (i.e. the report) see our [project website](https://zeruniverse.github.io/CS205-project/).**
+
+Below are links to required contents:
+
+<ul><li>Description of problem (<a href="https://zeruniverse.github.io/CS205-project/#opt-flow">Optical Flow</a> and <a href="https://zeruniverse.github.io/CS205-project/#DeepFlow">DeepFlow</a>) and <a href="https://zeruniverse.github.io/CS205-project/#need-hpc">the need for HPC and/or Big Data</a></li>
+            <li>Description of solution and comparison with existing work on the problem: we are <a href="design.html">parallelizing</a> the existing solution to <a href="https://zeruniverse.github.io/CS205-project/performance.html">significantly reduce its running time</a>.</li>
+            <li>Description of your <a href="https://zeruniverse.github.io/CS205-project/design.html">model</a> and <a href="https://zeruniverse.github.io/CS205-project/performance.html#data-platform">data</a> in detail.</li>
+            <li><a href="https://zeruniverse.github.io/CS205-project/design.html">Technical description of the parallel application and programming models used</a>.</li>
+            <li><a href="https://zeruniverse.github.io/CS205-project/applications.html">How do you use your application</a>.</li>
+            <li>Links to repository with <a href="https://github.com/zeruniverse/CS205-project">source code</a>, <a href="https://github.com/zeruniverse/CS205-project/releases/tag/0.01">evaluation data sets and test cases</a>.</li>
+            <li><a href="https://zeruniverse.github.io/CS205-project/design.html">Technical description of the software design, code baseline</a>, <a href="https://github.com/zeruniverse/CS205-project/blob/master/README.md#generate-flow">dependencies, how to use the code, and system and environment needed to reproduce your tests</a>.</li>
+            <li>Technical description of the <a href="https://zeruniverse.github.io/CS205-project/performance.html#data-platform">platform and infrastructure used</a></li>
+            <li><a href="https://zeruniverse.github.io/CS205-project/performance.html#serial">Performance evaluation</a> and <a href="https://zeruniverse.github.io/CS205-project/performance.html#discussion">discussion about overheads and optimizations done</a></li>
+            <li>Description of advanced features (<a href='https://zeruniverse.github.io/CS205-project/design.html#rbsor'>Red-Black SOR</a>, <a href="https://zeruniverse.github.io/CS205-project/applications.html#slowmo-video">Slow Motion Video Generation</a>)</li>
+            <li><a href="https://zeruniverse.github.io/CS205-project/conclusion.html">Discussion about goals achieved, improvements suggested, lessons learnt, future work, interesting insights</a>.</li>
+            <li><a href="https://zeruniverse.github.io/CS205-project/conclusion.html#reference">Citations</a>.</li>
+ </ul> 
 
 **Table of Contents** 
 
@@ -14,9 +32,11 @@ Team: Shiyu Huang, Hongxiang Qiu, Zeyu Zhao, Zongren Zou
 + [Prepare Data](README.md#prepare-data)
   + [Two Images](README.md#two-images)
   + [Video](README.md#video)
-+ [Calculate Flow](README.md#calculate-flow)
-  + [Two Images](README.md#two-images-1)
-  + [Video](README.md#video-1)
++ [Generate Flow](README.md#generate-flow)
+  + [Serial and OpenMP](README.md#serial-and-openmp)
+  + [OpenACC](README.md#openacc)
+  + [MPI (with or without OpenMP)](README.md#mpi)
+  + [MapReduce + OpenMP](https://github.com/zeruniverse/CS205-project/blob/master/src/MapReduce/README.md)
   + [Flow Visualization](README.md#flow-visualization)
 + [Applications](README.md#applications)
   + [Video Stylization](README.md#video-stylization)
@@ -76,17 +96,32 @@ Then you can use [our bash script](tools/deepmatching-video.sh) to generate all 
 
 For your convenience, we provide sample video frames ([360p](https://github.com/zeruniverse/CS205-project/releases/download/0.01/bunny_640x360_frame.zip), [720p](https://github.com/zeruniverse/CS205-project/releases/download/0.01/bunny_1280x720_first999_frame.zip), [1080p](https://github.com/zeruniverse/CS205-project/releases/download/0.01/nyc_1920x1080_frame.zip)) and corresponding pairwise matchings ([360p](https://github.com/zeruniverse/CS205-project/releases/download/0.01/bunny_640x360_match.zip), [720p](https://github.com/zeruniverse/CS205-project/releases/download/0.01/bunny_1280x720_match.zip), [1080p](https://github.com/zeruniverse/CS205-project/releases/download/0.01/nyc_1920x1080_match.zip)). In addition, we have a very short 720p bullet video sample ([frames](https://github.com/zeruniverse/CS205-project/releases/download/0.01/new_bullet_frame.zip) and [matches](https://github.com/zeruniverse/CS205-project/releases/download/0.01/new_bullet_match.zip)), which is used to generate our [application examples](README.md#applications).
 
-## Calculate Flow
+## Generate Flow
 
-This is `how to run our model` part. If you followed the previous section or downloaded our samples, you should have:
+This is `how to run our model` part. The guide assumes you use AWS m4.2xlarge node (AWS g3.4xlarge for OpenACC) with Ubuntu Server 16.04 LTS (HVM).
+
+We have a seperate guide to run MapReduce, see [here](https://github.com/zeruniverse/CS205-project/blob/master/src/MapReduce/README.md)
+
+If you followed the previous section or downloaded our samples, you should now have:
+
 + For a pair of image
   + Two image files (our sample is `ak1.ppm`, `ak2.ppm`)
   + One match file (our sample is `ak_forward.match`)
 + For a video
   + A folder named `out` containing all frames
   + A folder named `match` containing all matches
+  
+The command to download our sample data is:
 
-The guide assumes you use AWS m4.2xlarge node with Ubuntu Server 16.04 LTS (HVM).
+```bash
+wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak1.ppm
+wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak2.ppm
+wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak_forward.match
+wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/bunny_640x360_frame.zip
+wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/bunny_640x360_match.zip
+unzip bunny_640x360_frame.zip
+unzip bunny_640x360_match.zip
+```
 
 First, you should install required packages:
 
@@ -99,27 +134,61 @@ sudo apt-get install -y libpng-dev
 sudo apt-get install -y unzip
 ```
 
-If you are using other systems, please ensure you have new `gcc` and `g++`, otherwise, you might get compile error of `error: ‘for’ loop initial declarations are only allowed in C99 mode`. The workaround for old compilers is adding `-std=gnu99` flag into `CMAKE_C_FLAGS` in the file `CMakeLists.txt`.
+If you are using other (old) systems, please ensure you have new `gcc` and `g++`, otherwise, you might get compile error of `error: ‘for’ loop initial declarations are only allowed in C99 mode`. The workaround for old compilers is adding `-std=gnu99` flag into `CMAKE_C_FLAGS` in the file `CMakeLists.txt`.
 
-All source code for our implementations are in [`src`](src/) folder, please first compile according to [this guide](src/README.md) and copy the executable under the same folder with the data.
+### Serial and OpenMP
 
-### Two Images
+After completing above steps, you can compile DeepFlow. Here, we use `RBSOR_OMP` implementation as example, all `*_OMP` and `*_serial` implementations under `src` can be compiled and executed in the same manner.
 
-MapReduce implementation does not apply if you only want to calculate one flow.
+Compile it:
 
-For OpenMP implementations, you should specify the number of threads with environment variable:
 ```bash
-export OMP_NUM_THREADS=X
-# X is the number of threads you want to run with
+git clone https://github.com/zeruniverse/CS205-project.git
+cd CS205-project/src/RBSOR_OMP
+mkdir build
+cd build
+cmake ..
+make
+
+# Now you have the executable deepflow2, move it to the place of your data
+mv deepflow2 ../../../..
+cd ../../../..
 ```
 
-For all serial and OpenMP implementations, run with command:
+#### Generate Flow for Two images
+
+The command below generates the flow `flow.flo` and output the execution time.
+
 ```bash
-time ./deepflow2 ak1.ppm ak2.ppm akflow.flo -match ak_forward.match
+export OMP_NUM_THREADS=4
+time ./deepflow2 ak1.ppm ak2.ppm flow.flo -match ak_forward.match
 ```
 
-You will get wall time (real) in terminal.
-### Video
+#### Generate Flow for Video
+
+You can use the `video_flow.sh` in each implementation folder. Please note you should have `out` and `match` folder containing the video data.
+
+```bash
+# copy video_flow.sh here
+cp CS205-project/src/RBSOR_OMP/video_flow.sh .
+bash video_flow.sh
+```
+In the terminal, you can see accumulated time cost after the completion of each pair of frames. The flow results are stored in the `flow` folder.
+
+### OpenACC
+
+First follow the course guide to install `pgcc` in g3.4xlarge node. We use `RBSOR_ACC` implementation as example, all `*_ACC` can be compiled and executed in the same manner.
+
+Compile it:
+
+```bash
+cd CS205-project/src/RBSOR_ACC
+bash compile_acc.sh
+```
+
+Copy the executable (under `build`) and `video_flow.sh` to the place of your data, running commands for images and videos are same with `[Serial and OpenMP](README.md#generate-flow-for-two-images)`.
+
+### MPI
 
 TODO. NEED A COMMENTED SCRIPT
 
