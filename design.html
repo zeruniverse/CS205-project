@@ -35,8 +35,8 @@
     <hr />
     <h2 class='entry-title'>Jacobi, SOR, and Red-Black SOR</h2>
     Jacobi, SOR and Red-Black SOR are all optimization algorithms solving linear systems.
-    All of them are iterative methods. The main difference between Jacobi and SOR is in Jacobi, we update X_{i,t} based
-    on X_{i,t-1}; while in SOR we need X_{i-1,t} to update X_{i,t}.
+    All of them are iterative methods. The main difference between Jacobi and SOR is in Jacobi, we update X<sub>i,t</sub> based
+    on X<sub>i,t-1</sub>; while in SOR we need X<sub>i-1,t</sub> to update X<sub>i,t</sub>.
     The advantage of SOR is that it converges faster than Jacobi, but the drawback is it has serial dependency within
     each time step/iteration.
     Red-Black SOR is similar to SOR, but in each iteration we only update 'odd' or 'even' elements, thus when we update

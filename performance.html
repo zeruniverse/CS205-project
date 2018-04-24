@@ -39,6 +39,8 @@
 
     <p>To make fair comparison, we use <b>AWS m4.2xlarge</b> for all experiments except OpenACC (where we use <b>AWS g3.4xlarge</b>). The reason we don't use Odyssey is that it doesn't provide some necessary libraries and we don't have privilege to install them. Except MapReduce (where we use <b>emr-5.13.0</b>), we use <b>Ubuntu Server 16.04 LTS (HVM)</b> (ami-4e79ed36) as the operating system. All of original implementation and our implementations uses <b>-O3</b> compile flag.</p>
 
+    <p>A more detailed guide is provided in our <a href="https://github.com/zeruniverse/CS205-project/blob/master/README.md#calculate-flow">GitHub README</a> if you want to reproduce our test result.</p>
+
     <hr />
     <h2 class='entry-title' id="serial">Serial</h2>
 
@@ -101,6 +103,54 @@
             <img src="img/omp_org.png" alt="omp-org" width="330" style='margin-left:5px'>
             <img src="img/omp_fix.png" alt="omp-fix" width="330" style='margin-left:5px'>
     </figure>
+
+    <hr />
+    <h2 class='entry-title'>MPI</h2>
+    <hr />
+    <h2 class='entry-title'>MPI+OpenMP</h2>
+    <hr />
+    <h2 class='entry-title'>OpenACC</h2>
+    <p>Since PGCC does not support v4sf type, we rewrote the code. However, this will make the serial part of our code slower.</p>
+
+    <table style="border: 1px solid black;text-align:center">
+        <caption>Time for generating flow between two images</caption>
+        <tr style="border: 1px solid black;"><th></th><th>360p Images</th><th>720p Images</th><th>1080p Images</th></tr>
+        <tr><td>OpenACC</td><td>3.737 seconds</td><td>16.499 seconds</td><td>28.385 seconds</td></tr>
+    </table>
+
+    <p>The CPU serial execution time is similar on g3.4xlarge node and m4.2xlarge node. We see compared to serial version, OpenACC is slower on 360p and 720p images and slightly faster on 1080p images. We think the reason is (1) the v4sf workaround mentioned above slows down the performance. (2) Our matrices are not big enough so the memory copy overhead plays an important role. This also explains why for 1080p images, OpenACC will have better performance.</p>
+
+    <p>According to the two-image result, we conclude OpenACC is not a good choice for DeepFlow parallelization. So we didn't evaluate OpenACC on video tasks.</p>
+
+    <hr />
+
+    <h2 class='entry-title'>MapReduce + OpenMP</h2>
+
+    <p><b>MapReduce can only be applied to video tasks</b></p>
+
+    <p><b>Note: We called Amazon and they don't agree to increase our m4.2xlarge instances limit to 9. So the 8-node result is actually 4 m4.2xlarge instances and 4 r4.2xlarge</b>. r4.2xlarge is the most similar instance with m4.2xlarge we can find and it's slightly more powerful than m4.2xlarge.</p>
+
+    <p>From the OpenMP result, we know 4 thread is the best. So we set OMP_NUM_THREADS=4 as environment when running the OpenMP implementation. As a further trick to speedup the execution, we assign a pair of images to each worker node and <b>run forward and backward flow simultaneously</b>. Thus using OpenMP implementation as baseline, the ideal speedup would be 2 * #Nodes</p>
+
+    <table style="border: 1px solid black;text-align:center">
+        <caption>Average per-second video processing time (flow generation)</caption>
+        <tr style="border: 1px solid black;"><th></th><th>360p Video</th><th>720p Video</th><th>1080p Video</th></tr>
+        <tr><td>Serial</td><td>183 seconds</td><td>752 seconds</td><td>1725 seconds</td></tr>
+        <tr><td>OpenMP</td><td>102 seconds</td><td>414 seconds</td><td>1004 seconds</td></tr>
+        <tr><td>2 nodes</td><td>159 seconds</td><td>280 seconds</td><td>556 seconds</td></tr>
+        <tr><td>4 nodes</td><td>83 seconds</td><td>193 seconds</td><td>307 seconds</td></tr>
+        <tr><td>8 nodes</td><td>48 seconds</td><td>112 seconds</td><td>147 seconds</td></tr>
+    </table>
+
+    <p>The following plot shows the speedup using serial version as the baseline.</p>
+
+    <figure style="clear:both">
+            <img src="img/mapred-speedup.png" alt="mapred-speedup" width="660">
+    </figure>
+
+    <p>As shown in the figure, the speedup increase is quite linear. Due to the issue we mentioned before (r4.2xlarge is slightly powerful than m4.2xlarge), from 4 nodes to 8 nodes, the speedup grows faster (without the issue, we expect linear speedup increase).</p>
+
+    <p>Since there are overheads like HDFS file copys in MapReduce, and those overheads are approximately constants. By theory, when more fraction of the time are spent in flow calculation, we will have a higher speedup. Therefore, we observe in the above plot that 360p video has the worst speedup while 1080p video has the best speedup.</p>
 
 </section>
 <footer id="contentinfo" class="body">
