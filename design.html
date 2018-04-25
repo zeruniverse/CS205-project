@@ -163,7 +163,13 @@
     <p>Since PGCC does not support v4sf type, we also rewrote all related code.</p>
 
     <h3>MPI</h3>
+    
+    <p>We also implement distributed-memory parallelization by MPI. Similarly, we assign jobs in each iteration of Red-Black SOR to achieve independent process. However, it is as straightforward as OpenMP and OpenACC, since messages are passed between nodes or instances, and we have to design what those messages are and how they are passed among nodes.
+    <p>In this project, since we store images, which are matrices, as 1-D array, and each iteration is an update of every element in matrices, in master node, we split those matrices by row into n approximately equal blocks, where n is the number of avaiable threads, so that data we pass is continuously distributed, which is more convenient for worker nodes to load and manipulate. And then we pass each block to its corresponding worker node, where we actually do our main computation. In each worker node, regular Red-Black SOR algorithm is realized for smaller matrix blocks, and after we finish our calculation, we pass the results, which are also smaller matrix blocks back to master node for the next iteration. The message we pass through this whole process is just information for Red-Block SOR.
+        
     <h3>MPI+OpenMP</h3>
+    <p>This is just a combination of MPI and OpenMP, and easy to implement. MPI still requires us to do Red-Black SOR in each worker node, where OpenMP can shine. 
+        
     <h3>MapReduce + OpenMP</h3>
     <p>We choose Hadoop Streaming as our platform for MapReduce. 
         In our task, the map task is calling the binary executable of DeepFlow (Red-Black OpenMP implementation) on each individual pairs of consecutive image files along with the correpsonding .match file to generate .flo files. 
