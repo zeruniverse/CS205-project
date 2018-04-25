@@ -154,7 +154,7 @@
             <img src="img/mapred-speedup.png" alt="mapred-speedup" width="660">
     </figure>
 
-    <p>As shown in the figure, the speedup increase is quite linear. Due to the issue we mentioned before (r4.2xlarge is slightly powerful than m4.2xlarge), from 4 nodes to 8 nodes, the speedup grows faster (without the issue, we expect linear speedup increase).</p>
+    <p>As shown in the figure, the speedup increase is quite linear. Due to the issue we mentioned before (r4.2xlarge is slightly more powerful than m4.2xlarge), from 4 nodes to 8 nodes, the speedup grows faster (without the issue, we expect linear speedup increase).</p>
 
     <p>Since there are overheads like HDFS file copys in MapReduce, and those overheads are approximately constants. By theory, when more fraction of the time are spent in flow calculation, we will have a higher speedup. Therefore, we observe in the above plot that 360p video has the worst speedup while 1080p video has the best speedup.</p>
 
