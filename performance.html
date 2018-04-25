@@ -115,11 +115,9 @@
     <table style="border: 1px solid black;text-align:center">
         <caption>Time for generating flow between two images</caption>
         <tr style="border: 1px solid black;"><th></th><th>360p Images</th><th>720p Images</th><th>1080p Images</th></tr>
-        <tr><td>MPI</td><td>10.392 seconds</td><td>42.489 seconds</td><td>102.224 seconds</td></tr>
+        <tr><td>MPI with 4 threads</td><td>10.392 seconds</td><td>42.489 seconds</td><td>102.224 seconds</td></tr>
     </table>
     <p>As we can see, MPI works really bad and this parallelization performs even worse than serial programming, which is no surprise, since messages passing between master node and worker nodes are huge and frequent due to frequent call of Red-Black SOR, so that overhead is pretty large. We also notice that, in this case, the performance with 8 threads is worse that one with 4 threads on m4.2xlarge aws instance. The reason is similar to what we have in OpenMP. 
-    <hr />
-    <h2 class='entry-title'>MPI+OpenMP</h2>
     <hr />
     <h2 class='entry-title'>OpenACC</h2>
     <p>Since PGCC does not support v4sf type, we rewrote the code. However, this will make the serial part of our code slower.</p>
