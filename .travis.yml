@@ -1,4 +1,12 @@
 language: c
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - libcr-dev
+      - mpich
+      - mpich-doc
 script:
   - cmake --version
   - cd src
@@ -57,5 +65,11 @@ script:
   - cmake ..
   - make
   - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
+  - ls -lh out.flo
+  - cd ../..
+
+  - cd 'RBSOR_MPI'
+  - bash compile_mpi.sh
+  - time mpirun -np 4 ./build/deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
   - ls -lh out.flo
   - cd ../..
