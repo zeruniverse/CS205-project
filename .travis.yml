@@ -8,18 +8,25 @@ addons:
       - libmpich-dev
       - mpich
       - mpich-doc
+      - npm
+before_script:
+  - "npm install -g markdown-link-check"
 script:
   - cmake --version
   - mpiexec --version
-  - which mpirun
+  - markdown-link-check README.md
+  - markdown-link-check application/README.md
+  - markdown-link-check application/slowmo_guide.md
+  - markdown-link-check application/stylize_guide.md
   - cd src
   - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak1.ppm"
   - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak2.ppm"
-  - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak_forward.match
+  - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak_forward.match"
   
   - cd RBSOR_MPI
   - bash compile_mpi.sh
-  - time mpirun -np 4 ./build/deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
+  - cd build
+  - time mpirun -np 4 ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
   - ls -lh out.flo
   - cd ../..
  
