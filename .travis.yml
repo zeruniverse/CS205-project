@@ -14,7 +14,6 @@ before_script:
 script:
   - cmake --version
   - mpiexec --version
-  - markdown-link-check README.md
   - markdown-link-check application/README.md
   - markdown-link-check application/slowmo_guide.md
   - markdown-link-check application/stylize_guide.md
@@ -26,7 +25,7 @@ script:
   - cd RBSOR_MPI
   - bash compile_mpi.sh
   - cd build
-  - time mpirun -np 4 ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
+  - time mpirun -np 1 ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
   - ls -lh out.flo
   - cd ../..
  
