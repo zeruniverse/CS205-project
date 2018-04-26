@@ -9,6 +9,7 @@ addons:
       - mpich-doc
 script:
   - cmake --version
+  - mpiexec --version
   - cd src
   - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak1.ppm"
   - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak2.ppm"
