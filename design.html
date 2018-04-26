@@ -71,7 +71,9 @@
     <p>Here is the <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_serial/src/solver.c">code for Red-Black SOR</a> in case you want to know more details. We also implemented the <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_OMP/src/solver.c">OpenMP</a> and <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_ACC/src_acc/solver_acc.c">OpenACC</a> parallelization for Red-Black SOR.</p>
 
     <h3>Comparison</h3>
-    <p>Below is the visualization of the three algorithms (serial version). In each step, we update all 9 elements in the matrix (Red-Black SOR updates half of them in each step). As can be seen, while updating an element, SOR uses other elements updated in the same step, whereas other two algorithms don't have this dependency. It is also obvious that SOR and Red-Black SOR converges faster than Jacobi.</p>
+    <p>Below is the visualization of the three algorithms (serial version). We want to update the 9x9 grid until converge (become light yellow).
+        In each step, we update one element in the matrix. For Jacobi, the values are updated based on previous values; but SOR uses newer values whenever possible,
+        while RedBlack SOR update half of the board and alternates. It is also obvious that SOR and Red-Black SOR converges faster than Jacobi.</p>
 
     <table>
         <thead>
@@ -100,7 +102,8 @@
         </tr>
     </table>
 
-    <p>As we explained there is serial data dependency in SOR, but not in Jacobi or Red-Black SOR. Theoretically within each step, each cell can be processed independently. Below is the visualization of the parallelized Jacobi and Red-Black SOR, which is how our OpenMP and OpenACC parallelization works. <b>Note: to make the comparison fair, you should compare Jacobi at step X with Red-Black SOR at step 2X (the data processed by Red-Black SOR in each step is halved) and in our implementation, we also doubled the steps for Red-Black SOR</b>.</p>
+    <p>As we explained there is serial data dependency in SOR, but not in Jacobi or Red-Black SOR. Theoretically within each step, each cell can be processed independently. Below is the visualization of the parallelized Jacobi and Red-Black SOR, which is how our OpenMP and OpenACC parallelization works.
+        <b>Note: to make the comparison fair, you should compare Jacobi at step X with Red-Black SOR at step 2X (the data processed by Red-Black SOR in each step is halved) and in our implementation, we also doubled the steps for Red-Black SOR</b>.</p>
 
     <table>
         <thead>
