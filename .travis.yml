@@ -5,6 +5,7 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - libcr-dev
+      - libmpich-dev
       - mpich
       - mpich-doc
 script:
