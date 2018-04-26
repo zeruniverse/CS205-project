@@ -71,8 +71,8 @@
     <p>Here is the <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_serial/src/solver.c">code for Red-Black SOR</a> in case you want to know more details. We also implemented the <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_OMP/src/solver.c">OpenMP</a> and <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_ACC/src_acc/solver_acc.c">OpenACC</a> parallelization for Red-Black SOR.</p>
 
     <h3>Comparison</h3>
-    <p>Below is the visualization of the three algorithms (serial version). We want to update the 9x9 grid until converge (become light yellow).
-        In each step, we update one element in the matrix. For Jacobi, the values are updated based on previous values; but SOR uses newer values whenever possible,
+    <p>Below is the visualization of the three algorithms (serial version). We want to update the 3x3 grid until converge (become light yellow).
+        In each step, we update one element in the matrix. In Jacobi, the values are updated based on previous values; but SOR uses newer values whenever possible,
         while RedBlack SOR update half of the board and alternates. It is also obvious that SOR and Red-Black SOR converges faster than Jacobi.</p>
 
     <table>
