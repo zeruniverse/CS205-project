@@ -192,7 +192,17 @@ Copy the executable (under `build`) and `video_flow.sh` to the place of your dat
 
 ### MPI
 
-TODO. NEED A COMMENTED SCRIPT
+First follor the course guide to install `mpicc` and then install libraries described above.
+
+We use `RBSOR_MPI` implementation as example, and all files in that folder can be compiled and executed in the same manner.
+
+Compile:
+```
+cd CS205-project/src/RBSOR_MPI
+./compile_mpi.sh
+```
+
+Copy the executable (under `build`) and `video_flow.sh` to the place of your data, and use commands `mpirun -np 4` to run the program, while 4 is the number of threads you want to use. Notice that it is a guide for running this program on a single instance.
 
 ### Flow Visualization
 
