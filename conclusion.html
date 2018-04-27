@@ -23,7 +23,25 @@
         </header><!-- /#banner -->
         
 <section id="content" class="body">    
-    <h2 class='entry-title'>TODO</h2>
+        <h2 class='entry-title'>Conclusion</h2>
+        <p>In this project we implemented a parallelized version of Deepflow algorithm. The main work that we achieved are the follows:</p>
+                <ol type="1">
+                        <li>We studied optical flow algorithm and analyzed a state-of-the-art implementation of optical flow algorithm 
+                                to identify computational-heavy parts in this algorithm for parallelization. </li>
+                        <li>On image level, we implemented Red-Black SOR method, a more accurate, efficient and parallelizable optimization method to 
+                        make the original algorithm parallelizable and keep the same level of accuracy at the same time. </li>
+                        <li>On video level, we implemented a robust Map-Reduce pipeline for image processing on Hadoop platform using HDFS
+                                to utilize the power of clusters.</li>
+                        <li>We tried other various kinds of parallelization algorithms and programming models that we studied this semester. 
+                                We did comprehensive evaluation of these methods and created a high-performance hybrid model for video processing.</li>
+                        <li>We built two applications, namely fake slow motion video and video stylization with our parallelized optical flow algorithm.</li>                        
+                </ol>
+        
+        <p>Computer vision is one of the most important area where big compute and big data techniques can be heavily used. 
+                This is the reason why we choose a problem in this area as the topic of our final project. 
+                There are still many open problems in optical flow regarding how to improve the latency and the accuracy. 
+                We hope our work can give some insights to other reasearchers to help them better incoroperate the idea of
+                big compute and big data in further improvements of the design of optical flow algorithms. </p>
 </section>
 <footer id="contentinfo" class="body">
         <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a></p>
