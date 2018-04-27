@@ -32,16 +32,32 @@
                         make the original algorithm parallelizable and at the same time keep accuracy at the same level. </li>
                         <li>On video level, we implemented a robust Map-Reduce pipeline for image processing on Hadoop platform using HDFS
                                 to utilize the power of clusters.</li>
-                        <li>We tried other various kinds of parallelization algorithms and programming models that we studied this semester. 
-                                We did comprehensive evaluation of these methods and created a high-performance hybrid model for video processing.</li>
+                        <li>We tried other various kinds of parallelization algorithms and programming models that we studied this semester and 
+                                did comprehensive evaluation of these methods. </li>
+                         <li>We achieved significant speedup with OpenMP and MapReduce methods. We created a high-performance hybrid model based on these two methods for video processing.</li>
                         <li>We built two applications, namely fake slow motion video and video stylization with our parallelized optical flow algorithm.</li>                        
                 </ol>
         
-        <p>Computer vision is one of the most important area where big compute and big data techniques can be heavily used. 
-                This is the reason why we choose a problem in this area as the topic of our final project. 
-                There are still many open problems in optical flow regarding how to improve the latency and the accuracy. 
-                We hope our work can give some insights to other reasearchers to help them better incoroperate the idea of
+        <p>Insight: Computer vision is one of the most important area where big compute and big data techniques can be heavily used. 
+                This is the reason why we choose a problem in this area as the topic of our final project. Our work shows that 
+                OpenMP and MapReduce can make significant improvement in optical flow computation.</p>
+                
+          <p> Future work: There are still many open problems in optical flow regarding how to improve the latency and the accuracy. 
+                Several further research exists for our project, including making MPI more efficient in our use case, and applying 
+                  parallelization in other state-of-the-art implementations of optical flow.
+                  We also hope our work can give some insights to other reasearchers to help them better incoroperate the idea of
                 big compute and big data in further improvements of the design of optical flow algorithms. </p>
+        
+        <h2 class='entry-title'>Conclusion</h2>
+                <ol type="1">
+                        <li>DeepFlow: Large displacement optical flow with deep matching Philippe Weinzaepfel, Jerome Revaud, Zaid Harchaoui and Cordelia Schmid,
+Proc. ICCV‘13, December, 2013 </li>
+                        <li>DeepMatching: Hierarchical Deformable Dense Matching Jerome Revaud, Philippe Weinzaepfel, Zaid Harchaoui and Cordelia Schmid,
+IJCV 2016. </li>
+                        <li>B. K. Horn and B. G. Schunck. Determining optical flow. Proc. SPIE 0281, Techniques and Applications of Image Understanding, 1981.</li>
+                        <li>B. D. Lucas and T. Kanade. An iterative image registration technique with an application to stereo vision. In IJCAI, volume 81, pages 674–679, 1981 </li>
+                    
+                </ol>
 </section>
 <footer id="contentinfo" class="body">
         <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a></p>
