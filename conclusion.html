@@ -33,8 +33,9 @@
                         <li>On video level, we implemented a robust Map-Reduce pipeline for image processing on Hadoop platform using HDFS
                                 to utilize the power of clusters.</li>
                         <li>We tried other various kinds of parallelization algorithms and programming models that we studied this semester and 
-                                did comprehensive evaluation of these methods. </li>
-                         <li>We achieved significant speedup with OpenMP and MapReduce methods. We created a high-performance hybrid model based on these two methods for video processing.</li>
+                                did comprehensive evaluation of these methods. We learned that OpenMP and MapReduce achieve significant speedup for our task, while MPI and OpenACC might not be suitable for our case.                
+                        </li>
+                         <li>We created a high-performance hybrid model based on OpenMP and MapReduce for video processing.</li>
                         <li>We built two applications, namely fake slow motion video and video stylization with our parallelized optical flow algorithm.</li>                        
                 </ol>
         
@@ -43,12 +44,12 @@
                 OpenMP and MapReduce can make significant improvement in optical flow computation.</p>
                 
           <p> Future work: There are still many open problems in optical flow regarding how to improve the latency and the accuracy. 
-                Several further research exists for our project, including making MPI more efficient in our use case, and applying 
+                Several further researches exist for our project, including making MPI more efficient in our use case, and applying 
                   parallelization in other state-of-the-art implementations of optical flow.
                   We also hope our work can give some insights to other reasearchers to help them better incoroperate the idea of
                 big compute and big data in further improvements of the design of optical flow algorithms. </p>
         
-        <h2 class='entry-title'>Conclusion</h2>
+        <h2 class='entry-title'>Citations</h2>
                 <ol type="1">
                         <li>DeepFlow: Large displacement optical flow with deep matching Philippe Weinzaepfel, Jerome Revaud, Zaid Harchaoui and Cordelia Schmid,
 Proc. ICCV‘13, December, 2013 </li>
