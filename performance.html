@@ -115,9 +115,28 @@
     <table style="border: 1px solid black;text-align:center">
         <caption>Time for generating flow between two images</caption>
         <tr style="border: 1px solid black;"><th></th><th>360p Images</th><th>720p Images</th><th>1080p Images</th></tr>
-        <tr><td>MPI with 4 threads</td><td>10.392 seconds</td><td>42.489 seconds</td><td>102.224 seconds</td></tr>
+        <tr><td>MPI with 3 threads</td><td>9.398 seconds</td><td>37.481 seconds</td><td>88.902 seconds</td></tr>
+        <tr><td>MPI with 4 threads</td><td>7.654 seconds</td><td>30.553 seconds</td><td>73.249 seconds</td></tr>
+        <tr><td>MPI with 5 threads</td><td>6.759 seconds</td><td>27.357 seconds</td><td>70.386 seconds</td></tr>
+        <tr><td>MPI with 6 threads</td><td>6.182 seconds</td><td>27.802 seconds</td><td>62.604 seconds</td></tr>
+        <tr><td>MPI with 7 threads</td><td>5.857 seconds</td><td>23.765 seconds</td><td>54.823 seconds</td></tr>
+        <tr><td>MPI with 8 threads</td><td>5.577 seconds</td><td>23.662 seconds</td><td>53.392 seconds</td></tr>
+        <tr><td>MPI with 16 threads</td><td>7.804 seconds</td><td>31.968 seconds</td><td>72.716 seconds</td></tr>
     </table>
-    <p>As we can see, MPI works really bad and this parallelization performs even worse than serial programming, which is no surprise, since messages passing between master node and worker nodes are huge and frequent due to frequent call of Red-Black SOR, so that overhead is pretty large. We also notice that, in this case, the performance with 8 threads is worse that one with 4 threads on m4.2xlarge aws instance. This situation is similar to what we have with OpenMP, and the reason is the same.
+    <p>We implement MPI and run our model on 2 instances, i.e 2 CPUs, and the maximum number of threads now is 16, since each m4.2xlarge provides 8 threads. But since m4.2xlarge only provides 4 actual core, the performance of MPI with 16 threads is worse than one with 8 threads, which agrees with the result of previous OpenMP.
+    <p>Although performance increases with the number of threads, MPI still works really bad, even worse than serial programming, which is no surprise, since messages passing between nodes are huge and frequent due to frequent call of Red-Black SOR, so that overhead is pretty large. Notice that we are not dealing with a single matrix and perform Red-Black SOR on it. Instead, we are dealing with multiple matrices with different sizes, so that every time we call Red-Black SOR, we need to reassign jobs to different nodes and those nodes send and receive messages, and that is how overhead accumulates.
+           
+    <hr />
+    <h2 class='entry-title'>MPI+OpenMP</h2>
+    <table style="border: 1px solid black;text-align:center">
+        <caption>Time for generating flow between two images</caption>
+        <tr style="border: 1px solid black;"><th></th><th>360p Images</th><th>720p Images</th><th>1080p Images</th></tr>
+        <tr><td>MPI with 3 threads+OpenMP with 4 threads</td><td>7.133 seconds</td><td>28.026 seconds</td><td>69.213 seconds</td></tr>
+        <tr><td>MPI with 4 threads+OpenMP with 4 threads</td><td>6.077 seconds</td><td>26.488 seconds</td><td>67.775 seconds</td></tr>
+        <tr><td>MPI with 5 threads+OpenMP with 4 threads</td><td>8.428 seconds</td><td>29.043 seconds</td><td>64.877 seconds</td></tr>
+    </table>
+    <p>We also implement MPI with OpenMP. As we can see, the performance is better than MPI's but still worse than serial. The reasons are the same as MPI case. We therefore conclude that MPI does not fit this problem.
+    
     <hr />
     <h2 class='entry-title'>OpenACC</h2>
     <p>Since PGCC does not support v4sf type, we rewrote the code. However, this will make the serial part of our code slower.</p>
