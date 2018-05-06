@@ -159,6 +159,7 @@ void rbsor_step(int red,
         // mark determines whether the cell is at boundary.
         if (mark == 0)
         {
+            #pragma omp parallel for
             for (int j = 0; j < rows; j++) {
                 for (int i = (j % 2) + 1 - red; i < W; i += 2) {
                     float sigma_u, sigma_v, A11, A22, A12, B1, B2;
@@ -199,6 +200,7 @@ void rbsor_step(int red,
         }
         if (mark == 1)
         {
+            #pragma omp parallel for
             for (int j = 0; j < rows; j++) {
                 for (int i = (j % 2) + 1 - red; i < W; i += 2) {
                     float sigma_u, sigma_v, A11, A22, A12, B1, B2;
@@ -238,6 +240,7 @@ void rbsor_step(int red,
         }
 
         if (mark == 2) {
+            #pragma omp parallel for
             for (int j = 0; j < rows; j++) {
                 for (int i = (j % 2) + 1 - red; i < W; i += 2) {
                     float sigma_u, sigma_v, A11, A22, A12, B1, B2;

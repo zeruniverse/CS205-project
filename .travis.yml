@@ -25,7 +25,15 @@ script:
   - cd RBSOR_MPI
   - bash compile_mpi.sh
   - cd build
-  # Don't test MPI in travis-ci, it's evil
+  # Don't test MPI in travis-ci, it's evil (You must have multiple CPUs to run MPI version... Travis-ci will stuck.)
+  # - time mpirun -np 2 ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
+  #- ls -lh out.flo
+  - cd ../..
+
+  - cd RBSOR_MPI_OMP
+  - bash compile_mpi.sh
+  - cd build
+  # Don't test MPI in travis-ci, it's evil (You must have multiple CPUs to run MPI version... Travis-ci will stuck.)
   # - time mpirun -np 2 ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
   #- ls -lh out.flo
   - cd ../..
