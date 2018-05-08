@@ -131,7 +131,7 @@
     <table style="border: 1px solid black;text-align:center">
         <caption>Time for generating flow between two images</caption>
         <tr style="border: 1px solid black;"><th></th><th>360p Images</th><th>720p Images</th><th>1080p Images</th></tr>
-        <tr><td>MPI with 3 threads+OpenMP with 4 threads</td><td>7.545 seconds</td><td>30.042 seconds</td><td>67.044 seconds</td></tr>
+        <tr><td>MPI with 3 threads+OpenMP with 4 threads</td><td>2.857 seconds</td><td>13.609 seconds</td><td>31.873 seconds</td></tr>
  </table>
     <p>We also implement MPI with OpenMP and run our model on 3 instances, i.e. 3 CPUs, and the maximum number of real cores now is 12, since each m4.2xlarge provides 4 real cores. We let the number of threads for OpenMP be 4 and the number of threads for MPI be 3, which indicates that we assign job to 3 CPUs and on each of them we apply 4-thread OpenMP. We As we can see, the performance is better than MPI's but still worse than serial. The reasons are the same as MPI case. We therefore conclude that MPI does not fit this problem.
     
