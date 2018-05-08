@@ -147,7 +147,7 @@ void sor_coupled(image_t *du, image_t *dv, const image_t *a11, const image_t *a1
     MPI_Comm_size(MPI_COMM_WORLD,&size);
 
     numworker = size-1;
-    if (W*H > 1000){
+    if (True){
         // for master node
         if (rank == 0){
             averow = H/numworker;
@@ -157,7 +157,7 @@ void sor_coupled(image_t *du, image_t *dv, const image_t *a11, const image_t *a1
             for (dest = 1;dest<=numworker;dest++){
                 rows = (dest <= extra) ? averow+1:averow;
                 MPI_Send(&rows,1,MPI_INT,dest,tag,MPI_COMM_WORLD);
-                MPI_Send(&stride,1,MPI_INT,dest,tag,MPI_COMM_WORLD);
+                //MPI_Send(&stride,1,MPI_INT,dest,tag,MPI_COMM_WORLD);
                 if (dest == 1){
                     mark = 1;
                     MPI_Send(&mark,1,MPI_INT,dest,tag,MPI_COMM_WORLD);
@@ -186,8 +186,8 @@ void sor_coupled(image_t *du, image_t *dv, const image_t *a11, const image_t *a1
                 MPI_Send(b1d+stride*offset,rows*stride,MPI_FLOAT,dest,tag,MPI_COMM_WORLD);
                 MPI_Send(b2d+stride*offset,rows*stride,MPI_FLOAT,dest,tag,MPI_COMM_WORLD);
 
-                MPI_Send(&omega,1,MPI_FLOAT,dest,tag,MPI_COMM_WORLD);
-                MPI_Send(&W,1,MPI_INT,dest,tag,MPI_COMM_WORLD);
+                //MPI_Send(&omega,1,MPI_FLOAT,dest,tag,MPI_COMM_WORLD);
+                //MPI_Send(&W,1,MPI_INT,dest,tag,MPI_COMM_WORLD);
                 offset = offset+rows;
             }
             tag = FROM_WORKER;
@@ -204,7 +204,7 @@ void sor_coupled(image_t *du, image_t *dv, const image_t *a11, const image_t *a1
         if (rank > 0){
             tag = FROM_MASTER;
             MPI_Recv(&rows,1,MPI_INT,0,tag,MPI_COMM_WORLD,&status);
-            MPI_Recv(&stride,1,MPI_INT,0,tag,MPI_COMM_WORLD,&status);
+            //MPI_Recv(&stride,1,MPI_INT,0,tag,MPI_COMM_WORLD,&status);
             MPI_Recv(&mark,1,MPI_INT,0,tag,MPI_COMM_WORLD,&status);
             if (mark == 0){
                 MPI_Recv(dud,(rows+2)*stride,MPI_FLOAT,0,tag,MPI_COMM_WORLD,&status);
@@ -240,8 +240,8 @@ void sor_coupled(image_t *du, image_t *dv, const image_t *a11, const image_t *a1
 
             // update
             tag = FROM_WORKER;
-            MPI_Send(&offset,1,MPI_INT,0,tag,MPI_COMM_WORLD);
-            MPI_Send(&rows,1,MPI_INT,0,tag,MPI_COMM_WORLD);
+            //MPI_Send(&offset,1,MPI_INT,0,tag,MPI_COMM_WORLD);
+            //MPI_Send(&rows,1,MPI_INT,0,tag,MPI_COMM_WORLD);
 
             if (mark == 0){
                 // begin sor
@@ -269,8 +269,8 @@ void sor_coupled(image_t *du, image_t *dv, const image_t *a11, const image_t *a1
                 //dpv = dpv-stride;
             }
             //send results back to master node
-            MPI_Send(du,rows*stride,MPI_FLOAT,0,tag,MPI_COMM_WORLD);
-            MPI_Send(dv,rows*stride,MPI_FLOAT,0,tag,MPI_COMM_WORLD);
+            MPI_Send(dud,rows*stride,MPI_FLOAT,0,tag,MPI_COMM_WORLD);
+            MPI_Send(dvd,rows*stride,MPI_FLOAT,0,tag,MPI_COMM_WORLD);
         }
     }
     else{
