@@ -21,7 +21,7 @@ cd CS205-project/src/MapReduce
 bash setup_master_cmake.sh
 ```
 
-Then you can compile deepflow (`RBSOR_serial` and `RBSOR_OMP`) following [this]()
+Then you can compile deepflow (`RBSOR_serial` and `RBSOR_OMP`) following [this](https://github.com/zeruniverse/CS205-project/blob/master/README.md#serial-and-openmp)
 
 **As an alternative, you can download our pre-compiled binary** if you are using AWS EMR-5.13.0. By doing this, you **don't need to install cmake**.
 
