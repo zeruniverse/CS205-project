@@ -115,13 +115,13 @@
     <table style="border: 1px solid black;text-align:center">
         <caption>Time for generating flow between two images</caption>
         <tr style="border: 1px solid black;"><th></th><th>360p Images</th><th>720p Images</th><th>1080p Images</th></tr>
-        <tr><td>MPI with 3 threads</td><td>9.398 seconds</td><td>37.481 seconds</td><td>88.902 seconds</td></tr>
-        <tr><td>MPI with 4 threads</td><td>7.654 seconds</td><td>30.553 seconds</td><td>73.249 seconds</td></tr>
-        <tr><td>MPI with 5 threads</td><td>6.759 seconds</td><td>27.357 seconds</td><td>70.386 seconds</td></tr>
-        <tr><td>MPI with 6 threads</td><td>6.182 seconds</td><td>27.802 seconds</td><td>62.604 seconds</td></tr>
-        <tr><td>MPI with 7 threads</td><td>5.857 seconds</td><td>23.765 seconds</td><td>54.823 seconds</td></tr>
-        <tr><td>MPI with 8 threads</td><td>5.577 seconds</td><td>23.662 seconds</td><td>53.392 seconds</td></tr>
-        <tr><td>MPI with 16 threads</td><td>7.804 seconds</td><td>31.968 seconds</td><td>72.716 seconds</td></tr>
+        <tr><td>MPI with 3 threads</td><td>3.245 seconds</td><td>12.711 seconds</td><td>32.605 seconds</td></tr>
+        <tr><td>MPI with 4 threads</td><td>2.849 seconds</td><td>11.188 seconds</td><td>28.665 seconds</td></tr>
+        <tr><td>MPI with 5 threads</td><td>2.567 seconds</td><td>10.216 seconds</td><td>25.040 seconds</td></tr>
+        <tr><td>MPI with 6 threads</td><td>2.533 seconds</td><td>10.070 seconds</td><td>24.113 seconds</td></tr>
+        <tr><td>MPI with 7 threads</td><td>3.402 seconds</td><td>10.672 seconds</td><td>22.835 seconds</td></tr>
+        <tr><td>MPI with 8 threads</td><td>3.339 seconds</td><td>14.570 seconds</td><td>22.869 seconds</td></tr>
+        <tr><td>MPI with 16 threads</td><td>4.457 seconds</td><td>14.616 seconds</td><td>32.863 seconds</td></tr>
     </table>
     <p>We implement MPI and run our model on 2 instances, i.e 2 CPUs, and the maximum number of threads now is 16, since each m4.2xlarge provides 8 threads. But since m4.2xlarge only provides 4 actual core, the performance of MPI with 16 threads is worse than one with 8 threads, which agrees with the result of previous OpenMP.
     <p>Although performance increases with the number of threads, MPI still works really bad, even worse than serial programming, which is no surprise, since messages passing between nodes are huge and frequent due to frequent call of Red-Black SOR, so that overhead is pretty large. Notice that we are not dealing with a single matrix and perform Red-Black SOR on it. Instead, we are dealing with multiple matrices with different sizes, so that every time we call Red-Black SOR, we need to reassign jobs to different nodes and those nodes send and receive messages, and that is how overhead accumulates.
