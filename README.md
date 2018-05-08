@@ -1,4 +1,4 @@
-# Parallelized Deepflow
+# Parallelized DeepFlow
 
 [![Build Status](https://travis-ci.org/zeruniverse/CS205-project.svg?branch=master)](https://travis-ci.org/zeruniverse/CS205-project)
 ![Environment](https://img.shields.io/badge/gcc-4.8+-blue.svg)
@@ -55,6 +55,7 @@ Below is a visualization example of the optical flow.
 
 (source: https://people.csail.mit.edu/celiu/OpticalFlow/)
 
+For more details, see our [project website](https://zeruniverse.github.io/CS205-project/).
 
 ## Prepare Data
 
