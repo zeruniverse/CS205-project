@@ -97,7 +97,8 @@
 
     <p>(Since testing on video is really time consuming, we only test with OMP_NUM_THREADS=4 as this performs best on m4.2xlarge node for 2 images)</p>
 
-    <p>The following plot shows the speedup for DeepFlow between <b>two images</b>. The left one is the speedup plot for m4.2xlarge node, the right one is replacing the 8-thread result by the 8-thread result on m4.4xlarge (taking out the hyper-threading factor). <b>The right plot should represent the general trend</b>.</p>
+    <p>The following plot shows the speedup for DeepFlow between <b>two images</b>. The left one is the speedup plot for m4.2xlarge node, the right one is replacing the 8-thread result by the 8-thread result on m4.4xlarge (taking out the hyper-threading factor). <b>The right plot should represent the general trend</b>.
+    The red line represents the maximum theoretical speedup assuming there are no overheads.</p>
 
     <figure style="clear:both">
             <img src="img/omp_org.png" alt="omp-org" width="330" style='margin-left:5px'>
@@ -123,9 +124,16 @@
         <tr><td>MPI with 8 threads</td><td>3.339 seconds</td><td>14.570 seconds</td><td>22.869 seconds</td></tr>
         <tr><td>MPI with 16 threads</td><td>4.457 seconds</td><td>14.616 seconds</td><td>32.863 seconds</td></tr>
     </table>
-    <p>We implement MPI and run our model on 2 instances, i.e 2 CPUs, and the maximum number of threads now is 16, since each m4.2xlarge provides 8 threads. But since m4.2xlarge only provides 4 actual core, the performance of MPI with 16 threads is worse than one with 8 threads, which agrees with the result of previous OpenMP.
+    <p>We implement MPI and run our model on 2 instances, i.e 2 CPUs, and the maximum number of threads now is 16, since each m4.2xlarge provides 8 threads. But since m4.2xlarge only provides 4 actual core, the performance of MPI with 16 threads is worse than one with 8 threads, which agrees with the result of previous OpenMP. The speedup plot is shown below.
+
+
+        <figure style="clear:both">
+            <img src="img/mpi_speedup.png" alt="omp-video" width="660">
+        </figure>
     <p>Although performance increases with the number of threads, MPI still works really bad, even worse than serial programming, which is no surprise, since messages passing between nodes are huge and frequent due to frequent call of Red-Black SOR, so that overhead is pretty large. Notice that we are not dealing with a single matrix and perform Red-Black SOR on it. Instead, we are dealing with multiple matrices with different sizes, so that every time we call Red-Black SOR, we need to reassign jobs to different nodes and those nodes send and receive messages, and that is how overhead accumulates.
-           
+
+
+
     <hr />
     <h2 class='entry-title'>MPI+OpenMP (on 3 CPUs)</h2>
     <table style="border: 1px solid black;text-align:center">
