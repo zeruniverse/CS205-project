@@ -26,21 +26,14 @@
     <h2 class='entry-title'>Project Overview</h2>
     <p>In this project, we parallelized an algorithm called DeepFlow with multiple techniques (<b>MPI, OpenMP and OpenACC</b>). Since DeepFlow is useful not only on image processing but also on video processing where independent flows can be generated simultaneously, we thus applied <b>MapReduce</b> for the video processing tasks. Our test result shows the parallelized DeepFlow algorithm can run <b>faster on both image tasks and video tasks</b>.</p>
 
-    <p>Below are the links to the required contents:</p>
+    <p>Below are the links to the required contents (in grading rubric):</p>
 
     <ul>
-            <li>Description of problem (<a href="#opt-flow">Optical Flow</a> and <a href="#DeepFlow">DeepFlow</a>) and <a href="#need-hpc">the need for HPC and/or Big Data</a></li>
-            <li>Description of solution and comparison with existing work on the problem: we are <a href="design.html">parallelizing</a> the <a href="DeepFlow">existing solution</a> to <a href="performance.html">significantly reduce its running time</a>.</li>
-            <li>Description of your <a href="design.html">model</a> and <a href="performance.html#data-platform">data</a> in detail.</li>
-            <li><a href="design.html">Technical description of the parallel application and programming models used</a>.</li>
-            <li><a href="applications.html">How do you use your application</a>.</li>
-            <li>Links to repository with <a href="https://github.com/zeruniverse/CS205-project">source code</a>, <a href="https://github.com/zeruniverse/CS205-project/releases/tag/0.01">evaluation data sets</a> and test cases (<a href="https://github.com/zeruniverse/CS205-project#generate-flow">How to test on sample data</a> and <a href="https://github.com/zeruniverse/CS205-project/blob/master/.travis.yml">travis-ci test code</a>).</li>
-            <li><a href="design.html">Technical description of the software design, code baseline</a>, <a href="https://github.com/zeruniverse/CS205-project/blob/master/README.md#generate-flow">dependencies, how to use the code, and system and environment needed to reproduce your tests</a>.</li>
-            <li>Technical description of the <a href="performance.html#data-platform">platform and infrastructure used</a></li>
-            <li><a href="performance.html#serial">Performance evaluation</a> and <a href="performance.html#discussion">discussion about overheads and optimizations done</a></li>
-            <li>Description of advanced features (<a href='design.html#rbsor'>Red-Black SOR</a>, <a href="applications.html#slowmo-video">Slow Motion Video Generation</a>)</li>
-            <li><a href="conclusion.html">Discussion about goals achieved, improvements suggested, lessons learnt, future work, interesting insights</a>.</li>
-            <li><a href="conclusion.html#reference">Citations</a>.</li>
+            <li>Application design: <a href="design.html#profiling">profiling</a> and <a href="design.html#application-parallel">parallelization design</a></li>
+            <li>Problem solution: introduction of the problem (<a href="#opt-flow">optical flow and DeepFlow</a>) and <a href="#need-hpc">need for HPC</a>. Parallelization is not trivial due to serial dependencies and we <a href="design.html#algorithm">changed the algorithm</a></li>
+            <li>Implementation approach: <a href="design.html#implementation">Parallelization implementations</a> and <a href="design.html#code-base">corresponding code</a>. Data can be any two consecutive images or videos. See data preparation and sample data <a href="https://github.com/zeruniverse/CS205-project/blob/master/README.md#prepare-data">here</a></li>
+
+
     </ul> 
 
     <hr />
