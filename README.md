@@ -227,9 +227,6 @@ Below is a complete test case for 2 images (OpenMP). For videos, the command sho
 Before running the following commands in your terminal, make sure you have latest `cmake`, `gcc` and `g++` with libraries at the beginning of this section.
 
 ```bash
-wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak1.ppm
-wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak2.ppm
-wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak_forward.match
 git clone https://github.com/zeruniverse/CS205-project.git
 cd CS205-project/tools/flo_visualization/imageLib
 make
@@ -243,6 +240,9 @@ cmake ..
 make
 cp deepflow2 ../
 export OMP_NUM_THREADS=4
+wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak1.ppm
+wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak2.ppm
+wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak_forward.match
 time ./deepflow2 ak1.ppm ak2.ppm flow.flo -match ak_forward.match
 ./color_flow flow.flo flow.png
 ls
