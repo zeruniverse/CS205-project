@@ -212,7 +212,25 @@
     <p>In addition, to increase the throughput, we <b>generate the forward and backward flows for a pair of frames simultaneously on a worker node</b>.</p>
 
     <p>The overhead of this method is mainly on HDFS download and upload (which is quite slow to be honest). The MapReduce scheduling sometimes doesn't evenly distribute the work and it also generates the overhead.</p>
-    
+
+    <hr />
+
+    <h2 class='entry-title' id="code-base">Code Base</h2>
+    <p>We made a list below for the code <b>we wrote</b> (i.e. not from original DeepFlow).</p>
+    <ul>
+        <li>serial Jacobi: <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/Jacobi_serial/src/solver.c">solver</a></li>
+        <li>serial RBSOR: <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_serial/src/solver.c">solver</a></li>
+        <li>OpenMP Jacobi: <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/Jacobi_OMP/src/solver_omp.c">solver</a></li>
+        <li>OpenMP RBSOR: <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_OMP/src/solver_omp.c">solver</a></li>
+        <li>OpenACC Jacobi: <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/Jacobi_ACC/src_acc/solver_acc.c">solver</a></li>
+        <li>OpenACC RBSOR: <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_ACC/src_acc/solver_acc.c">solver</a></li>
+        <li>MPI RBSOR: <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_MPI/src/solver.c">solver</a></li>
+        <li>MPI+OpenMP RBSOR: <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_MPI_OMP/src/solver.c">solver</a></li>
+        <li>MapReduce+OpenMP: <a href="https://github.com/zeruniverse/CS205-project/tree/master/src/MapReduce">MapReduce code</a></li>
+    </ul>
+    <p>Our GitHub repository is <a href="https://github.com/zeruniverse/CS205-project">here</a></p>
+
+
 </section>
 <footer id="contentinfo" class="body">
     <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing
