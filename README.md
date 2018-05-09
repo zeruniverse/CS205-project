@@ -239,6 +239,7 @@ cd build
 cmake ..
 make
 cp deepflow2 ../
+cd ..
 export OMP_NUM_THREADS=4
 wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak1.ppm
 wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak2.ppm
