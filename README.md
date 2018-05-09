@@ -248,7 +248,9 @@ time ./deepflow2 ak1.ppm ak2.ppm flow.flo -match ak_forward.match
 ./color_flow flow.flo flow.png
 ls
 ```
-the `ls` command should give you `flow.png`. This is the visualization of the flow between `ak1.ppm` and `ak2.ppm`. Check it with any image viewer of your choice.
+the `ls` command should give you `flow.png` (`CS205-project/src/RBSOR_OMP/flow.png`). This is the visualization of the flow between `ak1.ppm` and `ak2.ppm`. Check it with any image viewer of your choice. It should look the same with the following:
+
+![flow](https://user-images.githubusercontent.com/4648756/39793174-4d05bf58-5312-11e8-835b-9eb4d83ef35e.png)
 
 ## Applications
 
