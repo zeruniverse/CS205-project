@@ -10,22 +10,6 @@ Team: Shiyu Huang, Hongxiang Qiu, Zeyu Zhao, Zongren Zou
 
 **This README focuses on how to run our code and reproduce our results. For background, analysis, detailed results, and etc. (i.e. the report) see our [project website](https://zeruniverse.github.io/CS205-project/).**
 
-Below are links to required contents:
-
-<ul><li>Description of problem (<a href="https://zeruniverse.github.io/CS205-project/#opt-flow">Optical Flow</a> and <a href="https://zeruniverse.github.io/CS205-project/#DeepFlow">DeepFlow</a>) and <a href="https://zeruniverse.github.io/CS205-project/#need-hpc">the need for HPC and/or Big Data</a></li>
-            <li>Description of solution and comparison with existing work on the problem: we are <a href="design.html">parallelizing</a> the existing solution to <a href="https://zeruniverse.github.io/CS205-project/performance.html">significantly reduce its running time</a>.</li>
-            <li>Description of your <a href="https://zeruniverse.github.io/CS205-project/design.html">model</a> and <a href="https://zeruniverse.github.io/CS205-project/performance.html#data-platform">data</a> in detail.</li>
-            <li><a href="https://zeruniverse.github.io/CS205-project/design.html">Technical description of the parallel application and programming models used</a>.</li>
-            <li><a href="https://zeruniverse.github.io/CS205-project/applications.html">How do you use your application</a>.</li>
-            <li>Links to repository with <a href="https://github.com/zeruniverse/CS205-project">source code</a>, <a href="https://github.com/zeruniverse/CS205-project/releases/tag/0.01">evaluation data sets and test cases</a>.</li>
-            <li><a href="https://zeruniverse.github.io/CS205-project/design.html">Technical description of the software design, code baseline</a>, <a href="https://github.com/zeruniverse/CS205-project/blob/master/README.md#generate-flow">dependencies, how to use the code, and system and environment needed to reproduce your tests</a>.</li>
-            <li>Technical description of the <a href="https://zeruniverse.github.io/CS205-project/performance.html#data-platform">platform and infrastructure used</a></li>
-            <li><a href="https://zeruniverse.github.io/CS205-project/performance.html#serial">Performance evaluation</a> and <a href="https://zeruniverse.github.io/CS205-project/performance.html#discussion">discussion about overheads and optimizations done</a></li>
-            <li>Description of advanced features (<a href='https://zeruniverse.github.io/CS205-project/design.html#rbsor'>Red-Black SOR</a>, <a href="https://zeruniverse.github.io/CS205-project/applications.html#slowmo-video">Slow Motion Video Generation</a>)</li>
-            <li><a href="https://zeruniverse.github.io/CS205-project/conclusion.html">Discussion about goals achieved, improvements suggested, lessons learnt, future work, interesting insights</a>.</li>
-            <li><a href="https://zeruniverse.github.io/CS205-project/conclusion.html#reference">Citations</a>.</li>
- </ul> 
-
 **Table of Contents** 
 
 + [Introduction](README.md#introduction)
