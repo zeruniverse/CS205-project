@@ -171,7 +171,8 @@
     <h3>OpenMP</h3>
     <p>As we said, in each iteration of RBSOR the elements could be processed independently, thus the OpenMP parallization is fairly straight forward. We simply wrap the the for loop with appropriate pragmas.</p>
 
-    <p>The OpenMP implementation mainly has overhead on initialization. Since the linear system solver will be called around 300 times for each flow calculation, we have to initialize OpenMP threads again and again.</p>
+    <p>The OpenMP implementation mainly has overhead on thread synchronization. The process needs to join the threads for each iteration thus making many system calls. There are also some overhead for creating and terminating the threads. </p>
+    <p>The theoretical speedup ignoring overhead is 1/(0.22+0.78/N) where N is number of threads. The actual speedup should be less because of the overhead we explained above.</p>
 
     <h3>OpenACC</h3>
 

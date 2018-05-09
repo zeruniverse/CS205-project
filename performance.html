@@ -98,7 +98,7 @@
     <p>(Since testing on video is really time consuming, we only test with OMP_NUM_THREADS=4 as this performs best on m4.2xlarge node for 2 images)</p>
 
     <p>The following plot shows the speedup for DeepFlow between <b>two images</b>. The left one is the speedup plot for m4.2xlarge node, the right one is replacing the 8-thread result by the 8-thread result on m4.4xlarge (taking out the hyper-threading factor). <b>The right plot should represent the general trend</b>.
-    The red line represents the maximum theoretical speedup assuming there are no overheads.</p>
+    The red line represents the maximum theoretical speedup assuming there are no overheads. We can see we have similar trend but the speedup is lower. This is due to overhead caused by thread creation, termination and synchronization. </p>
 
     <figure style="clear:both">
             <img src="img/omp_org.png" alt="omp-org" width="330" style='margin-left:5px'>
