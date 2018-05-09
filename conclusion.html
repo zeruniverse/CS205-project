@@ -24,19 +24,19 @@
         
 <section id="content" class="body">    
         <h2 class='entry-title'>Conclusion</h2>
-        <p>In this project we implemented a parallelized version of Deepflow algorithm. The main work that we achieved are the follows:</p>
+        <p>In this project we implemented parallelized versions of DeepFlow algorithm. The main work that we achieved are the follows:</p>
                 <ol type="1">
-                        <li>We studied optical flow algorithm and analyzed a state-of-the-art implementation of optical flow algorithm 
-                                to identify computational-heavy parts in this algorithm for parallelization. </li>
-                        <li>On image level, we implemented Red-Black SOR method, a more accurate, efficient and parallelizable optimization method to 
-                        make the original algorithm parallelizable and at the same time keep accuracy at the same level. </li>
-                        <li>On video level, we implemented a robust Map-Reduce pipeline for image processing on Hadoop platform using HDFS
+                        <li>We studied optical flow algorithms and analyzed a state-of-the-art implementation of optical flow algorithm (DeepFlow).
+                                We further identified the computational-heavy parts in this algorithm and implemented the parallelizations. </li>
+                        <li>At image level, we implemented Red-Black SOR method, a parallelizable method to replace the
+                        original SOR which is not parallelizable and their accuracy and convergence don't differ much. </li>
+                        <li>At video level, we implemented a robust MapReduce pipeline for image processing on Hadoop platform using HDFS
                                 to utilize the power of clusters.</li>
                         <li>We tried other various kinds of parallelization algorithms and programming models that we studied this semester and 
                                 did comprehensive evaluation of these methods. We learned that OpenMP and MapReduce achieve significant speedup for our task, while MPI and OpenACC might not be suitable for our case.                
                         </li>
                          <li>We created a high-performance hybrid model based on OpenMP and MapReduce for video processing.</li>
-                        <li>We built two applications, namely fake slow motion video and video stylization with our parallelized optical flow algorithm.</li>                        
+                        <li>We built two applications, namely fake slow motion video generation and video stylization with our parallelized DeepFlow algorithm.</li>                        
                 </ol>
         
         <p>Insight: Computer vision is one of the most important area where big compute and big data techniques can be heavily used. 
@@ -44,10 +44,11 @@
                 OpenMP and MapReduce can make significant improvement in optical flow computation. We also learnt GPU acceleration and MPI are not always helpful. Although both of them bring in more computation power, they might add even more overheads.</p>
                 
           <p> Future work: There are still many open problems in optical flow regarding how to improve the latency and the accuracy. 
-                Several further researches exist for our project, including making MPI more efficient in our use case, and applying 
-                  parallelization in other state-of-the-art implementations of optical flow.
-                  We also hope our work can give some insights to other reasearchers to help them better incoroperate the idea of
-                big compute and big data in further improvements of the design of optical flow algorithms. </p>
+                Several future work includes making MPI more efficient in our use case, and applying 
+                  parallelization in other state-of-the-art implementations of optical flow estimations.</p>
+                  <p>
+                  We also hope our work can give some insights to reasearchers and help them better incoroperate the idea of
+                big compute and big data into the solution of many related computer vision problems. </p>
         
         <h2 class='entry-title' id="reference">Citations</h2>
                 <ol type="1">
@@ -58,6 +59,15 @@ IJCV 2016. </li>
                         <li>B. K. Horn and B. G. Schunck. Determining optical flow. Proc. SPIE 0281, Techniques and Applications of Image Understanding, 1981.</li>
                         <li>B. D. Lucas and T. Kanade. An iterative image registration technique with an application to stereo vision. In IJCAI, volume 81, pages 674–679, 1981 </li>
                     
+                </ol>
+
+                <h3>Reference for implementations</h3>
+                <ol>
+                    <li> code for <a href="https://thoth.inrialpes.fr/src/deepmatching/">DeepMatching</a> and <a href="https://thoth.inrialpes.fr/src/deepflow/">DeepFlow</a></li>
+                    <li><a href="https://github.com/slowmoVideo/slowmoVideo">SlowmoVideo</a></li>
+                    <li><a href="https://github.com/manuelruder/artistic-videos">Artistic Style Transfer for Videos</a></li>
+                    <li><a href="https://www.maa.org/press/periodicals/loci/joma/iterative-methods-for-solving-iaxi-ibi-the-sor-method">Iterative Methods for Solving Ax = b - The SOR Method</a></li>
+                    <li><a href="http://www.dtic.mil/dtic/tr/fulltext/u2/a449212.pdf">Parallel SOR Iterative Algorithms and Performance Evaluation on a Linux Cluster</a></li>
                 </ol>
 </section>
 <footer id="contentinfo" class="body">
