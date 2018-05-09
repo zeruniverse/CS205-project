@@ -32,9 +32,12 @@
             <li>Application design: <a href="design.html#profiling">profiling</a> and <a href="design.html#application-parallel">parallelization design</a></li>
             <li>Problem solution: introduction of the problem (<a href="#opt-flow">optical flow and DeepFlow</a>) and <a href="#need-hpc">need for HPC</a>. Parallelization is not trivial due to serial dependencies and we <a href="design.html#algorithm">changed the algorithm</a></li>
             <li>Implementation approach: <a href="design.html#implementation">Parallelization implementations</a> and <a href="design.html#code-base">corresponding code</a>. Data can be any two consecutive images or videos. See data preparation and sample data <a href="https://github.com/zeruniverse/CS205-project/blob/master/README.md#prepare-data">here</a></li>
-
-
-    </ul> 
+            <li>Platform deployment: <a href="performance.html#data-platform">evaluation platform</a>. Guide to deploy on AWS (or other systems): <a href="https://github.com/zeruniverse/CS205-project/blob/master/README.md#generate-flow">GitHub README</a></li>
+            <li>Application software: <a href="https://github.com/zeruniverse/CS205-project/tree/master/src">different parallelizations</a> and <a href="https://github.com/zeruniverse/CS205-project/tree/master/application">applications of DeepFlow</a> (<a href="applications.html">application examples</a>)</li>
+            <li>Software documentation: <a href="https://github.com/zeruniverse/CS205-project">GitHub README</a>. There're some separate READMEs for specific modules. You can access them via the links in the main README.</li>
+            <li>Performance evaluation and discussion: <a href="performance.html#serial">performance of different linear solvers and different parallelizations</a></li>
+            <li>Advanced features: <a href="design.html#rbsor">RBSOR</a> and <a href="applications.html#slowmo-video">application on slow motion video generation</a></li>
+    </ul>
 
     <hr />
     <h2 class='entry-title' id="opt-flow">Optical Flow</h2>

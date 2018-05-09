@@ -158,7 +158,7 @@
         <li><b>Type of applications: compute-intensive (and also data-intensive if applied to videos).</b> This is because the linear system solver is compute-intensive and if DeepFlow is applied to videos, we will have to calculate flows for each pair of frames (48 pairs for two-way flows for 1-second 25fps video) and it's data-intensive.</li>
 
         <li><b>Levels of parallelism: Loop level (and also task level if applied to videos).</b> The RBSOR is an iterative method. We parallelize the loops inside the outer loop. For videos, flow calculation for each pair can be parallelized and it's at the task level.</li>
-        <li><b>Types of parallelism: Function parallelism (and data parallelism if applied to videos).</b></li>
+        <li><b>Types of parallelism: Function parallelism (and also data parallelism if applied to videos).</b></li>
         <li><b>Parallel Execution Models: Single program - multiple data (SPMD).</b></li>
     </ul>
 
