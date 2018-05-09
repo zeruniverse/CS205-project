@@ -38,6 +38,7 @@ Below are links to required contents:
   + [MPI (with or without OpenMP)](README.md#mpi)
   + [MapReduce + OpenMP](https://github.com/zeruniverse/CS205-project/blob/master/src/MapReduce/README.md)
   + [Flow Visualization](README.md#flow-visualization)
+  + [Test Case](README.md#test-case)
 + [Applications](README.md#applications)
   + [Video Stylization](README.md#video-stylization)
   + [Slow Motion Video](README.md#slow-motion-video)
@@ -195,15 +196,15 @@ Copy the executable (under `build`) and `video_flow.sh` to the place of your dat
 
 First follor the course guide to install `mpicc` and then install libraries described above.
 
-We use `RBSOR_MPI` implementation as example, and all files in that folder can be compiled and executed in the same manner.
+We use `RBSOR_MPI` implementation as example. `RBSOR_MPI_OMP` can be compiled and executed similarly.
 
 Compile:
 ```
 cd CS205-project/src/RBSOR_MPI
-./compile_mpi.sh
+bash compile_mpi.sh
 ```
 
-Copy the executable (under `build`) and `video_flow.sh` to the place of your data, and use commands `mpirun -np 4` to run the program, while 4 is the number of threads you want to use. Notice that it is a guide for running this program on a single instance.
+Copy the executable (under `build`) and `video_flow.sh` to the place of your data, and use commands `mpirun -np 4` to run the program, while 4 is the number of threads you want to use (for video, simply run `video_flow.sh`). Notice that it is a guide for running this program on a single instance.
 
 ### Flow Visualization
 
@@ -218,6 +219,35 @@ make
 ```
 
 `vis.png` is the visualization file.
+
+### Test Case
+
+Below is a complete test case for 2 images (OpenMP). For videos, the command should be similar (actually easier) because you just run bash file we provided (see above).
+
+Before running the following commands in your terminal, make sure you have latest `cmake`, `gcc` and `g++`.
+
+```bash
+wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak1.ppm
+wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak2.ppm
+wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak_forward.match
+git clone https://github.com/zeruniverse/CS205-project.git
+cd CS205-project/tools/flo_visualization/imageLib
+make
+cd ..
+make
+cp color_flow ../../src/RBSOR_OMP/
+cd ../../src/RBSOR_OMP/
+mkdir build
+cd build
+cmake ..
+make
+cp deepflow2 ../
+export OMP_NUM_THREADS=4
+time ./deepflow2 ak1.ppm ak2.ppm flow.flo -match ak_forward.match
+./color_flow flow.flo flow.png
+ls
+```
+the `ls` command should give you `flow.png`. This is the visualization of the flow between `ak1.ppm` and `ak2.ppm`. Check it with any image viewer of your choice.
 
 ## Applications
 
