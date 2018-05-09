@@ -91,3 +91,5 @@ script:
   - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
   - ls -lh out.flo
   - cd ../..
+  
+  - echo "Done!"
