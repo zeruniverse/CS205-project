@@ -27,7 +27,7 @@
 </header><!-- /#banner -->
 
 <section id="content" class="body">
-    <h2 class='entry-title'>Profiling</h2>
+    <h2 class='entry-title' id="profiling">Profiling</h2>
 
     <p>As the first step of the parallelization, we need to figure out which part of DeepFlow takes most of the execution time. Below is our profiling result. You can reproduce our profiling result by setting PG flag to TRUE in our <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/SOR_serial_optimized_(original_implementation)/CMakeLists.txt">CMakeLists.txt</a>.</p>
     
@@ -38,7 +38,7 @@
     <p>More than 78% of the time is spent on a function called <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/SOR_serial_optimized_(original_implementation)/src/solver.c">sor_coupled</a>. That's where Successive Over Relaxation (SOR) method is used to solve the linear system. So we will parallelize this linear solver.</p>
     <hr />
 
-    <h2 class='entry-title'>Algorithm Change</h2>
+    <h2 class='entry-title' id="algorithm">Algorithm Change</h2>
     <p>Jacobi, SOR and Red-Black SOR are all optimization algorithms solving linear systems and all of them are iterative methods.</p>
 
     <h3>SOR (original implementation)</h3>
@@ -62,18 +62,18 @@
     <p>As we can see, all x<sup>t</sup> terms at right hand side are eliminated and thus there's no dependencies inside each step. Based on the equation, it's also simple to change the original algorithm from SOR to Jacobi at the high level, just replace &omega; with 1 and all x<sup>t</sup> terms with x<sup>t-1</sup>.
     <p>Here is the <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/Jacobi_serial/src/solver.c">code for Jacobi</a> in case you want to know more details. We also implemented the <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/Jacobi_OMP/src/solver_omp.c">OpenMP</a> and <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/Jacobi_ACC/src_acc/solver_acc.c">OpenACC</a> parallelization for Jacobi.</p>
 
-    <h3 id="rbsor">Red-Black SOR (Advanced Feature): parallelizable with better convergence</h3>
+    <h3 id="rbsor">Red-Black SOR (RBSOR) (Advanced Feature): parallelizable with better convergence</h3>
 
-    <p>Red-Black SOR is similar to SOR, but in each iteration we only update 'odd' or 'even' elements, thus when we update the 'odd'('even') parts 'even'('odd') parts are fixed. In this way we can prevent data dependency within each iteration. Red-Black SOR has slightly slower convergence than SOR but in practice they are very close. Both Red-Black SOR and SOR converge faster than Jacobi.</p>
+    <p>Red-Black SOR (RBSOR) is similar to SOR, but in each iteration we only update 'odd' or 'even' elements, thus when we update the 'odd'('even') parts 'even'('odd') parts are fixed. In this way we can prevent data dependency within each iteration. RBSOR has slightly slower convergence than SOR but in practice they are very close. Both RBSOR and SOR converge faster than Jacobi.</p>
 
-    <p>The implementation of Red-Black SOR is more involved so we list it as an advanced feature.</p>
+    <p>The implementation of RBSOR is more involved so we list it as an advanced feature.</p>
 
-    <p>Here is the <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_serial/src/solver.c">code for Red-Black SOR</a> in case you want to know more details. We also implemented the <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_OMP/src/solver.c">OpenMP</a> and <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_ACC/src_acc/solver_acc.c">OpenACC</a> parallelization for Red-Black SOR.</p>
+    <p>Here is the <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_serial/src/solver.c">code for RBSOR</a> in case you want to know more details. We also implemented the <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_OMP/src/solver.c">OpenMP</a> and <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/RBSOR_ACC/src_acc/solver_acc.c">OpenACC</a> parallelization for RBSOR.</p>
 
     <h3>Comparison</h3>
     <p>Below is the visualization of the three algorithms (serial version). We want to update the 3x3 grid until converge (become light yellow).
         In each step, we update one element in the matrix. In Jacobi, the values are updated based on previous values; but SOR uses newer values whenever possible,
-        while RedBlack SOR update half of the board and alternates. It is also obvious that SOR and Red-Black SOR converges faster than Jacobi.</p>
+        while RBSOR update half of the board and alternates. It is also obvious that SOR and RBSOR converges faster than Jacobi.</p>
 
     <table>
         <thead>
@@ -85,7 +85,7 @@
                 SOR (Serial)
             </th>
             <th>
-                RedBlack SOR (Serial)
+                RBSOR (Serial)
             </th>
         </tr>
         </thead>
@@ -102,8 +102,8 @@
         </tr>
     </table>
 
-    <p>As we explained there is serial data dependency in SOR, but not in Jacobi or Red-Black SOR. Theoretically within each step, each cell can be processed independently. Below is the visualization of the parallelized Jacobi and Red-Black SOR, which is how our OpenMP and OpenACC parallelization works.
-        <b>Note: to make the comparison fair, you should compare Jacobi at step X with Red-Black SOR at step 2X (the data processed by Red-Black SOR in each step is halved) and in our implementation, we also doubled the steps for Red-Black SOR</b>.</p>
+    <p>As we explained there is serial data dependency in SOR, but not in Jacobi or RBSOR. Theoretically within each step, each cell can be processed independently. Below is the visualization of the parallelized Jacobi and RBSOR, which is how our OpenMP and OpenACC parallelization works.
+        <b>Note: to make the comparison fair, you should compare Jacobi at step X with RBSOR at step 2X (the data processed by RBSOR in each step is halved) and in our implementation, we also doubled the steps for RBSOR</b>.</p>
 
     <table>
         <thead>
@@ -128,9 +128,8 @@
 
     <h3>Empirical Experiments on Convergence and Quality</h3>
 
-    <p> We generate the flow for gun smoke using original SOR implementation, Jacobi implementation and Red-Black SOR
-        implementation. Below is the visualization for the resulting flow (left: SOR, middle: Jacobi, right: Red-Black
-        SOR)</p>
+    <p> We generate the flow for gun smoke using original SOR implementation, Jacobi implementation and RBSOR
+        implementation. Below is the visualization for the resulting flow (left: SOR, middle: Jacobi, right: RBSOR)</p>
 
     <figure style="clear:both">
         <img src="img/sor.png" alt="frames" width="210" style='margin-right:5px'>
@@ -138,9 +137,9 @@
         <img src="img/rbsor.png" alt="frames" width="210" style='margin-left:5px'>
     </figure>
 
-    <p>It's not easy to see their differences, though if you are careful enough, you can find the Red-Black SOR and SOR
+    <p>It's not easy to see their differences, though if you are careful enough, you can find the RBSOR and SOR
         results are visually same while Jacobi result is somehow different. To make the differences visible, we generate
-        the diff-picture for both Jacobi (left) and Red-Black SOR (right) with original SOR (black means same,
+        the diff-picture for both Jacobi (left) and RBSOR (right) with original SOR (black means same,
         otherwise, the values are different on that pixel) below. In order to make the differences visible, we
         multiplied the difference by 5.</p>
 
@@ -150,32 +149,55 @@
     </figure>
 
     <p>Since our goal is that the parallelized output should be as similar as that of the original SOR output, From the
-        diff-picture, we can conclude Red-Black SOR is significantly better than Jacobi.</p>
+        diff-picture, we can conclude RBSOR is significantly better than Jacobi.</p>
     <hr/>
 
-    <h2 class='entry-title'>Parallelization Implementation</h2>
-    <p><b>Parallelization is based on Jacobi or Red-Black SOR algorithm introduced above. The original SOR algorithm is not parallelizable.</b></p>
+    <h2 class='entry-title' id="application-parallel">Parallelization Design</h2>
+    <p>As analyzed in the last section, we'll use serial RBSOR as the base algorithm and try to parallelize it. We can also parallelize at the task level (i.e. for a video, assign the calculations of flows for different pairs of frames to different nodes). We think the problem and our parallelizations have the following characteristics.</p>
+    <ul>
+        <li><b>Type of applications: compute-intensive (and also data-intensive if applied to videos).</b> This is because the linear system solver is compute-intensive and if DeepFlow is applied to videos, we will have to calculate flows for each pair of frames (48 pairs for two-way flows for 1-second 25fps video) and it's data-intensive.</li>
+
+        <li><b>Levels of parallelism: Loop level (and also task level if applied to videos).</b> The RBSOR is an iterative method. We parallelize the loops inside the outer loop. For videos, flow calculation for each pair can be parallelized and it's at the task level.</li>
+        <li><b>Types of parallelism: Function parallelism (and data parallelism if applied to videos).</b></li>
+        <li><b>Parallel Execution Models: Single program - multiple data (SPMD).</b></li>
+    </ul>
+
+    <p>The original code is written in C (only for a pair of images) and our implementation is in C as well. For processing videos, we wrote bash scripts. We implemented multiple parallelizations we learnt in this class and compared their performance. To be more specific, we tried OpenMP, MPI, OpenACC and MPI+OpenMP for DeepFlow applied to 2 images and we tried the same methods and MapReduce+OpenMP (that's because OpenMP is the best for 2 images) for DeepFlow applied to video.</p>
+    <hr />
+
+    <h2 class='entry-title' id="implementation">Parallelization Implementation and Overhead Analysis</h2>
+    <p><b>Parallelization is based on RBSOR algorithm introduced above. The original SOR algorithm is not parallelizable.</b></p>
 
     <h3>OpenMP</h3>
-    <p>As we said, in each iteration of Jacobi/Red-Black SOR the elements could be processed independently, thus the OpenMP parallization is fairly straight forward. We simply wrap the the for loop with appropriate pragmas.</p>
+    <p>As we said, in each iteration of RBSOR the elements could be processed independently, thus the OpenMP parallization is fairly straight forward. We simply wrap the the for loop with appropriate pragmas.</p>
+
+    <p>The OpenMP implementation mainly has overhead on initialization. Since the linear system solver will be called around 300 times for each flow calculation, we have to initialize OpenMP threads again and again.</p>
 
     <h3>OpenACC</h3>
 
-    <p>Similar to OpenMP, we simply use pragmas to tell the compiler that the loops are independent within each iteration. In addition, we make sure data is only copied to GPU once, and copied out after the last iteration.</p>
+    <p>Similar to OpenMP, we simply use pragmas to tell the compiler that the loops are independent within each iteration. In addition, we <b>make sure data is only copied to GPU once, and copied out after the last iteration</b>.</p>
 
-    <p>Since PGCC does not support v4sf type, we also rewrote all related code.</p>
+    <p>Since PGCC does not support SSE instructions (v4sf type), we also rewrote all related code, which introduces <b>a lot of overheads</b>.</p>
+
+    <p>The OpenACC overhead is mainly on the drop of SSE optimization (with SSE, CPU can calculate multiple data together) on the code running at CPU. With future release of pgcc, this overhead can be eliminated if SSE is supported. Data copy between CPU and GPU is also the overhead although we make sure in each linear system solver the data is only copied once. This is because we will solve around 300 linear systems.</p>
+
 
     <h3>MPI</h3>
     
-    <p>We also implement distributed-memory parallelization by MPI. Similarly, we assign jobs in each iteration of Red-Black SOR to achieve independent process. However, it is as straightforward as OpenMP and OpenACC, since messages are passed between nodes or instances, and we have to design what those messages are and how they are passed among nodes.
-    <p>In this project, since we store images, which are matrices, as 1-D array, and each iteration is an update of every element in matrices, in master node, we split those matrices by row into n approximately equal blocks, where n is the number of avaiable threads, so that data we pass is continuously distributed, which is more convenient for worker nodes to load and manipulate. And then we pass each block to its corresponding worker node, where we actually do our main computation. In each worker node, regular Red-Black SOR algorithm is realized for smaller matrix blocks, and after we finish our calculation, we pass the results, which are also smaller matrix blocks back to master node for the next iteration. The message we pass through this whole process is just information for Red-Block SOR.
+    <p>We also implement distributed-memory parallelization by MPI. Since each process will only update a part of the data, we have to design how they communicate.</p>
+
+    <p>RBSOR can be viewed as doing update on a matrix. We implement MPI as <b>master-worker structure</b>. In master process, we split the matrix by row into n approximately equal blocks, where n is the number of avaiable worker process so that data we pass is continuously distributed, which is more convenient for worker processes to load and manipulate. And then we pass each block to its corresponding worker process, where we actually do our main computation. In each worker process, regular RBSOR algorithm is applied for smaller matrix blocks, and after we finish our calculation, we pass the results (which are also smaller matrix blocks) back to master process for the next iteration.</p>
+
+    <p>The message exchange is not trivial since we need to deal with the top row and bottom row in each split. We use a similar method (ghost cell) as in assignment and each worker process will receive additional rows (from neighbor process) that it won't update. Since RBSOR split the whole matrix into odd cells and even cells, the woker process also needs to know <b>the parity of the first cell in its received block</b>.</p>
+
+    <p>MPI has huge overhead on message exchange although <b>we make sure rows not at the edge are only exchanged once after the last iteration</b>. The reason is that the linear solver will be called around 300 times and there's message (ghost rows) exchanges anyway in each iteration.</p>
         
     <h3>MPI+OpenMP</h3>
-    <p>This is just a combination of MPI and OpenMP, and easy to implement. MPI still requires us to do Red-Black SOR in each worker node, where OpenMP can shine. 
+    <p>This is just a combination of MPI and OpenMP, and easy to implement. MPI still requires us to do RBSOR in each worker node, where OpenMP can shine.</p> 
         
     <h3>MapReduce + OpenMP</h3>
     <p>We choose Hadoop Streaming as our platform for MapReduce. 
-        In our task, the map task is calling the binary executable of DeepFlow (Red-Black OpenMP implementation) on each individual pairs of consecutive image files along with the correpsonding .match file to generate .flo files. 
+        In our task, the map task is calling the binary executable of DeepFlow (RBSOR OpenMP implementation) on each individual pairs of consecutive image files along with the correpsonding .match file to generate .flo files. 
         The reduce task is an identity function (we can simply set mapred.reduce.tasks=0). By default, Hadoop streaming only supports streaming data as input and output. It is hard to properly format the image files and .match files as streaming input.</p>
 
     <p>Our solution is to make use of the Hadoop File System (HDFS). We upload all the input files as well as the binary executable to the HDFS through the master node. The map task at each slave node works as follows:</p>
@@ -189,7 +211,8 @@
 
     <p>In addition, to increase the throughput, we <b>generate the forward and backward flows for a pair of frames simultaneously on a worker node</b>.</p>
 
-    <p>The mapper implementation is <a href="https://github.com/zeruniverse/CS205-project/blob/master/src/MapReduce/mapper.py">here</a>.</p>
+    <p>The overhead of this method is mainly on HDFS download and upload (which is quite slow to be honest). The MapReduce scheduling sometimes doesn't evenly distribute the work and it also generates the overhead.</p>
+    
 </section>
 <footer id="contentinfo" class="body">
     <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing
