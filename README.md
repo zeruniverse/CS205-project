@@ -224,7 +224,7 @@ make
 
 Below is a complete test case for 2 images (OpenMP). For videos, the command should be similar (actually easier) because you just run bash file we provided (see above).
 
-Before running the following commands in your terminal, make sure you have latest `cmake`, `gcc` and `g++`.
+Before running the following commands in your terminal, make sure you have latest `cmake`, `gcc` and `g++` with libraries at the beginning of this section.
 
 ```bash
 wget https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak1.ppm
