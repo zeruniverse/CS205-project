@@ -107,6 +107,17 @@
 
     <p>By using HPC techniques, we can reduce the running time for every single flow. By using Big Data techniques, we can generate multiple flows simultaneously. Therefore, with HPC and Big Data, we can significantly reduce the running time of DeepFlow and make it realistic to apply DeepFlow on long videos.</p>
 
+    <hr />
+
+    <h2 class='entry-title' id="challenges">Challenges</h2>
+    <ul>
+      <li>The DeepFlow algorithm is not quite easy to understand.</li>
+      <li>Most of time is spent on linear system solver. However, the current linear system solver is not parallelizable due to serial dependency.</li>
+      <li>For MPI, the message exchange is not trivial.</li>
+      <li>It's pretty hard to apply MapReduce in our problem because the code is in C and the data is binary. (So we can't trivially use Hadoop Streaming like in assignment).</li>
+      <li>We want to show some applications of DeepFlow on videos so our work is meaningful. This is not always easy (for example there's existing code but it does not use DeepFlow to calculate the optical flow and we have to write some code to let it use DeepFlow).</li>
+    </ul>
+
 </section>
 <footer id="contentinfo" class="body">
         <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a></p>
