@@ -84,6 +84,7 @@ script:
   - make
   - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
   - ls -lh out.flo
+  - cp out.flo ../../../
   - cd ../..
 
   - cd RBSOR_serial
