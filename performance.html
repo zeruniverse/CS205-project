@@ -195,7 +195,7 @@
     <h2 class='entry-title'>Conclusion</h2>
     <ul>
         <li>For 2 consecutive images, we should use OpenMP parallelization.</li>
-        <li>For videos, we should use MapReduce+OpenMP parallelization.</li>
+        <li>For videos, we should use MapReduce+OpenMP parallelization. (Strong scaling, linear speedup)</li>
     </ul>
 
     <p>Other methods (OpenACC, MPI) does not work well in our project because we are solving a same type of problems again and again while each individual problem is not large (we are calling linear solvers a lot of times with different linear systems and solving each individual is quick). Therefore, we're pretty sensitive to the introduced overhead. (We can't solve all linear systems together because there're dependencies.) Although MPI and OpenACC are powerful, they also introduce a lot of overheads while solving each problem. If the serial time cost is not high enough, we may not see significant speedup.</p>
