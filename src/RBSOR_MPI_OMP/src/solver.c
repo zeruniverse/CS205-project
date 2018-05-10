@@ -159,7 +159,7 @@ void sor_coupled(image_t *du, image_t *dv, const image_t *a11, const image_t *a1
             } else{
                 odd = 1;
             }
-            MPI_Send(&odd,1,MPI_INT,dest,tag,MPI_COMM_WORLD0);
+            MPI_Send(&odd,1,MPI_INT,dest,tag,MPI_COMM_WORLD);
             MPI_Send(&rows,1,MPI_INT,dest,tag,MPI_COMM_WORLD);
             MPI_Send(&stride,1,MPI_INT,dest,tag,MPI_COMM_WORLD);
             MPI_Send(&offset,1,MPI_INT,dest,tag,MPI_COMM_WORLD);
