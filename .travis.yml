@@ -27,10 +27,12 @@ script:
   - cd ..
   - make
   - ls
+  - cp color_flow ../../
   - cd ..
   - cd flo2svflow
   - make
   - ls
+  - cp converter ../../
   - cd ../..
   
   - cd src
@@ -70,6 +72,7 @@ script:
   - make
   - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
   - ls -lh out.flo
+  - cp out.flo ../../../
   - cd ../..
 
   - cd RBSOR_OMP
@@ -107,5 +110,11 @@ script:
   - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
   - ls -lh out.flo
   - cd ../..
+  
+  - cd ..
+  - ls
+  - ./color_flow out.flo out.png
+  - ./converter out.flo output.sVflow
+  - ls -lh
   
   - echo "Done!"
