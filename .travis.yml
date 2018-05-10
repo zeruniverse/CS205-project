@@ -9,6 +9,8 @@ addons:
       - mpich
       - mpich-doc
       - npm
+      - libopencv-dev
+      - python-opencv
 before_script:
   - "npm install -g markdown-link-check"
 script:
@@ -17,6 +19,18 @@ script:
   - markdown-link-check application/README.md
   - markdown-link-check application/slowmo_guide.md
   - markdown-link-check application/stylize_guide.md
+  
+  - cd tools
+  - cd flo_visualization
+  - cd imageLib
+  - make
+  - cd ..
+  - make
+  - cd ..
+  - cd flo2svflow
+  - make
+  - cd ../..
+  
   - cd src
   - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak1.ppm"
   - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak2.ppm"
