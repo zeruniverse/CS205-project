@@ -119,6 +119,7 @@ script:
   - ls
   - ./color_flow out.flo out.png
   - ./converter out.flo output.sVflow
+  # check size
   - ls -lh
   
   - echo "Done!"
