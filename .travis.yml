@@ -82,6 +82,7 @@ script:
   - cd build
   - cmake ..
   - make
+  - export OMP_NUM_THREADS=2
   - time ./deepflow2 ../../ak1.ppm ../../ak1.ppm out.flo -match ../../ak_forward.match
   - ls -lh out.flo
   - cp out.flo ../../../
