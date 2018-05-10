@@ -162,6 +162,8 @@
         <li><b>Parallel Execution Models: Single program - multiple data (SPMD).</b></li>
     </ul>
 
+    <p>The time complexity for solving a linear system using RBSOR is O(Mn<sup>2</sup>) where M is the number of (outer) iterations and n<sup>2</sup> is the 2D matrix (corresponding to images) size.</p>
+
     <p>The original code is written in C (only for a pair of images) and our implementation is in C as well. For processing videos, we wrote bash scripts. We implemented multiple parallelizations we learnt in this class and compared their performance. To be more specific, we tried OpenMP, MPI, OpenACC and MPI+OpenMP for DeepFlow applied to 2 images and we tried the same methods and MapReduce+OpenMP (that's because OpenMP is the best for 2 images) for DeepFlow applied to video.</p>
     <hr />
 
