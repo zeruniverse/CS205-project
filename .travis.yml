@@ -20,6 +20,7 @@ script:
   - markdown-link-check application/slowmo_guide.md
   - markdown-link-check application/stylize_guide.md
   
+  # test compiling tools
   - cd tools
   - cd flo_visualization
   - cd imageLib
@@ -40,6 +41,7 @@ script:
   - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak2.ppm"
   - wget "https://github.com/zeruniverse/CS205-project/releases/download/0.01/ak_forward.match"
   
+  # test implementations
   - cd RBSOR_MPI
   - bash compile_mpi.sh
   - cd build
@@ -111,6 +113,7 @@ script:
   - ls -lh out.flo
   - cd ../..
   
+  # test tools on flow
   - cd ..
   - ls
   - ./color_flow out.flo out.png
