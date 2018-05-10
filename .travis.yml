@@ -26,9 +26,11 @@ script:
   - make
   - cd ..
   - make
+  - ls
   - cd ..
   - cd flo2svflow
   - make
+  - ls
   - cd ../..
   
   - cd src
