@@ -169,10 +169,12 @@
     <p><b>Parallelization is based on RBSOR algorithm introduced above. The original SOR algorithm is not parallelizable.</b></p>
 
     <h3>OpenMP</h3>
-    <p>As we said, in each iteration of RBSOR the elements could be processed independently, thus the OpenMP parallization is fairly straight forward. We simply wrap the the for loop with appropriate pragmas.</p>
+
+    <p>As we said, in each iteration of RBSOR the elements could be processed independently, thus the OpenMP parallization is fairly straight forward. We simply wrap the the for loop with appropriate pragmas. We know clearly that each iteration needs strictly same amount of work so the OpenMP <b>scheduling policy should be static</b>.</p>
 
     <p>The OpenMP implementation mainly has overhead on thread synchronization. The process needs to join the threads for each iteration thus making many system calls. There are also some overhead for creating and terminating the threads. </p>
-    <p>The theoretical speedup ignoring overhead is 1/(0.22+0.78/N) where N is number of threads. The actual speedup should be less because of the overhead we explained above.</p>
+
+    <p>The theoretical speedup ignoring overhead is 1/(0.22+0.78/N) where N is number of threads. The actual speedup should be less because of the overhead we explained above. This theoretical speedup is also true for other methods working on 2 consecutive images.</p>
 
     <h3>OpenACC</h3>
 

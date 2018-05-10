@@ -112,36 +112,41 @@
     </figure>
 
     <hr />
-    <h2 class='entry-title'>MPI (on 2 CPUs)</h2>
+    <h2 class='entry-title'>MPI (on 2 nodes)</h2>
     <table style="border: 1px solid black;text-align:center">
         <caption>Time for generating flow between two images</caption>
         <tr style="border: 1px solid black;"><th></th><th>360p Images</th><th>720p Images</th><th>1080p Images</th></tr>
-        <tr><td>MPI with 3 threads</td><td>3.245 seconds</td><td>12.711 seconds</td><td>32.605 seconds</td></tr>
-        <tr><td>MPI with 4 threads</td><td>2.849 seconds</td><td>11.188 seconds</td><td>28.665 seconds</td></tr>
-        <tr><td>MPI with 5 threads</td><td>2.567 seconds</td><td>10.216 seconds</td><td>25.040 seconds</td></tr>
-        <tr><td>MPI with 6 threads</td><td>2.533 seconds</td><td>10.070 seconds</td><td>24.113 seconds</td></tr>
-        <tr><td>MPI with 7 threads</td><td>3.402 seconds</td><td>10.672 seconds</td><td>22.835 seconds</td></tr>
-        <tr><td>MPI with 8 threads</td><td>3.339 seconds</td><td>14.570 seconds</td><td>22.869 seconds</td></tr>
-        <tr><td>MPI with 16 threads</td><td>4.457 seconds</td><td>14.616 seconds</td><td>32.863 seconds</td></tr>
+        <tr><td>MPI with 3 processes</td><td>3.245 seconds</td><td>12.711 seconds</td><td>32.605 seconds</td></tr>
+        <tr><td>MPI with 4 processes</td><td>2.849 seconds</td><td>11.188 seconds</td><td>28.665 seconds</td></tr>
+        <tr><td>MPI with 5 processes</td><td>2.567 seconds</td><td>10.216 seconds</td><td>25.040 seconds</td></tr>
+        <tr><td>MPI with 6 processes</td><td>2.533 seconds</td><td>10.070 seconds</td><td>24.113 seconds</td></tr>
+        <tr><td>MPI with 7 processes</td><td>3.402 seconds</td><td>10.672 seconds</td><td>22.835 seconds</td></tr>
+        <tr><td>MPI with 8 processes</td><td>3.339 seconds</td><td>14.570 seconds</td><td>22.869 seconds</td></tr>
+        <tr><td>MPI with 16 processes</td><td>4.457 seconds</td><td>14.616 seconds</td><td>32.863 seconds</td></tr>
     </table>
-    <p>We implement MPI and run our model on 2 instances, i.e 2 CPUs, and the maximum number of threads now is 16, since each m4.2xlarge provides 8 threads. But since m4.2xlarge only provides 4 actual core, the performance of MPI with 16 threads is worse than one with 8 threads, which agrees with the result of previous OpenMP. The speedup plot is shown below.
+    <p>We implemented MPI and ran our model on 2 AWS nodes (16 vCPUs since each m4.2xlarge provides 8 vCPUs). But since m4.2xlarge only provides 4 physical cores, the performance of MPI with 16 processes is worse than one with 8 processes, which agrees with the result of previous OpenMP. The speedup plot is shown below.</p>
 
 
         <figure style="clear:both">
             <img src="img/mpi_speedup.png" alt="omp-video" width="660">
         </figure>
-    <p>Although performance increases with the number of threads, MPI still works really bad, even worse than serial programming, which is no surprise, since messages passing between nodes are huge and frequent due to frequent call of Red-Black SOR, so that overhead is pretty large. Notice that we are not dealing with a single matrix and perform Red-Black SOR on it. Instead, we are dealing with multiple matrices with different sizes, so that every time we call Red-Black SOR, we need to reassign jobs to different nodes and those nodes send and receive messages, and that is how overhead accumulates.
 
+    <p>Although performance increases with the number of processes, MPI still works really badly, which is no surprise, since messages passed between nodes are huge and frequent due to frequent calls of Red-Black SOR, so the overhead is pretty large.</p> 
 
+    <p>Notice that we are not dealing with a single matrix and performing Red-Black SOR on it. Instead, we are dealing with multiple matrices with different sizes, so that every time we call Red-Black SOR, we need to reassign jobs to different nodes, and that is how overhead accumulates.</p>
+
+    <p>We didn't evaluate MPI on videos due to its bad performance on 2 images.</p>
 
     <hr />
-    <h2 class='entry-title'>MPI+OpenMP (on 3 CPUs)</h2>
+    <h2 class='entry-title'>MPI+OpenMP (on 3 nodes)</h2>
     <table style="border: 1px solid black;text-align:center">
         <caption>Time for generating flow between two images</caption>
         <tr style="border: 1px solid black;"><th></th><th>360p Images</th><th>720p Images</th><th>1080p Images</th></tr>
-        <tr><td>MPI with 3 threads+OpenMP with 4 threads</td><td>2.857 seconds</td><td>13.609 seconds</td><td>31.873 seconds</td></tr>
+        <tr><td>MPI with 3 processes+OpenMP with 4 threads</td><td>2.857 seconds</td><td>13.609 seconds</td><td>31.873 seconds</td></tr>
  </table>
-    <p>We also implement MPI with OpenMP and run our model on 3 instances, i.e. 3 CPUs, and the maximum number of real cores now is 12, since each m4.2xlarge provides 4 real cores. We let the number of threads for OpenMP be 4 and the number of threads for MPI be 3, which indicates that we assign job to 3 CPUs and on each of them we apply 4-thread OpenMP. We As we can see, the performance is better than MPI's but still worse than serial. The reasons are the same as MPI case. We therefore conclude that MPI does not fit this problem.
+    <p>We also implemented MPI with OpenMP and ran our model on 3 AWS nodes (24 vCPUs since each m4.2xlarge provides 8 vCPUs) using SMP Nodes. Since we know on m4.2xlarge, 4 threads is best for OpenMP so we let the number of threads for OpenMP be 4 and the number of processes for MPI be 3, which indicates that we assign job to 3 nodes and on each of them we apply 4-thread OpenMP. The results are still bad especially for high resolutions where message passing will takes more time.</p>
+
+    <p>we didn't evaluate MPI+ OpenMP on videos due to its bad performance on 2 images.</p>
     
     <hr />
     <h2 class='entry-title'>OpenACC</h2>
@@ -186,6 +191,14 @@
     <p>As shown in the figure, the speedup increase is quite linear. Due to the issue we mentioned before (r4.2xlarge is slightly more powerful than m4.2xlarge), from 4 nodes to 8 nodes, the speedup grows faster (without the issue, we expect linear speedup increase).</p>
 
     <p>Since there are overheads like HDFS file copys in MapReduce, and those overheads are approximately constants. By theory, when more fraction of the time are spent in flow calculation, we will have a higher speedup. Therefore, we observe in the above plot that 360p video has the worst speedup while 1080p video has the best speedup.</p>
+    <hr />
+    <h2 class='entry-title'>Conclusion</h2>
+    <ul>
+        <li>For 2 consecutive images, we should use OpenMP parallelization.</li>
+        <li>For videos, we should use MapReduce+OpenMP parallelization.</li>
+    </ul>
+
+    <p>Other methods (OpenACC, MPI) does not work well in our project because we are solving a same type of problems again and again while each individual problem is not large (we are calling linear solvers a lot of times with different linear systems and solving each individual is quick). Therefore, we're pretty sensitive to the introduced overhead. (We can't solve all linear systems together because there're dependencies.) Although MPI and OpenACC are powerful, they also introduce a lot of overheads while solving each problem. If the serial time cost is not high enough, we may not see significant speedup.</p>
 
 </section>
 <footer id="contentinfo" class="body">
